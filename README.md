@@ -1,10 +1,8 @@
-# NLP-AT3-2026
-Assignment Task 3 for Introduction to Natural Language Processing 
-# NLP Project: Python Coding FAQ Agent
+# Honours-Project-2026: Intelligent Conversational Tutoring Python & Javascript Programming Agent
 
-Aim: Assist students learning Python coding through an intelligent agent for programming projects.
+Aim: Assist students learning Python & Javascript coding through an intelligent conversational agent for programming projects.
 
-## Prerequisites
+## Prerequisites (Will change this when javascript will be implemented)
 
 - Python 3.11
 - Node.js 18+
@@ -18,7 +16,7 @@ Aim: Assist students learning Python coding through an intelligent agent for pro
 ### 1. Clone and set up the backend
 
 ```bash
-git clone https://github.com/AshWz-Uni/NLP-AT3-2026.git
+git clone https://github.com/AshWz-Uni/Honours-Project-2026
 cd NLP-AT3-2026
 
 # Install Python dependencies
