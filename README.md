@@ -17,7 +17,7 @@ Aim: Assist students learning Python & Javascript coding through an intelligent 
 
 ```bash
 git clone https://github.com/AshWz-Uni/Honours-Project-2026
-cd NLP-AT3-2026
+cd Honours-Project-2026
 
 # Install Python dependencies
 pip install -r requirements.txt
