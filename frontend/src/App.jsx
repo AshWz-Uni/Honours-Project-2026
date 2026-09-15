@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Home from './pages/Home'
 
 function App() {
-  const [theme, setTheme] = useState('light')
+  const [theme, setTheme] = useState('dark')
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme

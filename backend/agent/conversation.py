@@ -24,17 +24,17 @@ class Conversation:
     stage: int = 0
     turns: int = 0
     diagnostic: str = ""
-
+    # Number of student-facing Socratic questions already produced.
+    question_count: int = 0
+    # Once the minimum question count has been reached, the next tutor turn
+    # should conclude rather than ask another question.
+    concluded: bool = False
 
 _conversations: Dict[str, Conversation] = {}
 
-
 def create_conversation(code: str = "", language: str = "python") -> str:
     conversation_id = str(uuid4())
-    _conversations[conversation_id] = Conversation(
-        code=code,
-        language=language,
-    )
+    _conversations[conversation_id] = Conversation(code=code, language=language)
     return conversation_id
 
 
