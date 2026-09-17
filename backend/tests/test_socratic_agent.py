@@ -23,99 +23,106 @@ def test_repetition_question_detection():
     )
 
 
-def test_tutor_returns_hint_and_question_and_advances_stage(monkeypatch):
+def test_diagnostic_parser_tracks_student_progress():
+    result = tutor_agent._parse_diagnostic(
+        '{"problem_identified": true, "solution_proposed": true, '
+        '"solution_correct": true, "solution_validated": false, '
+        '"student_evidence": "Student proposes returning both indices.", '
+        '"next_step": "conclude"}'
+    )
+    assert result["problem_identified"] is True
+    assert result["solution_proposed"] is True
+    assert result["solution_correct"] is True
+    assert result["solution_validated"] is False
+
+
+def test_tutor_hides_internal_markers(monkeypatch):
     outputs = iter([
-        "likely_issue: condition\nnext_step: trace the condition",
-        "Hint: Trace the loop boundary with the failing input.\nQuestion: What value does the condition evaluate with on the first iteration?",
+        '{"problem_identified": false, "solution_proposed": false, "solution_correct": false, "solution_validated": false, "student_evidence": "", "next_step": "diagnose"}',
+        "Hint: Trace the return value.\nQuestion: What does the function return when the condition is met?",
     ])
     monkeypatch.setattr(tutor_agent, "ask_llm", lambda *args, **kwargs: next(outputs))
 
     response, conversation_id = tutor_agent.generate_tutor_response(
-        code="for i in range(3):\n    print(i)",
-        question="Why does this behave differently than I expected?",
+        code="return x",
+        question="Something is wrong with my result.",
     )
 
     conversation = get_conversation(conversation_id)
+    assert "Hint:" not in response
+    assert "Question:" not in response
     assert response.count("?") == 1
-    assert "Hint:" in response
-    assert "Question:" in response
-    assert conversation is not None
-    assert conversation.stage == 1
     assert conversation.question_count == 1
-    assert len(conversation.messages) == 2
 
 
-def test_repetition_generation_falls_back_to_safe_question(monkeypatch):
+def test_tutor_concludes_immediately_when_student_identifies_and_proposes_correct_fix(monkeypatch):
     outputs = iter([
-        "diagnostic notes",
-        "Can you repeat the question?",
-        "Can you restate the problem?",
+        '{"problem_identified": true, "solution_proposed": true, "solution_correct": true, '
+        '"solution_validated": false, "student_evidence": "Student says only i is returned and proposes returning both i and j.", '
+        '"next_step": "conclude"}',
+        "You identified that the returned result does not contain all required information and proposed a change that addresses that mismatch. Verify your own change with the example input.",
     ])
     monkeypatch.setattr(tutor_agent, "ask_llm", lambda *args, **kwargs: next(outputs))
 
-    response, _ = tutor_agent.generate_tutor_response(
-        code="print('x')",
-        question="Can you fix this?",
-    )
-
-    assert response.count("?") == 1
-    assert "Hint:" in response
-    assert "repeat the question" not in response.lower()
-    assert "restate the problem" not in response.lower()
-
-
-def test_no_conclusion_before_five_questions(monkeypatch):
-    def fake_llm(prompt, *args, **kwargs):
-        if "PRIVATE DIAGNOSTIC NOTES" in prompt:
-            return "diagnostic notes"
-        return "Hint: Trace the relevant value before changing the code.\nQuestion: What value do you observe at this step?"
-
-    monkeypatch.setattr(tutor_agent, "ask_llm", fake_llm)
-
-    conversation_id = None
-    for i in range(5):
-        response, conversation_id = tutor_agent.generate_tutor_response(
-            code="print('x')",
-            question=f"My reasoning attempt {i}",
-            conversation_id=conversation_id,
-        )
-        assert "Question:" in response
-        assert response.count("?") == 1
-
-    conversation = get_conversation(conversation_id)
-    assert conversation.question_count == 5
-    assert conversation.concluded is False
-
-
-def test_concludes_after_five_questions_without_another_question(monkeypatch):
-    calls = []
-
-    def fake_llm(prompt, *args, **kwargs):
-        calls.append(prompt)
-        if "concluding a Socratic" in prompt:
-            return "You identified the relevant control-flow behaviour. Verify your own change with the edge case and a nearby valid input."
-        if "PRIVATE DIAGNOSTIC NOTES" in prompt:
-            return "diagnostic notes"
-        return "Hint: Trace the relevant value before changing the code.\nQuestion: What value do you observe at this step?"
-
-    monkeypatch.setattr(tutor_agent, "ask_llm", fake_llm)
-
-    conversation_id = None
-    for i in range(5):
-        _, conversation_id = tutor_agent.generate_tutor_response(
-            code="print('x')",
-            question=f"attempt {i}",
-            conversation_id=conversation_id,
-        )
-
     response, conversation_id = tutor_agent.generate_tutor_response(
-        code="print('x')",
-        question="I think I understand the issue now.",
-        conversation_id=conversation_id,
+        code="""class Solution(object):
+    def twoSum(self, nums, target):
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums)):
+                if nums[i] + nums[j] == target:
+                    return [i]
+        return []""",
+        question="Could it be because I only return i? I think I need to return both i and j.",
     )
 
     conversation = get_conversation(conversation_id)
     assert "?" not in response
+    assert "Hint:" not in response
+    assert "Question:" not in response
     assert conversation.concluded is True
-    assert conversation.question_count == 5
-    assert "concluding a Socratic" in calls[-1]
+    assert conversation.question_count == 0
+    assert conversation.problem_identified is True
+    assert conversation.solution_proposed is True
+    assert conversation.solution_correct is True
+
+
+def test_tutor_does_not_conclude_when_student_only_identifies_problem(monkeypatch):
+    outputs = iter([
+        '{"problem_identified": true, "solution_proposed": false, "solution_correct": false, "solution_validated": false, "student_evidence": "Student identified the incorrect return behaviour.", "next_step": "propose"}',
+        "That is a useful diagnosis. What change could you propose to address the mismatch you found?",
+    ])
+    monkeypatch.setattr(tutor_agent, "ask_llm", lambda *args, **kwargs: next(outputs))
+
+    response, conversation_id = tutor_agent.generate_tutor_response(
+        code="return [i]",
+        question="I think the problem is that only one index is returned.",
+    )
+
+    conversation = get_conversation(conversation_id)
+    assert "?" in response
+    assert conversation.concluded is False
+    assert conversation.problem_identified is True
+    assert conversation.solution_proposed is False
+    assert conversation.question_count == 1
+
+
+def test_questioning_can_continue_past_five_when_problem_not_identified(monkeypatch):
+    def fake_llm(prompt, *args, **kwargs):
+        if "private diagnostic component" in prompt.lower():
+            return '{"problem_identified": false, "solution_proposed": false, "solution_correct": false, "solution_validated": false, "student_evidence": "", "next_step": "diagnose"}'
+        return "What value do you observe at this step?"
+
+    monkeypatch.setattr(tutor_agent, "ask_llm", fake_llm)
+
+    conversation_id = None
+    for i in range(6):
+        response, conversation_id = tutor_agent.generate_tutor_response(
+            code="print('x')",
+            question=f"I am still unsure about attempt {i}.",
+            conversation_id=conversation_id,
+        )
+        assert "?" in response
+
+    conversation = get_conversation(conversation_id)
+    assert conversation.question_count == 6
+    assert conversation.concluded is False

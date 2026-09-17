@@ -26,11 +26,17 @@ class Conversation:
     diagnostic: str = ""
     # Number of student-facing Socratic questions already produced.
     question_count: int = 0
-    # Once the minimum question count has been reached, the next tutor turn
-    # should conclude rather than ask another question.
+    # Internal learning-state flags. These are never exposed to the frontend.
+    problem_identified: bool = False
+    solution_proposed: bool = False
+    solution_correct: bool = False
+    solution_validated: bool = False
+    # True once the student's reasoning is sufficient to finish the dialogue.
     concluded: bool = False
 
+
 _conversations: Dict[str, Conversation] = {}
+
 
 def create_conversation(code: str = "", language: str = "python") -> str:
     conversation_id = str(uuid4())
@@ -58,7 +64,7 @@ def get_or_create_conversation(
 
 
 def add_message(conversation: Conversation, role: str, content: str) -> None:
-    conversation.messages.append(Message(role=role, content=content))
+    conversation.messages.append(Message(role, content))
 
 
 def history_as_text(conversation: Conversation, limit: int = 12) -> str:
@@ -73,3 +79,4 @@ def history_as_text(conversation: Conversation, limit: int = 12) -> str:
 
 def clear_conversation(conversation_id: str) -> bool:
     return _conversations.pop(conversation_id, None) is not None
+
