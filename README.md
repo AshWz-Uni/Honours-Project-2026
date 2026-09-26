@@ -1,6 +1,6 @@
 # Honours-Project-2026: Intelligent Conversational Tutoring Python Programming Agent
 
-Aim: Assist students learning Python coding through an intelligent conversational agent for programming projects.
+Aim: Assist students learning Python and Javascript coding through an intelligent conversational agent for programming projects.
 
 ## Prerequisites
 
