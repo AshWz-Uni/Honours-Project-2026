@@ -1,8 +1,10 @@
 """Conversation state for the tutoring agent.
 
 The tutor is deliberately stateful: Socratic tutoring works best when the next
-question depends on what the student said previously and on the current stage
-of the reasoning process.
+question depends on what the student has already said and on what they have
+already worked out. Progress is therefore stored as learning-state flags, and
+the tutoring stage is *derived* from those flags (see ``tutor_agent``), not
+advanced blindly by a turn counter.
 """
 
 from dataclasses import dataclass, field
@@ -19,28 +21,35 @@ class Message:
 @dataclass
 class Conversation:
     code: str = ""
-    language: str = "python"
+    # Optional plain-English problem statement (e.g. the LeetCode task). Gives the tutor the requirement it needs to judge a proposed fix.
+    problem: str = ""
     messages: List[Message] = field(default_factory=list)
-    stage: int = 0
+    # Name of the stage used for the most recent tutor turn.
+    stage_name: str = "clarify"
+    # Tutor turns spent in the diagnosis phase / consolidation phase.
+    diagnosis_turns: int = 0
+    consolidation_turns: int = 0
     turns: int = 0
     diagnostic: str = ""
     # Number of student-facing Socratic questions already produced.
     question_count: int = 0
-    # Internal learning-state flags. These are never exposed to the frontend.
+    # Internal learning-state flags. These are never sent to the chat UI.
     problem_identified: bool = False
     solution_proposed: bool = False
     solution_correct: bool = False
     solution_validated: bool = False
-    # True once the student's reasoning is sufficient to finish the dialogue.
+    # True once the dialogue has finished.
     concluded: bool = False
 
 
 _conversations: Dict[str, Conversation] = {}
 
 
-def create_conversation(code: str = "", language: str = "python") -> str:
+def create_conversation(code: str = "", problem: str = "") -> str:
     conversation_id = str(uuid4())
-    _conversations[conversation_id] = Conversation(code=code, language=language)
+    _conversations[conversation_id] = Conversation(
+        code=code, problem=problem or ""
+    )
     return conversation_id
 
 
@@ -51,15 +60,15 @@ def get_conversation(conversation_id: str) -> Optional[Conversation]:
 def get_or_create_conversation(
     conversation_id: Optional[str],
     code: str,
-    language: str,
+    problem: Optional[str] = None,
 ) -> tuple[str, Conversation]:
     if conversation_id and conversation_id in _conversations:
         conversation = _conversations[conversation_id]
         conversation.code = code or conversation.code
-        conversation.language = language or conversation.language
+        conversation.problem = problem or conversation.problem
         return conversation_id, conversation
 
-    new_id = create_conversation(code=code, language=language)
+    new_id = create_conversation(code=code, problem=problem or "")
     return new_id, _conversations[new_id]
 
 
@@ -79,4 +88,3 @@ def history_as_text(conversation: Conversation, limit: int = 12) -> str:
 
 def clear_conversation(conversation_id: str) -> bool:
     return _conversations.pop(conversation_id, None) is not None
-

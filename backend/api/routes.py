@@ -1,7 +1,10 @@
+import os
+from dataclasses import asdict
+
 from fastapi import APIRouter, HTTPException
 
-from backend.agent.conversation import get_conversation
-from backend.agent.tutor_agent import STAGES, generate_tutor_response
+from backend.agent.conversation import clear_conversation, get_conversation
+from backend.agent.tutor_agent import generate_tutor_response, learning_state
 from backend.api.models import ChatRequest, ChatResponse
 
 router = APIRouter()
@@ -14,28 +17,39 @@ def chat(request: ChatRequest):
             code=request.code,
             question=request.question,
             conversation_id=request.conversation_id,
-            language=request.language,
+            problem=request.problem,
         )
     except Exception as exc:
         raise HTTPException(status_code=502, detail=f"Tutor model error: {exc}") from exc
 
     conversation = get_conversation(conversation_id)
-    stage = None
-    if conversation is not None:
-        stage = STAGES[min(conversation.stage, len(STAGES) - 1)]
-
     return ChatResponse(
         response=response,
         conversation_id=conversation_id,
-        stage=stage,
+        stage=conversation.stage_name if conversation else None,
+        concluded=bool(conversation and conversation.concluded),
     )
 
 
 @router.delete("/chat/{conversation_id}")
 def clear_chat(conversation_id: str):
-    from backend.agent.conversation import clear_conversation
-
     if not clear_conversation(conversation_id):
         raise HTTPException(status_code=404, detail="Conversation not found")
 
     return {"message": "Conversation cleared"}
+
+
+@router.get("/chat/{conversation_id}/state")
+def chat_state(conversation_id: str):
+    """Learning-state snapshot for evaluation runs. Disabled unless TUTOR_DEBUG=1."""
+    if os.getenv("TUTOR_DEBUG") != "1":
+        raise HTTPException(status_code=404, detail="Not found")
+
+    conversation = get_conversation(conversation_id)
+    if conversation is None:
+        raise HTTPException(status_code=404, detail="Conversation not found")
+
+    return {
+        **learning_state(conversation),
+        "messages": [asdict(m) for m in conversation.messages],
+    }
