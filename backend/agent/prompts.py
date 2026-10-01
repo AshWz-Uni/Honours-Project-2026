@@ -1,4 +1,12 @@
-"""Prompts used by the Socratic tutoring pipeline."""
+"""Prompts used by the Socratic tutoring pipeline.
+
+Prompts are language-aware (Python / JavaScript). For Python the text is
+unchanged from the original single-language version; JavaScript adds a short
+language note and switches the code fence, so results for the two languages
+differ only by what the language actually requires.
+"""
+
+from backend.agent.language import JAVASCRIPT, PYTHON, normalise_language
 
 SYSTEM_PROMPT = """
 You are a university programming tutor using a strict Socratic teaching method.
@@ -160,19 +168,68 @@ Return JSON ONLY using exactly these keys:
 """.strip()
 
 
+# Extra context appended to the tutor prompt. Empty for Python (the original behaviour).
+LANGUAGE_NOTES = {
+    PYTHON: "",
+    JAVASCRIPT: (
+        "LANGUAGE: The student's code is JavaScript. Use JavaScript terms (array, "
+        "object, null, undefined, strict equality ===, push/pop). Never use Python "
+        "terms (list, dictionary, None, elif, len) and never suggest Python syntax.\n"
+        "JavaScript behaviours you may steer the student toward with a QUESTION, "
+        "without naming the fix: == versus ===; var/let/const scoping; a function "
+        "that finishes without a return gives undefined; / gives a fractional result "
+        "(there is no integer division); sort() compares values as strings by "
+        "default; push, pop, splice and sort change the original array while slice, "
+        "map and filter return a new one; NaN and undefined spreading through "
+        "arithmetic; the value of this inside callbacks; asynchronous code finishing "
+        "after the code below it. Only raise a behaviour if it actually appears in "
+        "the student's code."
+    ),
+}
+
+# Extra context for the private diagnostic pass. Empty for Python.
+DIAGNOSTIC_LANGUAGE_NOTES = {
+    PYTHON: "",
+    JAVASCRIPT: (
+        "LANGUAGE NOTE: The student's code is JavaScript. Judge their explanation "
+        "in JavaScript terms (arrays, null/undefined, ===, push, Math.floor, "
+        "missing return). Example (function total(xs) that never returns its "
+        "accumulator):\n"
+        "Student: \"I think it gives undefined because I never return the total after the loop.\"\n"
+        "{\"problem_identified\": true, \"solution_proposed\": false, \"solution_correct\": false, "
+        "\"solution_validated\": false, \"student_evidence\": \"Names the missing return after the loop.\", "
+        "\"next_step\": \"propose\"}"
+    ),
+}
+
+
+def _lang(language: str | None) -> str:
+    return normalise_language(language) or PYTHON
+
+
+def fence_tag(language: str | None) -> str:
+    """Markdown fence tag for the student's code block."""
+    return _lang(language)
+
+
+def _note(notes: dict, language: str | None) -> str:
+    note = notes.get(_lang(language), "")
+    return f"\n\n{note}" if note else ""
+
+
 def _problem_block(problem: str) -> str:
     return f"Problem statement:\n{problem}\n" if problem else "Problem statement: (not provided)\n"
 
 
 def build_diagnostic_prompt(
-    code: str, question: str, history: str, problem: str = ""
+    code: str, question: str, history: str, problem: str = "", language: str = PYTHON
 ) -> str:
     return f"""
-{DIAGNOSTIC_PROMPT}
+{DIAGNOSTIC_PROMPT}{_note(DIAGNOSTIC_LANGUAGE_NOTES, language)}
 
 {_problem_block(problem)}
 Student code:
-```python
+```{fence_tag(language)}
 {code}
 ```
 
@@ -193,10 +250,11 @@ def build_socratic_prompt(
     question_number: int,
     problem: str = "",
     focus: str = "",
+    language: str = PYTHON,
 ) -> str:
     guidance = STAGE_GUIDANCE[stage].format(focus=focus)
     return f"""
-{SYSTEM_PROMPT}
+{SYSTEM_PROMPT}{_note(LANGUAGE_NOTES, language)}
 
 CURRENT TUTORING STAGE: {stage}
 STAGE GUIDANCE: {guidance}
@@ -207,7 +265,7 @@ PRIVATE DIAGNOSTIC STATE:
 
 {_problem_block(problem)}
 Student code:
-```python
+```{fence_tag(language)}
 {code}
 ```
 
@@ -230,13 +288,14 @@ def build_conclusion_prompt(
     history: str,
     diagnostic: str,
     problem: str = "",
+    language: str = PYTHON,
 ) -> str:
     return f"""
-{CONCLUSION_PROMPT}
+{CONCLUSION_PROMPT}{_note(LANGUAGE_NOTES, language)}
 
 {_problem_block(problem)}
 Student code:
-```python
+```{fence_tag(language)}
 {code}
 ```
 

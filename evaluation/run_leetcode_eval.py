@@ -1,10 +1,14 @@
 """Run the 10-problem LeetCode test set through the Socratic tutor.
 
+The same 10 problems (same bugs, same scripted student) exist in Python and
+JavaScript, so the two languages can be compared directly.
+
 Usage (from the project root, with Ollama running and `ollama pull codellama:7b`):
 
-    python -m evaluation.run_leetcode_eval                 # all 10 problems, real Code Llama
-    python -m evaluation.run_leetcode_eval --only 1,5,9    # a subset
-    python -m evaluation.run_leetcode_eval --dry-run       # stub LLM: checks the plumbing only
+    python -m evaluation.run_leetcode_eval                       # Python + JavaScript, real Code Llama
+    python -m evaluation.run_leetcode_eval --language javascript # one language only
+    python -m evaluation.run_leetcode_eval --only 1,5,9          # a subset
+    python -m evaluation.run_leetcode_eval --dry-run             # stub LLM: checks the plumbing only
 
 A scripted student replies in a fixed order: diagnosis -> own fix -> validation
 -> three reflection answers. The run stops when the tutor concludes.
@@ -13,7 +17,9 @@ Automatic columns are PROXIES computed by the same detectors the agent uses
 (so they cannot catch what those detectors miss). The columns marked MANUAL are
 left blank on purpose: judge them by reading transcripts.md.
 
-Outputs (default results/leetcode_eval/): leetcode_results.csv, transcripts.md
+Outputs (default results/leetcode_eval/<language>/): leetcode_results.csv, transcripts.md
+When both languages are run, results/leetcode_eval/combined_results.csv stacks them
+(one row per problem per language, with a ``language`` column) for side-by-side analysis.
 """
 
 import argparse
@@ -27,7 +33,8 @@ sys.path.insert(0, str(ROOT))
 
 from backend.agent import tutor_agent as ta  # noqa: E402
 from backend.agent.conversation import get_conversation  # noqa: E402
-from dataset.leetcode_eval import PROBLEMS  # noqa: E402
+from backend.agent.language import SUPPORTED_LANGUAGES, detect_language  # noqa: E402
+from dataset.leetcode_eval import get_problems  # noqa: E402
 
 REPEAT_THRESHOLD = 0.65
 POST_DIAGNOSIS_STAGES = {"propose", "test", "validate", "consolidate"}
@@ -105,6 +112,7 @@ def run_problem(problem: dict, stub_state=None) -> dict:
             question=student_text,
             conversation_id=conversation_id,
             problem=problem["problem"],
+            language=problem["language"],
         )
         conv = get_conversation(conversation_id)
         transcript.append((role, student_text, reply, conv.stage_name))
@@ -125,14 +133,20 @@ def run_problem(problem: dict, stub_state=None) -> dict:
         for b in questions[i + 1 :]
     )
 
+    detected = detect_language(problem["code"])
     return {
+        "language": problem["language"],
         "id": problem["id"],
         "problem": problem["name"],
         "bug": problem["bug"],
         "tutor_questions": conv.question_count,
         "auto_repeated_question": repeated,
+        "auto_detected_language": detected or "",
+        "auto_language_detected_correctly": detected == problem["language"],
         "auto_solution_leak_flags": sum(
-            ta._contains_solution_leak(m) or ta._introduces_new_code(m, problem["code"]) for m in tutor_msgs
+            ta._contains_solution_leak(m, problem["language"])
+            or ta._introduces_new_code(m, problem["code"], problem["language"])
+            for m in tutor_msgs
         ),
         "auto_reasked_diagnosis": sum(ta._re_asks_diagnosis(m) for m in tutor_msgs[1:]),
         "auto_stage_after_first_reply": stage_after_first,
@@ -154,6 +168,7 @@ def run_problem(problem: dict, stub_state=None) -> dict:
         "MANUAL_notes": "",
         "_transcript": transcript,
         "_code": problem["code"],
+        "_language": problem["language"],
     }
 
 
@@ -168,36 +183,62 @@ def write_outputs(rows: list[dict], out_dir: Path, dry_run: bool) -> None:
 
     lines = ["# Transcripts" + ("  (DRY RUN — stub LLM, not real results)" if dry_run else ""), ""]
     for row in rows:
-        lines += [f"## {row['id']}. {row['problem']}", "", f"Ground-truth bug: {row['bug']}", "", "```python", row["_code"], "```", ""]
+        lines += [f"## {row['id']}. {row['problem']}", "", f"Ground-truth bug: {row['bug']}", "", f"```{row['_language']}", row["_code"], "```", ""]
         for role, student, tutor, stage in row["_transcript"]:
             lines += [f"**Student ({role}):** {student}", "", f"**Tutor [{stage}]:** {tutor}", ""]
     (out_dir / "transcripts.md").write_text("\n".join(lines), encoding="utf-8")
 
 
+def write_combined_csv(rows: list[dict], path: Path) -> None:
+    """One CSV with both languages stacked, for side-by-side comparison."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fields = [k for k in rows[0] if not k.startswith("_")]
+    with path.open("w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
+        writer.writeheader()
+        writer.writerows(rows)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument(
+        "--language",
+        choices=(*SUPPORTED_LANGUAGES, "both"),
+        default="both",
+        help="which version of the problem set to run (default: both)",
+    )
     parser.add_argument("--only", help="comma-separated problem ids, e.g. 1,5,9")
     parser.add_argument("--out", default=str(ROOT / "results" / "leetcode_eval"))
     parser.add_argument("--dry-run", action="store_true", help="use a stub LLM (plumbing check only)")
     args = parser.parse_args()
 
     selected = {int(x) for x in args.only.split(",")} if args.only else None
-    problems = [p for p in PROBLEMS if selected is None or p["id"] in selected]
+    languages = SUPPORTED_LANGUAGES if args.language == "both" else (args.language,)
 
     stub_state = install_stub_llm() if args.dry_run else None
-    rows = []
-    for problem in problems:
-        print(f"Running {problem['id']:>2}. {problem['name']} ...", flush=True)
-        try:
-            rows.append(run_problem(problem, stub_state))
-        except Exception as exc:  # e.g. Ollama not running
-            sys.exit(f"\nFailed on problem {problem['id']}: {exc}\nIs Ollama running with the model in config/llm_config.json?")
+    out_root = Path(args.out)
+    all_rows: list[dict] = []
+    for language in languages:
+        problems = [p for p in get_problems(language) if selected is None or p["id"] in selected]
+        rows = []
+        print(f"\n=== {language} ({len(problems)} problems) ===", flush=True)
+        for problem in problems:
+            print(f"Running {problem['id']:>2}. {problem['name']} ...", flush=True)
+            try:
+                rows.append(run_problem(problem, stub_state))
+            except Exception as exc:  # e.g. Ollama not running
+                sys.exit(f"\nFailed on {language} problem {problem['id']}: {exc}\nIs Ollama running with the model in config/llm_config.json?")
 
-    write_outputs(rows, Path(args.out), args.dry_run)
-    print(f"\nWrote {len(rows)} rows to {args.out}")
-    for r in rows:
-        print(f"  {r['id']:>2} {r['problem']:<30} Qs={r['tutor_questions']} concluded={r['concluded']} "
-              f"leak_flags={r['auto_solution_leak_flags']} fallbacks={r['auto_fallback_replies_used']}")
+        write_outputs(rows, out_root / language, args.dry_run)
+        print(f"\nWrote {len(rows)} rows to {out_root / language}")
+        for r in rows:
+            print(f"  {r['id']:>2} {r['problem']:<30} Qs={r['tutor_questions']} concluded={r['concluded']} "
+                  f"leak_flags={r['auto_solution_leak_flags']} fallbacks={r['auto_fallback_replies_used']}")
+        all_rows += rows
+
+    if len(languages) > 1 and all_rows:
+        write_combined_csv(all_rows, out_root / "combined_results.csv")
+        print(f"\nWrote combined results to {out_root / 'combined_results.csv'}")
 
 
 if __name__ == "__main__":

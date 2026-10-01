@@ -21,9 +21,13 @@ identified and validated a fix, questioning simply continues.
 Every student-facing reply passes deterministic guards (solution leaks, new
 code, repeated questions, re-asking a diagnosis, off-topic recursion, internal
 Hint/Question markers) before it is returned.
+
+Python and JavaScript are both supported. The language is chosen by the caller
+or detected from the code (see ``backend.agent.language``); the state machine,
+stages and guards are shared, and only the language-specific parts (prompt
+note, code fence, new-code and recursion detection, extra leak patterns) differ.
 """
 
-import ast
 import json
 import re
 
@@ -32,6 +36,12 @@ from backend.agent.conversation import (
     add_message,
     get_or_create_conversation,
     history_as_text,
+)
+from backend.agent.language import (
+    JAVASCRIPT,
+    PYTHON,
+    code_uses_recursion,
+    normalise_language,
 )
 from backend.agent.prompts import (
     CONSOLIDATION_FOCI,
@@ -78,6 +88,20 @@ SOLUTION_LEAK_PATTERNS = [
     r"\bhere(?:'s| is) (?:the )?(?:correct|fixed|corrected|updated) (?:code|solution|version)\b",
     r"\b(?:a|the) (?:fix|solution) (?:is|would be|could be) to\b",
     r"```python\s*[^`]+```",
+    r"```(?:javascript|js|jsx|typescript|ts)\s*[^`]+```",
+]
+
+# Extra leak phrasings for JavaScript (applied on top of the shared list).
+JS_SOLUTION_LEAK_PATTERNS = [
+    r"\b(?:use|using) (?:a|an|the) (?:map|hash ?map|new map|new set|second array|extra array|"
+    r"temporary array|helper array|object as a)\b",
+    r"\byou (?:should|need to|must|have to|ought to) (?:push|splice|slice|declare|assign|"
+    r"destructure|spread|concat|swap|reverse|floor|parse)\b",
+    r"\byou (?:might|could|may|can) (?:want to |also )?(?:push|splice|slice|declare|assign|"
+    r"destructure|spread|concat|swap|reverse|floor)\b",
+    r"\b(?:try|consider) (?:pushing|splicing|slicing|declaring|assigning|destructuring|spreading|"
+    r"concatenating|swapping|reversing|flooring)\b",
+    r"\b(?:use|using) (?:===|!==|strict equality|math\.(?:floor|max|min|trunc|round)|parseint|number\()",
 ]
 
 # Stating the cause is only a leak while the student has not found it themselves.
@@ -110,9 +134,12 @@ _RECURSION_TERMS = re.compile(
 )
 
 
-def _contains_solution_leak(text: str) -> bool:
+def _contains_solution_leak(text: str, language: str | None = None) -> bool:
     lowered = text.lower()
-    return any(re.search(p, lowered, flags=re.DOTALL) for p in SOLUTION_LEAK_PATTERNS)
+    patterns = SOLUTION_LEAK_PATTERNS
+    if normalise_language(language) == JAVASCRIPT:
+        patterns = patterns + JS_SOLUTION_LEAK_PATTERNS
+    return any(re.search(p, lowered, flags=re.DOTALL) for p in patterns)
 
 
 def _names_the_cause(text: str) -> bool:
@@ -120,25 +147,37 @@ def _names_the_cause(text: str) -> bool:
     return any(re.search(p, lowered, flags=re.DOTALL) for p in NAMES_CAUSE_PATTERNS)
 
 
-def _introduces_new_code(text: str, code: str) -> bool:
+_NEW_CODE_KEYWORDS = {
+    PYTHON: re.compile(
+        r"\b(?:return|append|extend|while|elif|else|if|for|def|lambda|yield|raise|del)\b"
+        r"|=>|\.\w+\("
+    ),
+    JAVASCRIPT: re.compile(
+        r"\b(?:return|const|let|var|function|while|else|if|for|switch|case|throw|new|"
+        r"await|async|yield|delete|typeof)\b"
+        r"|=>|\.\w+\("
+    ),
+}
+_ASSIGNMENT = re.compile(r"^[A-Za-z_$][\w$.\[\]]*\s*[-+*/%]?=(?!=)\s*(.+)$")
+
+
+def _introduces_new_code(text: str, code: str, language: str | None = None) -> bool:
     """True if the reply puts a *new* code statement in backticks.
 
     Quoting the student's own code or a test input (``n = 15``) is allowed;
     inventing statements or assignments (``current = current.next``) is not.
     """
+    lang = normalise_language(language) or PYTHON
+    keywords = _NEW_CODE_KEYWORDS[lang]
     squashed_code = re.sub(r"\s+", "", code)
     for span in re.findall(r"`([^`\n]+)`", text):
         stripped = span.strip()
         if re.sub(r"\s+", "", stripped) in squashed_code:
             continue
-        if re.search(
-            r"\b(?:return|append|extend|while|elif|else|if|for|def|lambda|yield|raise|del)\b"
-            r"|=>|\.\w+\(",
-            stripped,
-        ):
+        if keywords.search(stripped):
             return True
-        assignment = re.match(r"^[A-Za-z_][\w.\[\]]*\s*[-+*/%]?=(?!=)\s*(.+)$", stripped)
-        if assignment and re.search(r"[A-Za-z_]", assignment.group(1)):
+        assignment = _ASSIGNMENT.match(stripped)
+        if assignment and re.search(r"[A-Za-z_$]", assignment.group(1)):
             return True
     return False
 
@@ -181,29 +220,9 @@ def _re_asks_diagnosis(text: str) -> bool:
     return any(re.search(p, lowered, flags=re.DOTALL) for p in REASK_DIAGNOSIS_PATTERNS)
 
 
-def _code_uses_recursion(code: str) -> bool:
-    """Does any Python function in the student's code call itself?"""
-    try:
-        tree = ast.parse(code)
-    except SyntaxError:
-        return False
-    for fn in ast.walk(tree):
-        if not isinstance(fn, (ast.FunctionDef, ast.AsyncFunctionDef)):
-            continue
-        for node in ast.walk(fn):
-            if not isinstance(node, ast.Call):
-                continue
-            func = node.func
-            if isinstance(func, ast.Name) and func.id == fn.name:
-                return True
-            if (
-                isinstance(func, ast.Attribute)
-                and func.attr == fn.name
-                and isinstance(func.value, ast.Name)
-                and func.value.id in ("self", "cls")
-            ):
-                return True
-    return False
+def _code_uses_recursion(code: str, language: str | None = None) -> bool:
+    """Does any function in the student's code (Python or JavaScript) call itself?"""
+    return code_uses_recursion(code, language)
 
 
 def _off_topic_recursion(text: str, conversation: Conversation, student_message: str) -> bool:
@@ -212,7 +231,7 @@ def _off_topic_recursion(text: str, conversation: Conversation, student_message:
         return False
     if _RECURSION_TERMS.search(student_message) or _RECURSION_TERMS.search(conversation.problem):
         return False
-    return not _code_uses_recursion(conversation.code)
+    return not _code_uses_recursion(conversation.code, conversation.language)
 
 
 # --------------------------------------------------------------------------- #
@@ -291,14 +310,15 @@ _CAUSE_PATTERNS = [
 _PROPOSAL_PATTERNS = [
     r"\bi (?:think |believe )?(?:need|have|ought|must|should)(?: to)? "
     r"(?:return|change|replace|add|remove|use|store|move|swap|check|update|save|handle|reorder|"
-    r"initiali[sz]e|keep|extend|append|preserve|reverse)\b",
+    r"initiali[sz]e|keep|extend|append|preserve|reverse|push|splice|concat|declare|assign)\b",
     r"\b(?:i|we)(?:'d| would| could| will)\s+(?:return|change|replace|add|remove|use|store|move|swap|"
-    r"check|update|save|handle|reorder|initiali[sz]e|extend|append|keep|preserve)\b",
+    r"check|update|save|handle|reorder|initiali[sz]e|extend|append|keep|preserve|push|splice|concat|"
+    r"declare|assign)\b",
     r"\b(?:it|this|that) should (?:be|return|use|check|store|include|handle)\b",
 ]
 
 _TEST_VERBS = re.compile(r"\b(?:traced|tested|tried|ran|when i (?:trace|test|try|run)|if i (?:trace|test|try|run))\b")
-_RESULT_VERBS = re.compile(r"\b(?:returns?|gives?|outputs?|produces?|prints?|gets?|now works?|matches?)\b")
+_RESULT_VERBS = re.compile(r"\b(?:returns?|gives?|outputs?|produces?|prints?|logs?|gets?|now works?|matches?)\b")
 _DEBUG_ONLY = re.compile(r"\b(?:print|log|debug|breakpoint)\b")
 _QUESTION_START = re.compile(
     r"^(?:do|does|did|should|shall|can|could|would|is|are|am|what|why|how|which|where|when)\b"
@@ -382,6 +402,7 @@ def _update_learning_state(conversation: Conversation, diagnostic: dict) -> None
 def learning_state(conversation: Conversation) -> dict:
     return {
         "stage": conversation.stage_name,
+        "language": conversation.language,
         "question_count": conversation.question_count,
         "problem_identified": conversation.problem_identified,
         "solution_proposed": conversation.solution_proposed,
@@ -582,11 +603,11 @@ def _response_problem(response: str, conversation: Conversation, student_message
         return "meta_narration"
     if response.count("?") != 1:
         return "question_count"
-    if _contains_solution_leak(response):
+    if _contains_solution_leak(response, conversation.language):
         return "leak"
     if not conversation.problem_identified and _names_the_cause(response):
         return "names_cause"
-    if _introduces_new_code(response, conversation.code):
+    if _introduces_new_code(response, conversation.code, conversation.language):
         return "new_code"
     if _is_repetition_question(response, student_message):
         return "echo"
@@ -603,8 +624,8 @@ def _conclusion_is_acceptable(response: str, conversation: Conversation, student
     return bool(
         response
         and "?" not in response
-        and not _contains_solution_leak(response)
-        and not _introduces_new_code(response, conversation.code)
+        and not _contains_solution_leak(response, conversation.language)
+        and not _introduces_new_code(response, conversation.code, conversation.language)
         and not _off_topic_recursion(response, conversation, student_message)
         and not re.search(r"\b(?:Hint|Question)\s*:", response, re.IGNORECASE)
     )
@@ -615,10 +636,14 @@ def generate_tutor_response(
     question: str,
     conversation_id: str | None = None,
     problem: str | None = None,
+    language: str | None = None,
 ) -> tuple[str, str]:
-    """Generate the next Socratic reply, or conclude when the student has earned it."""
+    """Generate the next Socratic reply, or conclude when the student has earned it.
+
+    ``language`` is ``"python"``, ``"javascript"`` or ``None`` to auto-detect from the code.
+    """
     conversation_id, conversation = get_or_create_conversation(
-        conversation_id=conversation_id, code=code, problem=problem
+        conversation_id=conversation_id, code=code, problem=problem, language=language
     )
 
     if conversation.concluded:
@@ -645,6 +670,7 @@ def generate_tutor_response(
             question=question,
             history=history,
             problem=conversation.problem,
+            language=conversation.language,
         ),
         temperature=0.15,
         json_mode=True,
@@ -664,7 +690,8 @@ def generate_tutor_response(
                     question=question,
                     history=history,
                     diagnostic=diagnostic_raw,
-                            problem=conversation.problem,
+                    problem=conversation.problem,
+                    language=conversation.language,
                 ),
                 temperature=0.15,
             )
@@ -694,6 +721,7 @@ def generate_tutor_response(
         question_number=conversation.question_count + 1,
         problem=conversation.problem,
         focus=focus,
+        language=conversation.language,
     )
     response = _clean_student_response(ask_llm(socratic_prompt, temperature=0.25))
     reason = _response_problem(response, conversation, question)

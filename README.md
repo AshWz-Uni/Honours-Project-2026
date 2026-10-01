@@ -1,4 +1,4 @@
-# Honours-Project-2026: Intelligent Conversational Tutoring Python Programming Agent
+# Honours-Project-2026: Intelligent Conversational Tutoring Programming Agent (Python & JavaScript)
 
 Aim: Assist students learning Python and Javascript coding through an intelligent conversational agent for programming projects.
 
@@ -8,6 +8,8 @@ Aim: Assist students learning Python and Javascript coding through an intelligen
 - Node.js 18+
 - [Ollama](https://ollama.ai) installed and running
 - Code Llama model pulled: `ollama pull codellama`
+- *(Optional)* Node.js 18+ on the PATH: only needed for the tests that execute the JavaScript
+  problems to prove each intentional bug is real (they are skipped if `node` is missing)
 
 ---
 
@@ -48,23 +50,50 @@ Navigate to `http://localhost:5173`
 
 ---
 
+## Languages
+
+The tutor supports **Python** and **JavaScript**. Pick a language in the UI, or leave it on
+*Auto-detect*. Over the API, `POST /chat` takes an optional `language` field
+(`"python"`, `"javascript"`, aliases such as `"js"`, or `"auto"`/omitted). The response echoes the
+`language` the tutor used. Detection is re-run every turn from the current code, so pasting a
+different language mid-conversation switches the tutor with it; if the code is ambiguous
+(e.g. a bare `x = 1`) the conversation keeps its previous language.
+
+What is language-specific: the code fence and a short language note in the prompts (JavaScript
+terms, common JavaScript pitfalls the tutor may steer toward with a question, never the fix), the
+new-code and solution-leak guards, and recursion detection. The Socratic state machine, stages and
+everything else are shared. Python prompts are unchanged from the Python-only version.
+
 ## Tests
 
 ```bash
 pip install -r requirements.txt
 ```
 
-These check the agent's own logic (stage selection, guards, state). They say nothing about Code Llama's quality.
-
-## Evaluation on the 10-problem LeetCode set
-
 ```bash
-python -m evaluation.run_leetcode_eval                # needs Ollama + codellama:7b
-python -m evaluation.run_leetcode_eval --only 1,5,9   # subset
-python -m evaluation.run_leetcode_eval --dry-run      # stub LLM, plumbing check only
+python -m pytest
 ```
 
-Writes `results/leetcode_eval/leetcode_results.csv` and `transcripts.md`. Columns prefixed
+These check the agent's own logic (stage selection, guards, state, language handling). They say nothing about Code Llama's quality.
+
+## Evaluation on the 10-problem LeetCode set (Python and JavaScript)
+
+The same 10 problems exist in both languages (same ids, same single bug, same scripted student):
+`dataset/leetcode_eval.py` (Python) and `dataset/leetcode_eval_js.py` (JavaScript, in LeetCode's JS
+style). With Node installed, the tests execute every JavaScript problem to confirm the buggy
+version fails and the reference fix in `dataset/leetcode_eval_js_checks.py` passes.
+
+```bash
+python -m evaluation.run_leetcode_eval                        # both languages; needs Ollama + codellama:7b
+python -m evaluation.run_leetcode_eval --language javascript  # one language
+python -m evaluation.run_leetcode_eval --only 1,5,9           # subset
+python -m evaluation.run_leetcode_eval --dry-run              # stub LLM, plumbing check only
+```
+
+Writes `results/leetcode_eval/<language>/leetcode_results.csv` and `transcripts.md`, plus
+`results/leetcode_eval/combined_results.csv` (both languages stacked, with a `language` column) when
+both are run. The runner passes each problem's language explicitly and separately records whether
+auto-detection would have found it (`auto_language_detected_correctly`). Columns prefixed
 `auto_` are proxies from the agent's own detectors; columns prefixed `MANUAL_` are for you
 to fill in after reading the transcripts. `config/llm_config.json` fixes a `seed` so runs are repeatable.
 

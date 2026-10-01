@@ -18,6 +18,7 @@ def chat(request: ChatRequest):
             question=request.question,
             conversation_id=request.conversation_id,
             problem=request.problem,
+            language=request.language,
         )
     except Exception as exc:
         raise HTTPException(status_code=502, detail=f"Tutor model error: {exc}") from exc
@@ -28,6 +29,7 @@ def chat(request: ChatRequest):
         conversation_id=conversation_id,
         stage=conversation.stage_name if conversation else None,
         concluded=bool(conversation and conversation.concluded),
+        language=conversation.language if conversation else None,
     )
 
 

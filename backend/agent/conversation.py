@@ -11,6 +11,8 @@ from dataclasses import dataclass, field
 from typing import Dict, List, Optional
 from uuid import uuid4
 
+from backend.agent.language import DEFAULT_LANGUAGE, resolve_language
+
 
 @dataclass
 class Message:
@@ -23,6 +25,8 @@ class Conversation:
     code: str = ""
     # Optional plain-English problem statement (e.g. the LeetCode task). Gives the tutor the requirement it needs to judge a proposed fix.
     problem: str = ""
+    # "python" or "javascript". Chosen by the student, else detected from the code.
+    language: str = DEFAULT_LANGUAGE
     messages: List[Message] = field(default_factory=list)
     # Name of the stage used for the most recent tutor turn.
     stage_name: str = "clarify"
@@ -45,10 +49,14 @@ class Conversation:
 _conversations: Dict[str, Conversation] = {}
 
 
-def create_conversation(code: str = "", problem: str = "") -> str:
+def create_conversation(
+    code: str = "", problem: str = "", language: Optional[str] = None
+) -> str:
     conversation_id = str(uuid4())
     _conversations[conversation_id] = Conversation(
-        code=code, problem=problem or ""
+        code=code,
+        problem=problem or "",
+        language=resolve_language(language, code),
     )
     return conversation_id
 
@@ -61,14 +69,19 @@ def get_or_create_conversation(
     conversation_id: Optional[str],
     code: str,
     problem: Optional[str] = None,
+    language: Optional[str] = None,
 ) -> tuple[str, Conversation]:
     if conversation_id and conversation_id in _conversations:
         conversation = _conversations[conversation_id]
         conversation.code = code or conversation.code
         conversation.problem = problem or conversation.problem
+        # Re-resolve every turn: the student may edit or replace their code.
+        conversation.language = resolve_language(
+            language, conversation.code, conversation.language
+        )
         return conversation_id, conversation
 
-    new_id = create_conversation(code=code, problem=problem or "")
+    new_id = create_conversation(code=code, problem=problem or "", language=language)
     return new_id, _conversations[new_id]
 
 
