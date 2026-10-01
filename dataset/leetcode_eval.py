@@ -1,7 +1,16 @@
 """Controlled 10-problem LeetCode test set for the Socratic tutoring agent.
 
+The set exists in two languages with identical ids, problems and bugs:
+
+  PROBLEMS       Python      (this file)
+  JS_PROBLEMS    JavaScript  (leetcode_eval_js.py)
+
+Use ``get_problems("python" | "javascript")`` or ``PROBLEMS_BY_LANGUAGE``.
+``PROBLEMS`` stays the Python list so existing imports keep working.
+
 Each problem has ONE intentional bug. Fields:
 
+  language        "python" or "javascript"
   code            student submission (verbatim from the test plan)
   problem         short paraphrase of the task, passed to the tutor as context
   bug             ground truth for the researcher; NEVER shown to the tutor
@@ -282,3 +291,24 @@ PROBLEMS = [
         "suggested_validation": "nums = [5], target = 5",
     },
 ]
+
+
+for _problem in PROBLEMS:
+    _problem.setdefault("language", "python")
+
+from dataset.leetcode_eval_js import JS_PROBLEMS  # noqa: E402
+
+PROBLEMS_BY_LANGUAGE = {
+    "python": PROBLEMS,
+    "javascript": JS_PROBLEMS,
+}
+
+
+def get_problems(language: str = "python") -> list[dict]:
+    """Return the 10-problem set for ``language`` ("python" or "javascript")."""
+    try:
+        return PROBLEMS_BY_LANGUAGE[language]
+    except KeyError:
+        raise ValueError(
+            f"Unknown language {language!r}; expected one of {sorted(PROBLEMS_BY_LANGUAGE)}"
+        ) from None

@@ -1,8 +1,29 @@
 import { useState } from 'react'
 import API from '../api/api'
 
+const LANGUAGE_OPTIONS = [
+  { value: 'auto', label: 'Auto-detect' },
+  { value: 'python', label: 'Python' },
+  { value: 'javascript', label: 'JavaScript' }
+]
+
+const LANGUAGE_LABELS = { python: 'Python', javascript: 'JavaScript' }
+
+const PLACEHOLDERS = {
+  auto: 'Paste your Python or JavaScript code here...',
+  python: 'Paste Python code here...',
+  javascript: 'Paste JavaScript code here...'
+}
+
 function ChatBox() {
   const [code, setCode] = useState('')
+  // 'auto' lets the backend detect the language from the code.
+  const [language, setLanguage] = useState('auto')
+  // Language the tutor actually used on the last turn (chosen or detected).
+  const [activeLanguage, setActiveLanguage] = useState(null)
+  // Keeps the Socratic dialogue in one backend conversation across turns.
+  const [conversationId, setConversationId] = useState(null)
+  const [concluded, setConcluded] = useState(false)
   const [question, setQuestion] = useState('')
   const [messages, setMessages] = useState([])
   const [loading, setLoading] = useState(false)
@@ -26,8 +47,14 @@ function ChatBox() {
 
       const result = await API.post('/chat', {
         code,
-        question: trimmedQuestion
+        question: trimmedQuestion,
+        language,
+        conversation_id: conversationId
       })
+
+      setConversationId(result.data.conversation_id)
+      setActiveLanguage(result.data.language ?? null)
+      setConcluded(Boolean(result.data.concluded))
 
       const tutorMessage = {
         role: 'tutor',
@@ -46,6 +73,21 @@ function ChatBox() {
     } finally {
       setLoading(false)
     }
+  }
+
+  /* Starts a fresh tutoring dialogue (drops the backend conversation state). */
+  const newConversation = async () => {
+    if (conversationId) {
+      try {
+        await API.delete(`/chat/${conversationId}`)
+      } catch (error) {
+        // The conversation may already be gone; starting over is still fine.
+      }
+    }
+    setConversationId(null)
+    setActiveLanguage(null)
+    setConcluded(false)
+    setMessages([])
   }
 
   /* Copies the complete conversation Tutor responses */
@@ -106,15 +148,40 @@ function ChatBox() {
 
         {/* Code input */}
         <div className="input-section">
-          <label htmlFor="code-input" className="input-label">
-            Your Code
-          </label>
+          <div className="code-header">
+            <label htmlFor="code-input" className="input-label">
+              Your Code
+            </label>
+
+            <div className="language-controls">
+              <label htmlFor="language-select" className="input-label">
+                Language
+              </label>
+              <select
+                id="language-select"
+                className="language-select"
+                value={language}
+                onChange={(e) => setLanguage(e.target.value)}
+              >
+                {LANGUAGE_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              {language === 'auto' && activeLanguage && (
+                <span className="language-badge">
+                  Detected: {LANGUAGE_LABELS[activeLanguage] ?? activeLanguage}
+                </span>
+              )}
+            </div>
+          </div>
 
           <textarea
             id="code-input"
             className="code-input"
             rows="12"
-            placeholder="Paste Python code here..."
+            placeholder={PLACEHOLDERS[language]}
             value={code}
             onChange={(e) => setCode(e.target.value)}
           />
@@ -123,6 +190,16 @@ function ChatBox() {
         {/* Conversation header and copy button */}
         <div className="conversation-header">
           <h2>Conversation</h2>
+
+          <button
+            className="copy-button"
+            onClick={newConversation}
+            disabled={!conversationId && messages.length === 0}
+            type="button"
+            aria-label="Discard this conversation and start a new one"
+          >
+            New conversation
+          </button>
 
           <button
             className="copy-button"
@@ -182,13 +259,19 @@ function ChatBox() {
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
             onKeyDown={handleQuestionKeyDown}
-            disabled={loading}
+            disabled={loading || concluded}
             aria-label="Ask the tutor a question"
           />
 
           <div className="input-hint">
             Press Enter to send · Shift + Enter for a new line
           </div>
+
+          {concluded && (
+            <div className="input-hint">
+              This tutoring dialogue has concluded. Start a new conversation to work on another problem.
+            </div>
+          )}
 
           {loading && (
             <div className="thinking-indicator">

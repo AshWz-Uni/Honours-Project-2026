@@ -347,3 +347,43 @@ body {
     max-width: 94%;
   }
 }
+
+/* Language selector (Python / JavaScript / auto-detect) */
+.code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.language-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.language-select {
+  border: 2px solid var(--border-soft);
+  border-radius: 12px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  background: var(--surface-bg);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.language-select:focus {
+  outline: 2px solid var(--button-hover);
+  outline-offset: 2px;
+}
+
+.language-badge {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.conversation-header h2 {
+  margin-right: auto;
+}

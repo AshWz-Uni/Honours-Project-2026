@@ -8,7 +8,7 @@ function Home({ theme, onToggleTheme }) {
           {theme === 'light' ? 'Dark mode' : 'Light mode'}
         </button>
         <h1>CodeLlama Tutor Agent</h1>
-        <p>Paste your Python code and ask a tutor question to get help with syntax, logic, and explanations.</p>
+        <p>Paste your Python or JavaScript code and ask a tutor question to get help with syntax, logic, and explanations.</p>
       </header>
       <ChatBox />
     </div>
