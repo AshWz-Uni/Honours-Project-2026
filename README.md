@@ -105,3 +105,106 @@ In `backend/agent/tutor_agent.py`: `MIN_SOCRATIC_QUESTIONS` (default 5; the dial
 concludes once the fix is validated AND this many questions were asked; 0 = conclude at
 validation) and `HARD_QUESTION_LIMIT` (default 15; safety valve).
 
+
+
+## Controlled LLM comparison experiment
+
+The evaluation runner now supports the project's **Code Llama agent** plus
+**ChatGPT (OpenAI API), Claude (Anthropic API), and Microsoft 365 Copilot Chat
+API**. Every provider receives the same problem, code, student dialogue and
+Socratic tutoring instructions. The runner records wall-clock time for every
+completed tutor response.
+
+```bash
+# Code Llama only
+python -m evaluation.run_leetcode_eval --provider codellama
+
+# One external provider
+python -m evaluation.run_leetcode_eval --provider chatgpt
+python -m evaluation.run_leetcode_eval --provider claude
+python -m evaluation.run_leetcode_eval --provider copilot
+
+# Run all four providers
+python -m evaluation.run_leetcode_eval --provider all
+
+# Useful during development
+python -m evaluation.run_leetcode_eval --provider codellama --language python --only 1,2 --dry-run
+```
+
+Results are written under `results/leetcode_eval/`:
+
+- `<provider>/leetcode_results.csv` — one summary row per problem.
+- `<provider>/response_times.csv` — one row per tutor response, including
+  `response_time_ms` and the generated response.
+- `<provider>/transcripts.md` — the complete benchmark transcript with the
+  measured response time shown beside each tutor response.
+- `all_providers_results.csv` — all provider/problem summary rows together when multiple providers are run. A single-provider run uses `combined_results.csv`.
+
+The summary contains `response_time_total_ms`, `response_time_avg_ms`,
+`response_time_min_ms`, and `response_time_max_ms`. The timing starts immediately
+before the provider/agent response is requested and stops when the complete
+response is available. For Code Llama this measures the **whole project-agent
+turn**, including its private diagnostic pass and response-generation pass.
+
+### Provider configuration
+
+The external providers use environment variables so credentials are not committed
+to the repository.
+
+**ChatGPT / OpenAI API**
+
+```text
+OPENAI_API_KEY=...
+CHATGPT_MODEL=<model available to your API account>
+```
+
+Optional: `OPENAI_BASE_URL`, `OPENAI_TIMEOUT`.
+
+**Claude / Anthropic API**
+
+```text
+ANTHROPIC_API_KEY=...
+CLAUDE_MODEL=<model available to your Anthropic account>
+```
+
+Optional: `ANTHROPIC_BASE_URL`, `ANTHROPIC_TIMEOUT`, `CLAUDE_MAX_TOKENS`.
+
+**Microsoft 365 Copilot Chat API**
+
+```text
+COPILOT_ACCESS_TOKEN=...
+COPILOT_TIME_ZONE=Australia/Sydney
+```
+
+Optional: `COPILOT_BASE_URL`, `COPILOT_TIMEOUT`.
+
+Important: the ordinary consumer **Microsoft Copilot Chat** website does not
+provide a general public API. The `copilot` adapter therefore uses Microsoft's
+Microsoft 365 Copilot Chat API, which is currently a preview API and requires a
+Microsoft 365 Copilot add-on licence plus delegated Microsoft Graph
+authentication. If you are using the normal consumer Copilot website, record
+those responses manually rather than treating an unofficial browser automation
+method as an API benchmark.
+
+### Evaluation methodology
+
+For a defensible thesis comparison, keep these conditions fixed:
+
+1. Use the same 10 Python and 10 JavaScript problems for every provider.
+2. Use the same code, problem statement and scripted student messages.
+3. Use the same Socratic tutoring instructions: one question per turn and no
+   direct solution.
+4. Run each provider in a fresh conversation for every problem.
+5. Record latency for every response, rather than only the total experiment time.
+6. Keep model names, model versions, temperatures/settings and run dates in the
+   results so the experiment can be reproduced.
+7. Treat response time and automated rule checks as quantitative measures, while
+   the existing `MANUAL_` columns are completed after reviewing the transcripts
+   for educational quality.
+8. Do not compare only average latency: report median and spread as well when
+   analysing results, because network/API variability can produce outliers.
+
+The comparison is between the **implemented tutoring agent** and the selected
+external LLM configurations. It should therefore be reported as an evaluation
+of the configured systems, not as a claim that one company's underlying model
+is universally better than another.
