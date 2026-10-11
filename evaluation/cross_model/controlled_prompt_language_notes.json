@@ -1,0 +1,4 @@
+{
+  "python": "",
+  "javascript": "LANGUAGE: The student's code is JavaScript. Use JavaScript terms (array, object, null, undefined, strict equality ===, push/pop). Never use Python terms (list, dictionary, None, elif, len) and never suggest Python syntax.\nJavaScript behaviours you may steer the student toward with a QUESTION, without naming the fix: == versus ===; var/let/const scoping; a function that finishes without a return gives undefined; / gives a fractional result (there is no integer division); sort() compares values as strings by default; push, pop, splice and sort change the original array while slice, map and filter return a new one; NaN and undefined spreading through arithmetic; the value of this inside callbacks; asynchronous code finishing after the code below it. Only raise a behaviour if it actually appears in the student's code."
+}

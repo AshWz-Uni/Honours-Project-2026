@@ -1,0 +1,5 @@
+condition,language,n_conversations,mean_n_turns,mean_concluded_on_turn,mean_premature_conclusion,mean_concluded_on_expected_turn,mean_never_concluded,mean_multi_question_turns,mean_exactly_one_question_rate,mean_mean_words_per_reply,mean_total_output_tokens,mean_total_latency_s,mean_empty_reply_turns,mean_truncated_turns,mean_over_length_turns,mean_has_code_block_turns,mean_label_leak_turns,mean_wrong_language_terms_turns,mean_repeated_prior_question_turns,mean_mentions_model_identity_turns,mean_inline_code_new_spans,mean_agent_solution_leak_turns,mean_agent_new_code_turns,mean_agent_reasked_diagnosis_turns
+codellama_agent,javascript,30,6,6,0,1,0,0,1,39.05,0,0,0,0,1.2,0,0,0,0.067,0,0,0,0,0
+codellama_agent,python,30,6,6,0,1,0,0,1,43.797,0,0,0,0,1.4,0,0,0,0.067,0,0,0,0,0
+codellama_prompt,javascript,30,6,2.6,0.167,0,0.833,0.867,0.848,56.327,528.7,181.534,0,0.5,1.933,0.567,3.667,0,2.333,0,0.767,0.667,0.033,0.367
+codellama_prompt,python,30,6,,0,0,1,1.333,0.778,41.397,370.6,121.692,0,0,1.933,0.033,4.867,0,1.4,0,0.967,0.5,0,0.2

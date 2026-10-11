@@ -1,0 +1,14 @@
+{
+  "_comment": "Only local Ollama/Code Llama conditions are executed automatically. ChatGPT and Claude are evaluated through their web applications using export-manual/import-manual. Sampling settings for Code Llama inherit from config/llm_config.json.",
+  "conditions": {
+    "codellama_agent": {
+      "kind": "agent",
+      "label": "Code Llama + the existing tutoring agent (state machine, guards, fallbacks). Reference condition, not part of the like-for-like comparison."
+    },
+    "codellama_prompt": {
+      "provider": "ollama",
+      "num_ctx": 8192,
+      "label": "Code Llama with the controlled prompt only (model/base_url/timeout come from config/llm_config.json). num_ctx is set explicitly because the ~2k-token prompt overflows Ollama's default window, which would silently cut off the system prompt."
+    }
+  }
+}
