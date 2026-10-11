@@ -43,7 +43,7 @@ sys.path.insert(0, str(ROOT))
 
 import requests  # noqa: E402
 
-try:  # .env is optional (and git-ignored by the project's .gitignore)
+try:
     from dotenv import load_dotenv  # noqa: E402
 
     load_dotenv(ROOT / ".env")
