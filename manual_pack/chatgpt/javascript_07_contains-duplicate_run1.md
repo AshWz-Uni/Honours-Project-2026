@@ -146,19 +146,31 @@ Only one line was added; the early return true and the final return false behave
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, you’ve identified a plausible cause. If `nums` is `[1, 2, 1]`, what would `seen` contain during each iteration, and what change would you make so the third element can be recognised as a duplicate?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That sounds reasonable. If you trace `[1, 2, 1]` with your proposed change, what does `seen` contain after each iteration, and does the function return `true` when it reaches the final `1`?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, your proposed change correctly detects the duplicate in `[1, 2, 1]`. How would you explain why recording each visited value allows `seen.includes(num)` to identify duplicates without incorrectly flagging the first occurrence of a value?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly — recording each value after checking it lets the function distinguish a first occurrence from a repeated one. What would your updated function return for an empty array `[]`, and why?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Good work — you identified that `num` was never added to `seen`, proposed recording each value after checking it, and validated the change with both a duplicate-containing array and edge cases. Run your own updated function against the original example and a few more inputs, including an array where the duplicate appears immediately, to build confidence in your implementation.
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly — your change preserves both return paths, adding only the missing tracking step. How would you explain the general lesson from this bug about maintaining state inside a loop?
+````

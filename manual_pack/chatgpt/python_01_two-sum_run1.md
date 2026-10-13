@@ -139,19 +139,31 @@ It only changes what gets returned, so the loops and the check that already work
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+
+````

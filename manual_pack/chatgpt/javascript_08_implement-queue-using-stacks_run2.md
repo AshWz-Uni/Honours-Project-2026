@@ -154,19 +154,31 @@ push can stay the same, but empty() has to check both stacks, and I should only 
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation—you’ve identified the ordering mismatch between a stack and a queue. If you push `1`, then `2`, then `3` onto your stack, what would happen to their order if you moved them into a second stack, and which item would end up on top?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That’s a promising approach! If you move items between the two stacks every time you call `pop` or `peek`, what could go wrong with the queue’s FIFO ordering when you later push another item?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Good trace! Now suppose you pop `1`, then push `4` while `2` and `3` are still waiting in the second stack; what would happen to the queue’s order if you moved the remaining items between stacks again?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, transferring between stacks reverses the order. If `2` and `3` are still in the second stack and you push `4`, how could you decide when to transfer items so that `2` remains the next value returned by `pop()`?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+You’re considering the empty-queue behaviour carefully. If the second stack still contains `2` and `3` while the first stack receives `4`, what condition could you use to decide whether a transfer is needed before the next `pop()`?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly—you’ve identified how to preserve FIFO ordering by transferring only when the second stack is empty, and you’ve accounted for both stacks in `empty()`. Before you consider it complete, trace your proposed design with the sequence `push(1)`, `push(2)`, `pop()`, `push(3)`, `peek()`, and `pop()`; what values should `peek()` and the final `pop()` return?
+````

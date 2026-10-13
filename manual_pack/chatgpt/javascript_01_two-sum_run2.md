@@ -146,36 +146,30 @@ It only changes what gets returned, so the loops and the check that already work
 
 ### TURN 1 REPLY
 ````text
-11/10/2026
 Exactly—you’ve identified the issue! If `nums = [2, 7, 11, 15]` and `target = 9`, what should your function return to represent both positions, and how would you change the `return` statement to include them?
 ````
 
 ### TURN 2 REPLY
 ````text
-11/10/2026
 Correct! How would you trace `nums = [3, 3]` with `target = 6` to verify that your change returns both indices without using the same element twice?
 ````
 
 ### TURN 3 REPLY
 ````text
-11/10/2026
 Your trace confirms that the change returns both indices correctly. In your own words, why does returning `[i, j]` solve the original problem when returning `[i]` did not?
 ````
 
 ### TURN 4 REPLY
 ````text
-11/10/2026
 Exactly! Returning both indices preserves the positions of the two elements that sum to the target. What would your updated function return for the edge case `nums = [5]` and `target = 5`, and why?
 ````
 
 ### TURN 5 REPLY
 ````text
-11/10/2026
 Good reasoning: starting `j` at `i + 1` ensures the same element isn't used twice, while allowing two distinct elements with equal values. How could your change affect any other part of the algorithm or any input that already worked?
 ````
 
 ### TURN 6 REPLY
 ````text
-11/10/2026
 Well done! You identified that returning only `i` omitted the second index, proposed returning both `i` and `j`, and verified the change with a working example. Run your updated function against the original example and an edge case to confirm it behaves as expected.
 ````

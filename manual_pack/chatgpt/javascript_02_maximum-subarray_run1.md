@@ -146,19 +146,31 @@ The all-positive and mixed cases still work because the running sum only restart
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+What should `maxSubArray` return for the input `[-3, -1, -4]`, and what value do you think your current code would return instead?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That’s a reasonable direction to explore; consider how your initial values affect negative-only inputs. If you initialise `best` from `nums[0]` and let `current` restart at the number itself, what would your code return for `[-3, -1, -4]` as the loop processes each element?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, your trace shows that `best` can retain the largest negative value instead of incorrectly staying at zero. How would your proposed initialisation and restart behaviour handle a mixed array like `[-3, 2, -1]`, where the best contiguous subarray includes both negative and positive values?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, the non-empty constraint means the running and best sums must respect actual array elements. How would you change the initial values and the update to `current` so that `[-3, 2, -1]` still finds the best contiguous sum while `[-3, -2, -5]` returns `-2`?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Those single-element checks support your approach for both positive and negative values. If you apply your proposed changes to `[-3, 2, -1]`, what does `current` become at each iteration, and does `best` finish with the largest non-empty contiguous sum?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+That reasoning captures how the running sum can recover after a negative value without losing a better subarray. Can you trace your proposed change on `[-3, 2, -1]` and give the final values of `current` and `best`?
+````

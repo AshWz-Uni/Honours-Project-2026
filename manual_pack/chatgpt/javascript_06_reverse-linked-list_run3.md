@@ -147,19 +147,31 @@ The pointer reversal is the same; only the order of statements and one saved ref
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation—you’ve identified a plausible pointer issue. With `1 -> 2 -> null`, what would `current` point to after the first loop iteration, and how would that affect the next iteration?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That’s a sensible change. If you test your approach with `1 -> 2 -> null`, what values would `previous` and `current` hold after each iteration, and what would the final reversed list look like?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, your trace confirms that the saved reference preserves access to the remaining nodes while the links are reversed. How would you explain why the order of these pointer updates matters when reversing a longer linked list?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly—the original `next` reference must be preserved before reversing the link. How would your revised approach behave for an empty list (`head = null`) and a single-node list (`1 -> null`)?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Correct—both edge cases behave as required. How could you explain the general lesson from this bug about modifying object references while traversing a linked data structure?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You’ve correctly identified the key lesson: preserve a reference before overwriting a link you still need for traversal. Your trace confirms that the approach reverses the links correctly; test your own change against the original example and an edge case to build confidence in the result.
+````

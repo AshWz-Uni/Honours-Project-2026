@@ -146,19 +146,31 @@ Only one line was added; the early return true and the final return false behave
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, that’s a plausible diagnosis. If `nums` is `[1, 2, 1]`, what would you change inside the loop so that each value is recorded in `seen` after it passes the duplicate check?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly! How would your proposed change behave for `[1, 2, 1]` as the loop processes each value, and what would the function return when it reaches the second `1`?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Good trace! What would your updated function return for an empty array `[]` and for `[5]`, and why would both results match the problem requirements?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+That’s the key idea: `seen` needs to represent the values already visited. Can you trace your proposed change with `[]` and `[5]` to confirm what each returns and whether that matches the requirements?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice, both cases behave correctly. How could recording each value in `seen` affect the function’s behaviour for an array that contains no duplicates but has many different values?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+That’s right—the return statements keep their roles, while recording visited values lets the duplicate check work. What general lesson about tracking previously visited values would you carry into your next programming problem?
+````

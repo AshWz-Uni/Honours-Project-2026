@@ -146,19 +146,31 @@ The all-positive and mixed cases still work because the running sum only restart
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+What do you predict `maxSubArray` returns for `[-3, -2, -5]` before running it, and which part of the loop determines that result?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That’s a promising direction. How would your proposed initialization and restart behaviour handle `[-3, -2, -5]` step by step, and what final value would `best` hold?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, that handles the all-negative case. How would you check that your change still returns the correct maximum sum for a mixed array like `[−2, 3, −1]`, where the best subarray may start after the first element?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, you’ve identified the key issue with allowing an empty subarray. How would you initialise `current` and `best` so that `[-2, 3, -1]` still produces the correct maximum sum of `3`?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Your single-element checks cover both positive and negative values. How would you verify that your change also preserves the correct result for a mixed array like `[-2, 3, -1]`, where the maximum-sum subarray starts after the first element?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Good reasoning — restarting only when the current number exceeds the running sum preserves useful positive contributions. Before wrapping up, trace your proposed change on `[-2, 3, -1]` and confirm the final value returned by `best`.
+````

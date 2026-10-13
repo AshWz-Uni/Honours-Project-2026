@@ -146,36 +146,30 @@ It only changes what gets returned, so the loops and the check that already work
 
 ### TURN 1 REPLY
 ````text
-11/10/2026
 Yes, that's the right place to look: the problem asks for the indices of *two* numbers, and the return statement inside the `if` only gives back one. Take `nums = [2, 7, 11, 15]` with `target = 9`: when the condition first becomes true, what would you want the function to return, and how would you change that return statement to get it?
 ````
 
 ### TURN 2 REPLY
 ````text
-11/10/2026
 That matches what the problem asks for. Now trace your change on `nums = [3, 2, 4]` with `target = 6`: which pairs of `i` and `j` does your loop actually check, and what does the function return?
 ````
 
 ### TURN 3 REPLY
 ````text
-11/10/2026
 Good, that trace supports your change. In your own words, why did the original `return [i]` make the function fail on that same input, and why does your change fix it?
 ````
 
 ### TURN 4 REPLY
 ````text
-11/10/2026
 That's a clear explanation: the answer is a pair of positions, so both indices have to be returned. Now consider an edge case from the problem's rule that the same element can't be used twice: for `nums = [3, 2, 4]` with `target = 6`, what does your changed code return, and which part of your loops makes that happen?
 ````
 
 ### TURN 5 REPLY
 ````text
-11/10/2026
 Good, `j` starting at `i + 1` is exactly what keeps the same element from being paired with itself. Your change touched only the `return` inside the `if`, so could it have affected any input that already worked, or the `return []` at the end of the function?
 ````
 
 ### TURN 6 REPLY
 ````text
-11/10/2026
 You identified that returning only `i` dropped the second index, proposed returning both positions, and checked it by tracing `[2, 7, 11, 15]` with target 9. You also reasoned that the loop bounds and the `if` check were unaffected. Run your change on that original example and on an edge case like `[3, 3]` with target 6 to confirm it behaves as you traced.
 ````

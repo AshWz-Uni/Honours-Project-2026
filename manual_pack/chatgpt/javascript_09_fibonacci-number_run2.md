@@ -148,19 +148,31 @@ The loop only runs for n >= 2 so it is not affected; only the two smallest input
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation. What would you change in the base case so that `fib(0)` returns `0` and `fib(1)` still returns `1`, while leaving the loop unchanged?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That change matches both base cases. If you test your updated function with `n = 0`, `n = 1`, and `n = 2`, what value does each call return, and do all three match the Fibonacci definition?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Great, your trace confirms the change works for the base cases and the first two values computed by the loop. In your own words, why does returning `n` for `n <= 1` handle the original failing case without affecting the loop’s calculations?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly—the base cases need to preserve their distinct Fibonacci values. What would you expect your updated function to return for a larger input like `n = 5`, and how could you verify it against the Fibonacci sequence?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, the issue was isolated to the `n = 0` edge case, and your proposed change preserves the loop’s existing behaviour. What general lesson about handling base cases in iterative algorithms will you apply to your next program?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly—the loop handles inputs from `n = 2` onward, so the adjustment is confined to the base cases. You identified the issue, proposed a change, and traced the small inputs to verify it; now test your updated function against the original example and an edge case to confirm its behaviour remains correct.
+````

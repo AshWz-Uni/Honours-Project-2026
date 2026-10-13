@@ -141,19 +141,31 @@ Non-empty trees behave as before since the new check only triggers on null, and 
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation—the recursive calls need to handle an empty child before accessing its properties. What should `maxDepth` return when `root` is `null`, given that an empty tree has a maximum depth of 0?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, that handles the empty-tree case. For a tree with just one root node and both children `null`, what depth would your proposed change produce as the recursive calls return?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Correct, your trace gives depth 1 for a single-node tree. How would you check that the same change correctly handles a tree where the longest path has three nodes, with the other branches ending earlier?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, the base case stops the recursion when it reaches a missing child. If you add that condition and test a tree whose longest root-to-leaf path contains three nodes, what depth should the function return, and how would the recursive calls build up to that result?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, the empty-tree case now matches the specification. When you test a tree with a root, one child, and a grandchild along the longest path, how will the return values from the recursive calls combine to give the maximum depth?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You’ve identified the missing base case and explained why it preserves the depth calculation for non-empty nodes. Your reasoning is consistent with the definition of maximum depth; run your change against both an empty tree and a multi-level tree to confirm the edge cases behave as expected.
+````

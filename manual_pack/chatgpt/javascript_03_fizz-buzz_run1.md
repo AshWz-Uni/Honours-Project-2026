@@ -152,19 +152,31 @@ Only the order changed, so numbers divisible by just 3 or just 5 still reach the
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation—the order of the conditions matters here. What would your function return for `n = 15`, and how does the order of the `if` and `else if` conditions affect the value added to the array for `i = 15`?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That change addresses the condition ordering. How would you trace `n = 15` through your proposed order to verify that the array contains `"FizzBuzz"` at index `14` while the other numbers still receive their expected values?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, your trace confirms that checking divisibility by 15 first handles the overlapping case correctly. What would your revised function return for the edge case `n = 1`, and would that result still satisfy the requirement that every number be returned as a string?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+That’s the key lesson: with an `if`/`else if` chain, condition order determines which branch executes. How would you apply that principle to another problem where a specific case overlaps with a more general condition?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Your edge-case trace is consistent with the loop bounds: `n = 1` returns `['1']`, while `n = 0` returns an empty array. You’ve identified the condition-ordering issue, proposed checking divisibility by 15 first, and verified the behaviour with concrete examples; run your revised function against the original requirements and an edge case to confirm it all works.
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly—the change preserves the existing `"Fizz"` and `"Buzz"` behaviour while allowing numbers divisible by both 3 and 5 to reach the `"FizzBuzz"` branch first. You’ve demonstrated how condition ordering fixes the issue without disrupting the cases that already worked.
+````

@@ -146,36 +146,30 @@ It only changes what gets returned, so the loops and the check that already work
 
 ### TURN 1 REPLY
 ````text
-11/10/2026
 Yes, you're on the right track! When `nums[i] + nums[j] === target` is true, what would `twoSum([2, 7], 9)` need to return, and how could you use both `i` and `j` to represent the positions of the matching elements?
 ````
 
 ### TURN 2 REPLY
 ````text
-11/10/2026
 Exactly, that addresses the issue! If you test your proposed change with `nums = [2, 7]` and `target = 9`, what result do you expect, and how does it compare with the required output of the problem?
 ````
 
 ### TURN 3 REPLY
 ````text
-11/10/2026
 Great work—you’ve identified the issue, proposed the change, and verified it against the example. Before considering it complete, test your updated function with an edge case such as `nums = [5, 5]` and `target = 10` to confirm that it returns the two distinct indices correctly.
 ````
 
 ### TURN 4 REPLY
 ````text
-11/10/2026
 Exactly—you’ve understood why returning both indices is necessary. How would you explain the general lesson about returning all required information from a function when solving similar problems in the future?
 ````
 
 ### TURN 5 REPLY
 ````text
-11/10/2026
 Good observation: starting `j` at `i + 1` lets the function use two distinct positions, even when their values are equal. Your proposed change is supported by both test cases; run it against the original example and an edge case in your own environment to confirm the behaviour.
 ````
 
 ### TURN 6 REPLY
 ````text
-11/10/2026
 That’s a sound observation: your change preserves the existing search logic while ensuring both indices are returned when a matching pair is found. Keep testing your implementation against the original example and edge cases to build confidence that it meets the problem requirements.
 ````

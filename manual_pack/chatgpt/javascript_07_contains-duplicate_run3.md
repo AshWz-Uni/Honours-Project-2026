@@ -146,19 +146,31 @@ Only one line was added; the early return true and the final return false behave
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, that’s a plausible diagnosis! If you trace `[1, 2, 1]`, how would you change your loop so that `seen` records each value you visit while still checking for a duplicate first?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly! Before moving on, trace `[1, 2, 1]` with your proposed change: what does `seen` contain at each iteration, and what does the function return when it reaches the final `1`?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, your trace confirms that the duplicate is detected correctly. What would your changed function return for an empty array `[]` and an array containing just one value `[5]`, and why?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+That’s the key idea: `seen` needs to represent the values already visited. How would you trace your proposed change with `[5]` to confirm that the function returns `false` when no duplicate exists?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Well done—you identified the missing recording step, proposed adding each value to `seen` after checking it, and validated your approach with both duplicate and non-duplicate inputs. Run your own change against the original example and an edge case to build confidence that it behaves correctly across different inputs.
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly—the existing return statements still handle the duplicate and no-duplicate cases, while your added line allows `seen` to track previously visited values. What general lesson about maintaining state inside a loop would you apply when debugging a similar problem in your next program?
+````

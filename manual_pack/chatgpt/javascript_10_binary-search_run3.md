@@ -153,19 +153,31 @@ The updates left = mid + 1 and right = mid - 1 still shrink the range each time,
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation—you’ve identified a potential issue with the loop condition. With `nums = [5]` and `target = 5`, what does your function return, and which condition determines whether the target gets checked?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That change addresses the boundary issue. If `nums = [5]` and `target = 5`, how do `left`, `right`, and `mid` behave on the final iteration, and what does the function return?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly right—the single-element case now succeeds. How would your updated loop behave with an empty array, where `left` starts at `0` and `right` starts at `-1`?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+You’ve got the inclusive-bound idea right. For an empty array, since `left` is `0` and `right` is `-1` initially, does the loop execute at all, and what does your function return?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Correct—the empty-array case is handled as expected. How would you trace your updated loop with `nums = [2, 5, 8]` and `target = 8` to verify that the search still works when the target is at the right end?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Good reasoning—the bounds should keep narrowing. Can you trace `nums = [2, 5, 8]` with `target = 8` through each iteration and tell me whether the function returns the correct index?
+````

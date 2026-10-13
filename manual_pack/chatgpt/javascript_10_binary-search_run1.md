@@ -153,19 +153,31 @@ The updates left = mid + 1 and right = mid - 1 still shrink the range each time,
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation! When `left` and `right` become equal, what happens if `nums` is `[3, 5, 8]` and `target` is `8`—does the loop execute its final iteration, and which index is checked before `return -1` is reached?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That’s a reasonable change to consider. If `left` and `right` both equal the index containing the target, can you trace your proposed condition with `nums = [3, 5, 8]` and `target = 8` to verify which branch executes and whether the function returns the correct index?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, your trace confirms that the single-element case now succeeds. How would you explain why allowing the loop to run when `left` equals `right` fixes the original problem without causing an infinite loop when the target is absent?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly right: when the bounds are equal, one candidate remains to check. What would your updated function return for an empty array `[]` with target `5`, and how would the loop condition handle that edge case?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Well done! You identified the boundary-condition issue, proposed changing the loop to include the case where `left` equals `right`, and validated your reasoning with both a single-element array and an empty array. Run your updated function against the original example and an array where the target is absent to confirm that the search terminates correctly in both cases.
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, each update moves the search boundary past `mid`, reducing the remaining range. How would you explain why this guarantees termination even when the target is not present in the array?
+````

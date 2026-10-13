@@ -147,19 +147,31 @@ The pointer reversal is the same; only the order of statements and one saved ref
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation—you’ve identified the risk of overwriting a pointer before preserving the remaining list. With `1 -> 2 -> null`, what value does `current` hold after the first loop iteration, and which node will the next iteration process?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That sounds promising. With `1 -> 2 -> null`, if you preserve the next node before changing `current.next`, can you trace the first two iterations and confirm that both nodes end up linked in reverse order?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly—you’ve traced the reversal correctly, preserving the remaining node and reversing both links. In your updated approach, what would happen with an empty list where `head` is `null`, and would the function still return the correct result?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+You’ve correctly identified why preserving the next pointer matters. For an empty list where `head` is `null`, what values would `previous` and `current` have when the loop finishes, and what would the function return?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Correct—both edge cases behave as expected. How could you explain, in your own words, why saving the next node before changing `current.next` allows the algorithm to reverse the links without losing access to the remaining nodes?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly—the key is preserving access to the remaining nodes before reversing each link. Your trace confirms that the list reverses correctly, and your empty-list and single-node checks confirm the edge cases; now test your own change against the original example and another list with several nodes.
+````

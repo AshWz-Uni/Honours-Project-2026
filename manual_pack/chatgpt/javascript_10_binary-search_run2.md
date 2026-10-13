@@ -153,19 +153,31 @@ The updates left = mid + 1 and right = mid - 1 still shrink the range each time,
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation—you’ve identified a potential issue with the loop boundary. If `nums = [5]` and `target = 5`, what happens to `left`, `right`, and the loop condition before the function reaches `return -1`?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That change addresses the single-element case. If `nums = [3, 5, 8]` and `target = 8`, can you trace how `left`, `right`, and `mid` change with your proposed loop condition, and predict whether the function returns the correct index?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, your trace confirms that the single-element case now works. Why does keeping the loop running while `left` is less than or equal to `right` still allow the search range to shrink and eventually terminate when the target is absent?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly—the inclusive bounds mean one candidate remains when `left === right`. How would you trace `nums = []` with `target = 5` to verify that your proposed loop condition still terminates and returns `-1`?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Correct, your empty-array trace confirms that the search still terminates and returns `-1`. How would you explain why checking the final remaining index is important in binary search, even when all earlier iterations have narrowed the search range?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly right. You’ve identified the boundary issue, proposed a change, and verified it with both a single-element array and an empty array. Your reasoning about the shrinking search range is sound; now test your change against the original example and an edge case to confirm the function behaves as expected throughout.
+````

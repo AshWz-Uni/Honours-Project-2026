@@ -154,19 +154,31 @@ push can stay the same, but empty() has to check both stacks, and I should only 
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation—you’ve identified the ordering mismatch between a stack and a queue. If you push `1`, `2`, and `3` in that order, what should `pop()` return first in a FIFO queue, and what does your current implementation return instead?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That’s a promising direction! When you move `1`, `2`, and `3` from the first stack to the second stack, what will be at the top of the second stack, and how does that compare with the item a FIFO queue should return first?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, you’ve traced the FIFO ordering correctly. Why does moving items between two stacks reverse their order, allowing the oldest item to be returned first instead of the newest?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Correct! Now consider what happens after you pop `1` from the second stack while `2` is still there: if you push `4` onto the first stack, what could go wrong if you move everything across to the second stack again before popping?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+You’ve identified two important edge cases for the queue’s behaviour. If the second stack still contains `2` and `3` when `4` is pushed onto the first stack, what condition would ensure the next `pop()` still returns `2` before `3` and `4`?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly—you’ve identified how to preserve FIFO order while using two stacks. Before you consider the design complete, can you trace `push(1)`, `push(2)`, `push(3)`, `pop()`, `push(4)`, and then `peek()` to verify that the next item remains correct?
+````

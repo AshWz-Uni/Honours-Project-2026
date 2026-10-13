@@ -141,19 +141,31 @@ Non-empty trees behave as before since the new check only triggers on null, and 
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation — you’ve identified the missing case. What should `maxDepth` return when `root` is `null`, and how would handling that case affect a single-node tree?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, that handles the empty-tree case. For a tree containing just one root node, with both children set to `null`, what depth would your proposed change produce as the recursive calls return?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Correct — the single-node tree now gives depth 1. How would you trace a tree where the root has a left child but no right child to check that the recursive calls still calculate the longest path correctly?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+That’s right: the base case stops recursion at an empty child. If the left child is a leaf and the right child is `null`, what depth should the root return, and how do the recursive results combine to produce it?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, the empty-tree case now matches the requirement. For a tree with a root and one left child, what depth should your function return, and how would the recursive results support that?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Good reasoning — your base case handles empty children, while each real node contributes one level to the maximum depth. Run your change against both an empty tree and a tree with a single root, then check a deeper, uneven tree to confirm the longest path is counted correctly.
+````

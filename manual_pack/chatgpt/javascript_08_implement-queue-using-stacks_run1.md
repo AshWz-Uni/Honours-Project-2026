@@ -154,19 +154,31 @@ push can stay the same, but empty() has to check both stacks, and I should only 
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation—you’ve identified the ordering mismatch between a stack and a queue. If you push `1`, then `2`, then `3`, what would your current `pop()` return, and what would a FIFO queue be required to return instead?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That’s a promising approach! When you move items between the two stacks, how would you ensure that pushing another item later doesn’t cause an older item to lose its place in the queue?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, your trace shows how reversing the order can achieve FIFO behaviour. If you then push `4` after popping `1`, what would happen if you moved all the remaining items back and forth between the stacks on every `pop()` or `peek()`?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, reversing the order brings the oldest item to the top. When your second stack already contains items, how would you decide whether to transfer items again or use the existing top item for the next `pop()` or `peek()`?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Good catch on `empty()`—both stacks need to be considered. For `pop()` on an empty queue, what does the problem’s required behaviour specify, and how would you distinguish that case from one where the first stack is empty but the second still holds items?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You’ve identified the key design considerations: preserving FIFO order, checking both stacks for emptiness, and transferring items only when the second stack is empty. Before implementing your change, how would you trace `push(1)`, `push(2)`, `push(3)`, `pop()`, `push(4)`, `peek()`, and `pop()` to verify that the queue still returns items in FIFO order?
+````

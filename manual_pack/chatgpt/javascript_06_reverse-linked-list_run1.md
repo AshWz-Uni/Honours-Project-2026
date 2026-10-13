@@ -147,19 +147,31 @@ The pointer reversal is the same; only the order of statements and one saved ref
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation! When `current.next` is reassigned, the original link to the next node is overwritten. If the list is `1 → 2 → 3 → null`, what would happen to `current` and `current.next` during the first loop iteration, and which node would `current` point to when the loop repeats?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That’s a good approach! Before changing `current.next`, how would you trace your proposed change with the list `1 → 2 → 3 → null` to verify that every node is visited and the final returned head is `3`?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, your trace shows that saving the original next pointer preserves access to the remaining nodes while you reverse each link. How would you explain why this change prevents you from losing access to the rest of the list, and why that matters when reversing longer lists?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly! You’ve identified why preserving the original next pointer is essential before reversing a link. How would your updated approach behave for an empty list where `head` is `null`?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Well done! You’ve identified the pointer-overwriting issue, proposed preserving the original next node, and traced both a multi-node list and edge cases. Your reasoning shows why maintaining access to the remaining nodes is essential for reversing a singly linked list; test your own change against the original example and an empty list to confirm it behaves as expected.
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly—the reversal logic stays the same, but preserving the original next reference ensures you can continue traversing the list after reversing each link. You’ve connected the pointer update order to the correctness of the overall algorithm.
+````
