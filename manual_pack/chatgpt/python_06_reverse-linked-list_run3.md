@@ -143,19 +143,31 @@ The pointer reversal is the same; only the order of statements and one saved ref
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation—you’ve identified the pointer issue. With `1 -> 2 -> None`, how would you change the order of operations in your loop so that you can still reach node `2` after reversing the link from node `1`?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, preserving the original next-node reference is the key idea. If you trace your proposed change with `1 -> 2 -> None`, what values should `previous` and `current` hold after the first loop iteration, and what should the next iteration process?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Great, your trace confirms the list is reversed correctly for this example. How would your proposed change behave for an empty list (`head = None`), where the loop never executes?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+That’s right—the original next-node reference must be preserved before changing the link. For an empty list where `head = None`, what should `previous` and `current` contain when the loop is skipped, and what should the function return?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Correct—you’ve checked both the empty-list and single-node edge cases. How could you test your change against a longer list, such as `1 -> 2 -> 3 -> None`, to confirm that every node ends up in reverse order without losing any nodes?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You’ve correctly identified the pointer issue, proposed saving the original next-node reference before reversing each link, and validated the change with a concrete trace and edge cases. Run your updated implementation against the original example and a longer list to confirm that every node is preserved and the returned head points to the fully reversed list.
+````

@@ -143,19 +143,31 @@ The loop only runs for n >= 2 so it is not affected; only the two smallest input
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good diagnosis! What would you change in the base case so that `fib(0)` returns `0` and `fib(1)` returns `1`, while leaving the loop unchanged?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, that preserves both Fibonacci base cases. Can you trace your proposed change with `n = 2` and confirm that the loop still returns the correct value, `1`?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice work! Your proposed change fixes the base case while preserving the loop’s behaviour for larger inputs. How would you test an edge case such as `fib(0)` to ensure your implementation handles the smallest valid input correctly?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+You’ve identified why the base cases need different results. Since you’ve already traced `fib(0)` and `fib(1)`, what general lesson about handling boundary conditions would you apply to your next program?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Well done! You identified that the shared base-case return caused the issue, proposed returning `n` for inputs where `n <= 1`, and verified that `fib(0)`, `fib(1)`, `fib(2)`, and `fib(3)` all produce the expected results. Before finishing, run your own change against the original example and an edge case to confirm the behaviour remains correct.
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly right. Your change is limited to the base case, so the loop remains unchanged for \\(n \geq 2\\), preserving the Fibonacci calculations that already worked.
+````

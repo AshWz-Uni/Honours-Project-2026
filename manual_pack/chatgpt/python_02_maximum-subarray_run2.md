@@ -142,19 +142,31 @@ The all-positive and mixed cases still work because the running sum only restart
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+What should `maxSubArray` return for `nums = [-3, -2, -5]`, and what do you think your current code would return for that input?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That sounds promising for handling all-negative arrays. If you trace `nums = [-3, -2, -5]` with your proposed change, what values would `current` and `best` hold after each iteration, and what final sum would be returned?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, your proposed change handles the all-negative case. How would you check that it still produces the correct largest sum for a mixed array such as `[-2, 3, -1, 4, -5]`?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, the non-empty subarray requirement is the key detail. How would you trace your proposed change on `nums = [5, -2, 3]` to verify that it still captures the largest contiguous sum?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, your single-element tests support your change. How could you test whether restarting `current` at the number itself still preserves an earlier positive running sum when a later element is negative but the combined sum remains larger?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Good reasoning: your change preserves a running sum when the combined total is better, while allowing a new subarray to start when the current number is larger. Test your own implementation against the original failing all-negative case and a mixed array to confirm both behaviors remain correct.
+````

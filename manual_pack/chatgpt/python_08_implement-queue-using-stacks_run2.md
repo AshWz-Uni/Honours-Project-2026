@@ -148,19 +148,31 @@ push can stay the same, but empty() has to check both stacks, and I should only 
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+You’ve identified the ordering mismatch. If you push `1`, then `2`, then `3` onto your stack, what does `pop()` return first, and how does that compare with the item a FIFO queue should remove first?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+Good thinking—transferring items between stacks can reverse their order. If you push `1`, `2`, and `3` onto the first stack and move them all to the second stack, which item will be on top, and what would happen if you transferred them back again before the next `pop()`?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly—the second stack puts the oldest item on top, which matches FIFO ordering. If you call `push(4)` after removing `1` but while `2` and `3` are still waiting in the second stack, what could go wrong if you transfer everything between the stacks again before the next `pop()`?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, each transfer reverses the order. If `2` and `3` are still waiting in the second stack and you add `4`, how could you decide when to transfer items so the next `pop()` still returns `2`?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation about `empty()` and the empty-queue case. If the second stack still contains `2` and `3` while the first stack contains `4`, what should `peek()` return, and what does that tell you about which stack it needs to check first?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You’ve identified the key ordering rule: only refill the second stack when it’s empty, and account for both stacks when checking whether the queue is empty. Before considering it complete, trace `push(1)`, `push(2)`, `push(3)`, `pop()`, `push(4)`, `peek()`, and `pop()` in order to verify that the remaining elements still come out in FIFO order.
+````

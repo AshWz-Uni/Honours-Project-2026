@@ -138,19 +138,31 @@ Non-empty trees behave as before since the new check only triggers on None, and 
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation—you’ve identified the missing empty-tree case. What should `maxDepth` return when `root` is `None`, and how would handling that case affect the recursive calls for a tree with just one node?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, that addresses the empty-tree case. If you make that change, what would your function return for a tree containing only a root node, whose left and right children are both `None`?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+That’s correct—the single-node tree has depth 1. How would you trace your updated function on a tree with a root and one child, to check that it returns a depth of 2?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, the base case stops recursion when it reaches an empty child. Can you trace your updated function on an entirely empty tree, where `root` is `None`, and confirm that it returns the required depth?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Great, you’ve confirmed that your base case handles an empty tree correctly. How could you check that adding this condition doesn’t change the correct depth returned for a deeper tree with several levels?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Well done—you identified the missing base case, proposed returning `0` when `root` is `None`, and verified that it handles both empty and non-empty trees. Run your updated function against the original examples and a deeper tree to confirm the maximum depth remains correct.
+````

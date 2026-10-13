@@ -148,19 +148,31 @@ The updates left = mid + 1 and right = mid - 1 still shrink the range each time,
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation! What would you change about the loop condition, and how would your change handle `nums = [5]` with `target = 5`?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That’s a sensible change to consider. With `nums = [5]` and `target = 5`, can you trace how `left`, `right`, and `mid` behave with your proposed condition, and determine what the function returns?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly right! Your trace confirms that the final remaining index is now checked. In your own words, why does changing the loop condition make the original failing case work correctly?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly! Because `left` and `right` are inclusive bounds, equality means one candidate remains to be checked, not that the search is finished. Your reasoning explains why the revised condition handles the single-element case correctly. Keep testing your change against the original example and an edge case, such as an empty list, to confirm the search still behaves as expected.
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Great work! You’ve confirmed that your proposed loop condition handles both a single-element list containing the target and an empty list. Keep testing your change against the original failing example and other edge cases to ensure the binary search remains correct.
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly right! You’ve identified the loop-boundary issue, proposed a change, and validated it with both a single-element list and an empty list. Your reasoning about the shrinking search range also shows why the revised condition can terminate safely; test it against the original example and a few more sorted lists to build confidence in your implementation.
+````

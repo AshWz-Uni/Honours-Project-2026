@@ -148,19 +148,31 @@ push can stay the same, but empty() has to check both stacks, and I should only 
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+You’ve identified the ordering mismatch. If you push `1`, `2`, and `3` in that order, what happens to their order when you transfer them from one stack to another, and how could that help you retrieve the oldest item first?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+Good thinking — a second stack can reverse the order. If you push `1`, `2`, and `3` onto the first stack and transfer all three to the second stack, which item will be on top, and what should happen if you call `pop` twice in a row?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, transferring the items reverses their order so the oldest item comes out first. If you push `4` after popping `1`, but the second stack still contains `2` and `3`, what should happen when you call `pop()` next to preserve FIFO ordering?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, the oldest item needs to stay at the top of the second stack until it is removed. If the second stack still contains `2` and `3` and the first stack now contains `4`, which stack should supply the next `pop()` result, and why?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation — the queue’s empty state must account for both stacks. If the second stack still contains `2` and `3` while the first contains `4`, what should `peek()` return, and what should happen to the items in either stack during that call?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly — you’ve identified how to preserve FIFO ordering while allowing new items to arrive during existing queue operations. If you push `1`, `2`, and `3`, pop `1`, then push `4`, what sequence should repeated `pop()` calls produce, and how would that test your approach?
+````

@@ -148,19 +148,31 @@ push can stay the same, but empty() has to check both stacks, and I should only 
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+You’ve identified the ordering issue. If you push `1`, then `2`, then `3`, what would `pop()` need to return first for a FIFO queue, and how does that compare with the item currently at the top of your stack?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+Good thinking — a second stack can help reverse the order. If you move `1`, `2`, and `3` into that second stack, which item ends up on top, and would that let `pop()` return the oldest item first?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, transferring the items reverses their order, so the oldest item is on top. What should happen if you push `4` after that transfer but before the second stack is empty, to make sure the queue still returns items in FIFO order?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+You’ve got the reversal concept right. If the second stack still contains `2` and `3` after popping `1`, and you then push `4`, which item should the next `pop()` return to preserve FIFO order?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+That’s right: the queue’s empty state depends on both stacks. If the second stack becomes empty while the first stack still contains `4`, what should `peek()` return at that point to preserve FIFO ordering?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You’ve identified the key design decisions: keeping `push()` unchanged, checking both stacks for emptiness, and transferring items only when the second stack is empty. Before considering it complete, trace your proposed approach with pushes of `1`, `2`, and `3`, followed by two pops and then a push of `4`, and verify that the next `pop()` returns the correct FIFO item.
+````

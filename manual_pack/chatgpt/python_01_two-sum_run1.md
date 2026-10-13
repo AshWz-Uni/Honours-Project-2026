@@ -140,30 +140,30 @@ It only changes what gets returned, so the loops and the check that already work
 
 ### TURN 1 REPLY
 ````text
-
+Good observation—you’ve identified that the function needs to return information about both elements. With `nums = [2, 7]` and `target = 9`, what would `nums[i]`, `nums[j]`, and the returned list need to represent for the result to satisfy the problem?
 ````
 
 ### TURN 2 REPLY
 ````text
-
+Exactly, that addresses the missing index. Can you trace your proposed change with `nums = [3, 2, 4]` and `target = 6` to verify which indices the nested loops find and whether their values add up to the target?
 ````
 
 ### TURN 3 REPLY
 ````text
-
+Great, your trace confirms that returning both indices works for the original example. In your own words, why does returning `[i, j]` satisfy the problem requirement when returning `[i]` does not?
 ````
 
 ### TURN 4 REPLY
 ````text
-
+Exactly right—you’ve confirmed why both indices are necessary. For an edge case like `nums = [5, 5]` with `target = 10`, what indices would your changed code return, and why are they valid even though both numbers have the same value?
 ````
 
 ### TURN 5 REPLY
 ````text
-
+Correct! Your trace confirms that the nested loops select two distinct indices, even when the values are identical. Test your change against the original example and an edge case to ensure both indices are returned consistently.
 ````
 
 ### TURN 6 REPLY
 ````text
-
+That’s a sound observation: your change preserves the nested loops and the pair-sum check while ensuring the result includes both indices. You’ve also validated it with examples containing distinct values and duplicate values, reinforcing the importance of matching a function’s return format to the problem requirements.
 ````

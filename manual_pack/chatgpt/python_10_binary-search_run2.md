@@ -148,19 +148,31 @@ The updates left = mid + 1 and right = mid - 1 still shrink the range each time,
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation! What would you change about the loop condition, and how would your change handle `nums = [5]` with `target = 5`?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That change addresses the single remaining candidate. If `nums = [5]` and `target = 5`, can you trace how `left`, `right`, and `mid` behave with your proposed condition, and what index the function returns?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, your proposed change correctly handles the single-element case. What happens with `nums = []` and `target = 5` under your new condition, and why does the function avoid accessing an invalid index?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, equal bounds still represent one candidate to check. For an empty list, what values do `left` and `right` start with, and does your proposed loop condition allow the loop to run?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, your change handles both a single-element list and an empty list. Could your new loop condition affect any other part of the binary search, particularly how `left` and `right` move when the target is absent?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly right! You’ve identified why the search range continues to shrink, and you’ve tested your proposed condition against both a single-element list and an empty list. Your reasoning supports the change; now run it against the original failing case and an edge case to confirm the behaviour.
+````

@@ -143,19 +143,31 @@ The pointer reversal is the same; only the order of statements and one saved ref
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation—you’ve identified the pointer issue. With a list `1 -> 2 -> 3 -> None`, what value does `current` hold after the first loop iteration, and how does that affect which node the next iteration processes?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, preserving the original next-node reference is the key idea. If you trace your proposed change with `1 -> 2 -> 3 -> None`, what should `previous` and `current` point to after the first iteration, and what should remain accessible for the next iteration?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Great, your trace confirms that both nodes remain accessible and the reversed list ends at `2 -> 1 -> None`. How would you test your change with an empty list or a single-node list to check that those edge cases still behave correctly?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly—that’s the key pointer-management insight. When the list is empty or has just one node, how would your proposed change behave in each case, and what should `reverseList` return?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Correct—both edge cases behave as required. How could you check that saving the next-node reference doesn’t change the reversal behaviour for a longer list, such as `1 -> 2 -> 3 -> 4 -> None`?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Well reasoned—you’ve identified the pointer issue, proposed preserving the next-node reference, and traced both a two-node list and the edge cases. Your explanation shows why the original link must be preserved before reversing it; now run your own change against the original example and a longer list to confirm the result.
+````

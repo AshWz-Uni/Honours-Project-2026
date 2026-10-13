@@ -139,19 +139,31 @@ It only changes what gets returned, so the loops and the check that already work
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good diagnosis! Since `j` identifies the second element in the pair, how would you change the return statement so that it includes both indices, and what would your function return for `nums = [2, 7, 11, 15]` and `target = 9`?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly! How would you trace `nums = [2, 7, 11, 15]` with `target = 9` to confirm that your proposed change returns the two correct indices?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Great, your trace confirms the change returns the correct indices for that example. How would you test `nums = [3, 3]` with `target = 6` to check that the same element isn’t used twice?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+That’s right—the result needs both positions. For `nums = [3, 3]` and `target = 6`, what values do `i` and `j` take when the condition succeeds, and what indices would your changed return statement produce?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice work—you’ve confirmed that your change handles duplicate values without reusing the same element. How could you check whether this change affects any other part of the algorithm or any input that already worked?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You correctly identified that returning only `i` omitted the second index, proposed returning both `i` and `j`, and validated your change with both the original example and duplicate values. Run your updated function against the original example and an edge case, such as a two-element list, to confirm it behaves as expected.
+````

@@ -144,19 +144,31 @@ The loop update is untouched, so the sequence of values is the same; only the fi
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+For `n = 3`, what values do `prev` and `curr` hold after the loop finishes, and which of those values represents the number of ways to climb 3 stairs?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That’s a reasonable hypothesis. For `n = 3`, can you trace the loop once and work out the values of `prev` and `curr` immediately before the `return` statement to check which one represents the number of ways to reach the top?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, your trace supports the change for those inputs. How would you explain why `curr` holds the correct number of ways for the current `n`, while `prev` holds the preceding Fibonacci value?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, you’ve identified the off-by-one error in the return value. Which edge case, such as `n = 1` or `n = 2`, would you test next to make sure changing the return value doesn’t affect cases handled by the early return or skipped loop?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice work — you identified the incorrect return value, proposed returning `curr`, and validated it for both the original failing case and the small edge cases. Run your change against the original example and a larger input to confirm the Fibonacci update continues to produce the correct number of ways.
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly — changing only the return value preserves the existing Fibonacci-style update while selecting the result for the correct step. You’ve traced the failing case and checked the small edge cases, so your reasoning supports the change.
+````

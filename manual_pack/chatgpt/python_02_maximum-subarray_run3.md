@@ -142,19 +142,31 @@ The all-positive and mixed cases still work because the running sum only restart
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+What do you think your function would return for the input `[-4, -2, -7]`, and which values would `current` and `best` hold as the loop processes each number?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+Good thinking—you’re accounting for the requirement that the subarray must be non-empty. If you make those changes, what would `current` and `best` become after processing each number in `[-4, -2, -7]`, and what maximum sum would your function return?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+That checks the all-negative case correctly. Can you trace your proposed change on `[4, -2, 3]` and predict whether `current` and `best` still produce the required maximum sum of a non-empty contiguous subarray?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, you’ve identified the issue with allowing an empty subarray. Since you’ve proposed initialising `best` from the first element, how would you initialise and update `current` so that `[4, -2, 3]` still produces the maximum sum of `5`?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Those single-element cases behave correctly. Can you trace your proposed `current` update on `[4, -2, 3]` and verify that it reaches `5` without allowing an empty subarray?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Good reasoning: comparing the running sum with the current number lets you keep a stronger contiguous subarray or start a new one when appropriate. Run your revised implementation against the original all-negative case and a mixed case like `[4, -2, 3]` to confirm both return the required non-empty maximum sum.
+````

@@ -141,19 +141,31 @@ Only one line was added; the early return True and the final return False behave
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, that’s a plausible diagnosis! If you test `nums = [1, 2, 1]`, what would you change so that each number is recorded in `seen` after it passes the duplicate check?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly! How would your updated loop behave for `nums = [1, 2, 1]` on each iteration, and what would it return when it reaches the second `1`?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Great, your trace confirms that the duplicate is detected once previously visited values are recorded. Can you choose an edge case, such as `nums = []` or `nums = [5]`, and predict what your updated function returns and why?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+That’s the key insight: `seen` needs to track the values already visited. How would your updated function behave for `nums = [5]`, and why should it return `False` for that input?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Well done! You identified that `seen` was never updated, proposed recording each number after checking it, and validated your change with both a duplicate-containing list and edge cases. Run your updated function against the original example and a few additional inputs to build confidence that it behaves correctly.
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly—the two return statements keep their original roles: `True` when a duplicate is found, and `False` when the loop finishes without finding one. The added line changes what information is remembered between iterations, allowing the existing membership check to work as intended.
+````

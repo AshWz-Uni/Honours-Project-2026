@@ -143,19 +143,31 @@ The pointer reversal is the same; only the order of statements and one saved ref
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation about the pointer. With the list `1 → 2 → None`, after `current.next` is changed, what node does `current.next` refer to when the next statement advances `current`?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That’s the right approach. If you trace the list `1 → 2 → None`, after processing node `1`, where should `current` point so that the next iteration can still process node `2`?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, your trace shows that saving the original next pointer preserves the remaining list while you reverse each link. How would you check that your change also handles an empty list, where `head` is `None`?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, preserving the original next pointer is essential. For an empty list where `head` is `None`, what would your modified function return, and why?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Good work—you’ve traced the multi-node case and checked both the empty-list and single-node edge cases. Run your change against the original example and those edge cases to confirm the reversed links and returned head are correct.
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly—the key lesson is to preserve a reference to the next node before reversing the current link. That lets you reverse the list without losing access to the remaining nodes.
+````

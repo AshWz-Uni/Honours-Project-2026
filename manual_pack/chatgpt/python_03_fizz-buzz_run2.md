@@ -147,19 +147,31 @@ Only the order changed, so numbers divisible by just 3 or just 5 still reach the
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation! What would your current code return for `i = 15`, and how does that compare with the required output for that number?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That change makes sense; how would you trace `i = 15` after moving the divisibility-by-15 check first, and what string would be appended to `result`?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, that trace supports your change. Why does checking the most specific condition first matter when multiple `if`/`elif` conditions could be true for the same number?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly! How does moving the divisibility-by-15 check ahead of the other conditions ensure that `i = 15` produces the required output instead of `"Fizz"`?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Those edge cases behave as expected. Could moving the divisibility-by-15 check affect any numbers divisible by only 3 or only 5, and why?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Good reasoning—the change preserves the existing behaviour for numbers divisible by only 3 or only 5. How would you explain the general lesson about ordering conditions that you could apply to your next program?
+````

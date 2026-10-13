@@ -141,19 +141,31 @@ Only one line was added; the early return True and the final return False behave
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, you’ve identified the likely issue. If you trace `nums = [1, 2, 1]`, how would you change the loop so each value is recorded in `seen` after it passes the duplicate check?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That sounds right. With `nums = [1, 2, 1]`, can you trace how `seen` changes after each iteration and confirm what the function returns when it reaches the second `1`?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, that trace confirms your change detects the duplicate. How would you test your updated function with an edge case such as an empty list `[]` or a single-element list `[5]` to check that it still returns `False`?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, `seen` needs to track previously visited values for the membership check to work correctly. What would your updated function return for `[5]`, and how would the loop behave for that input?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, you’ve confirmed the change handles both the duplicate case and inputs without duplicates. How could you explain the general lesson from this bug about keeping track of values as a loop processes them?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly. Your change preserves the existing return behaviour while allowing `seen` to track values already visited, so the membership check can detect duplicates. You’ve traced a duplicate input and checked the empty-list and single-element edge cases; now run your updated function against the original example and an edge case to confirm the results.
+````

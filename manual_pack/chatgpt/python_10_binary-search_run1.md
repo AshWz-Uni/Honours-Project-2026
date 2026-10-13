@@ -148,19 +148,31 @@ The updates left = mid + 1 and right = mid - 1 still shrink the range each time,
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, the loop can stop when `left` and `right` meet, leaving one index unchecked. What would happen with `nums = [5]` and `target = 5`, and how would you change the loop condition so that this final index is checked?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+Good change! Can you trace `nums = [5]` and `target = 5` with your proposed condition and confirm which index `mid` points to and what the function returns?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice, your change handles the single-element case correctly. How would you test your updated loop with an empty list, `nums = []`, to check that it still returns `-1` without trying to access an invalid index?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+That’s right for a non-empty search range. For the empty list `nums = []`, what are the initial values of `left` and `right`, and does your updated loop execute at all?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Great, your updated condition handles both the single-element case and the empty-list edge case. How could you check that the change still works correctly when the target is smaller than every element in a longer sorted list?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Correct, each update shrinks the search range. Can you trace `nums = [2, 4, 6]` with `target = 1` and confirm that your updated loop eventually stops and returns `-1`?
+````

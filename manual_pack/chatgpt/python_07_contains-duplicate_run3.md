@@ -141,19 +141,31 @@ Only one line was added; the early return True and the final return False behave
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, that’s a plausible diagnosis. If `seen` stays empty, what would `containsDuplicate` return for the input `[1, 2, 1]`, and what change would you make so the second `1` is detected?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly! How would your proposed change make the function behave for `[1, 2, 1]` when the loop reaches the second `1`?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Good trace! Your change correctly detects the duplicate. What would your updated function return for an edge case like an empty list `[]`, and why?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly — `seen` needs to track previously visited values for the membership check to work correctly. How would you verify that your change still returns `False` for a list containing just one value, such as `[5]`?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice work! You identified why duplicates were missed, proposed recording each value after checking it, and traced both duplicate and non-duplicate inputs successfully. Run your change against the original example and an edge case to confirm the behaviour holds.
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+That’s right: adding the tracking step preserves the existing return behaviour while allowing `seen` to record visited values. The general lesson is that a membership check is only as reliable as the state you maintain as the loop progresses.
+````

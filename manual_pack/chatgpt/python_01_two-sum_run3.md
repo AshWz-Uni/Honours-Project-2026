@@ -139,19 +139,31 @@ It only changes what gets returned, so the loops and the check that already work
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, you’ve identified the issue! When `nums[i] + nums[j] == target`, how would you change the return statement to preserve both indices, and what would your function return for `nums = [2, 7]` with `target = 9`?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+Good change! If you use `nums = [2, 7]` with `target = 9`, what indices would your function return, and do those indices point to the two numbers that add up to the target?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice, your trace confirms the change works for the original example. How would you test your updated function with `nums = [3, 3]` and `target = 6` to check that the nested loops can find a valid pair of equal values at different indices?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, both indices are needed to identify the pair. For `nums = [3, 3]` and `target = 6`, what values of `i` and `j` will the nested loops use when they find the pair, and what will your updated function return?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Great, you’ve confirmed that the updated return value works for both distinct numbers and duplicate values at different indices. In your own words, why does returning both indices solve the original problem when returning only `i` did not?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly! You’ve correctly isolated the issue to the return value, proposed returning both indices, and validated your change with two test cases. Run your updated function against the original example and an edge case to confirm the behaviour remains correct.
+````

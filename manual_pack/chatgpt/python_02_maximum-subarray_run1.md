@@ -142,19 +142,31 @@ The all-positive and mixed cases still work because the running sum only restart
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+What do you expect `maxSubArray` to return for `nums = [-3, -2, -5]`, and what value do you think your current code actually returns?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+Good thinking—you’re considering how the initial values affect arrays containing only negative numbers. If `nums = [-3, -2, -5]`, how would your proposed initialisation and restart behaviour ensure that `best` captures the largest non-empty subarray sum?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, that trace confirms your reasoning for an all-negative array. Can you test your proposed change with `nums = [4, -2, 3]` and trace how `current` and `best` evolve to check that it still finds the largest contiguous subarray sum?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, the key distinction is that the subarray must be non-empty. How would you check your proposed change against an array containing both positive and negative values, such as `[4, -2, 3]`, to ensure it still finds the maximum sum?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, both single-element edge cases behave as expected. When you trace your changed approach on `[4, -2, 3]`, how do `current` and `best` evolve, and what maximum sum do you get?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You’ve identified why the initial zero causes trouble for all-negative arrays and considered how restarting the running sum preserves the mixed-case behaviour. Before relying on the change, trace `[4, -2, 3]` with your updated approach and verify that the final `best` matches the required maximum sum.
+````

@@ -146,19 +146,31 @@ The all-positive and mixed cases still work because the running sum only restart
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+
+````
