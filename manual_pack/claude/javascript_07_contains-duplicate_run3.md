@@ -146,19 +146,31 @@ Only one line was added; the early return true and the final return false behave
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good catch, that's a specific and plausible cause. Using `[1, 2, 1]`, what would you want `seen` to contain by the time the loop reaches the second `1`, and what would you change in your loop so that actually happens?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That addresses the missing-storage problem. Trace your change on `[1, 2, 1]`: what does `seen` hold after each iteration, and what does the function return?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Your trace checks out: `seen` fills up as the loop runs, so the second `1` is found. In your own words, why did the original code return false for `[1, 2, 1]`, and what does your change do differently to fix that?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+That's the idea: record each value only after you've checked it. Pick an edge case, such as an empty array or a single-element array, and predict what your changed code returns for it.
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, both of those correctly return false. Could your change affect any input that already worked with the original code, for example an array with no repeated values?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You found that the code never recorded visited values, proposed storing each value after checking it, and traced `[1, 2, 1]` to confirm the second `1` is caught. You also confirmed that arrays with no repeats still return false. Try running your updated function on your original example and on an edge case like `[]` to see the results for yourself.
+````

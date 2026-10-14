@@ -152,19 +152,31 @@ Only the order changed, so numbers divisible by just 3 or just 5 still reach the
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good catch, that's the right area to look at. How would you change the code so that an input like 15 ends up with the result the problem requires?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That ordering addresses the case you spotted. If you moved the check for `i % 15 === 0` to the top, what would your code produce for the inputs 9, 10, and 15, and does each match what the problem requires?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice, that trace covers the case that was failing and the ones that already worked. In your own words, why did 15 produce the wrong result before you reordered the conditions, and why does the new order fix it?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, the order of the branches in an `if`/`else if` chain decides which one runs. Now try an edge case: what would your reordered code return for `n = 0`, and for `n = 1`?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Both edge cases are right, and your reordered chain handles them without any special treatment. Could your change affect any input that already worked correctly, such as 7 or 9, or does it only touch numbers divisible by both 3 and 5?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Thanks for working through that. This is the next consolidation focus, so here's the question: what general lesson about this kind of bug, where an earlier branch catches inputs meant for a later one, would you carry into your next program?
+````

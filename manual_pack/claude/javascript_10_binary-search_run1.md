@@ -153,19 +153,31 @@ The updates left = mid + 1 and right = mid - 1 still shrink the range each time,
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation: that's a specific place where the loop can give up too early. What would you change in the code so that a range with just one index left, like nums being [5] with a target of 5, still gets checked?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That change targets the right spot. Try tracing it on `nums = [1, 3]` with a target of `3`: what are `left`, `right`, and `mid` at each pass, and what does the function return?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+That trace checks out for the single-element case. In your own words, why did the original `left < right` condition return -1 for that same input, and what about your change prevents that?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, with both bounds inclusive, an equal pair still leaves one candidate to check. Now try an edge case: with your changed condition, what does the function return for an empty array, and which statements run to produce that?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Correct, the empty array never enters the loop and goes straight to the final `return -1`. Now that the loop runs when `left` equals `right`, could any input that already worked before, such as a target that isn't in `nums` at all, now behave differently or fail to terminate? Look at how `left` and `right` are updated in the two branches when you think it through.
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, because `mid` is always excluded when the bounds move, the range shrinks on every pass and the loop has to end. You diagnosed the early exit when `left` equals `right`, changed the condition so that last candidate gets checked, and traced a single-element and an empty array to confirm it. Run your version against the original example and a target that isn't in the array to see it behave as you've reasoned.
+````

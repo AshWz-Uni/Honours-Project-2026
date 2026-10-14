@@ -149,19 +149,31 @@ The loop update is untouched, so the sequence of values is the same; only the fi
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, an off-by-one in the update is a plausible suspect. For n = 3, after the loop finishes, what do `prev` and `curr` hold, and how would you change the code so it gives the count you expect?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That sounds like a reasonable change to try. Trace your version with `return curr` for n = 2, where the loop body never runs, and for n = 3. What does the function return in each case, and does it match the number of ways you expect?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Those traces line up with the counts you'd expect for 2, 3 and 4 stairs. In your own words, why does returning `curr` give the right answer for n = 3 where returning `prev` did not?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, that explains why `prev` was one step behind. Now consider an edge case: with `return curr` in place, what does your function return for n = 1, and which lines of the code produce that result?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, both of those edge cases check out. Your change only touches the final `return`, so does it alter the result for any input that already gave a correct answer before the change, and how do you know?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Your diagnosis holds up: after the loop, `prev` held the count for n - 1 while `curr` held the count for n, so returning `curr` fixes the off-by-one. You checked the change by hand on n = 1, 2, 3 and 4, and you saw it leaves the loop update untouched. Run it yourself on the n = 3 case you started with, plus an edge case such as n = 1, to confirm the outputs match your traces.
+````

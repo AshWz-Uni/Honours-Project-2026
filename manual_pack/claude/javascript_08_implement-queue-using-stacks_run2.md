@@ -154,19 +154,31 @@ push can stay the same, but empty() has to check both stacks, and I should only 
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+You've spotted it: a single stack hands items back in last-in-first-out order, which is the opposite of what a queue needs. Given that, how would you change what your code does so that pushing 1, 2, 3 and then calling `pop` returns 1?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That's a promising direction. Trace it on this sequence: push 1, push 2, push 3, pop, push 4, pop. What does each of your two stacks hold after every step, and do the two pops return 1 and then 2?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice, the reversal does give you 1 and then 2 for those three items. Your trace skipped the `push 4` that comes between the two pops, though. Which stack does 4 go into, and what does each stack hold when the second `pop` runs?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, and that reversal is exactly what puts the oldest item on top. Now run the specific case we left hanging: after the first `pop` returns 1, you push 4. At that moment, which stack does 4 land in, and where does it sit relative to 2 and 3 when the next `pop` happens?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, you're thinking about `empty()` and the empty-queue case, and "both stacks" fits your two-stack design. That's a separate matter from the trace I asked about, though. After the first `pop` returns 1, you push 4, and 2 and 3 are still waiting in the second stack. Where does 4 land, and does the next `pop` return 2 or 4?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+That rule, refilling only when the second stack is empty, is the key to keeping the order intact. Now check it against the sequence: push 1, 2, 3, pop, push 4, pop. When that second `pop` runs, is the second stack empty, and what does your rule make `pop` return?
+````

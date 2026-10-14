@@ -148,19 +148,31 @@ The loop only runs for n >= 2 so it is not affected; only the two smallest input
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good catch, that `return 1` inside the `n <= 1` check is where the two inputs get lumped together. How would you change the code so that `fib(0)` and `fib(1)` each give the value the problem specifies?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That change addresses the problem you spotted. Before you commit to it, trace `fib(0)`, `fib(1)` and `fib(2)` through the code with your change in place. What does each call return, and do those match the values the problem specifies?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice, those traces match the problem's values. In your own words, why does returning `n` in the `n <= 1` case fix `fib(0)` without breaking `fib(1)`?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+That's the core of it: the two base inputs need different results. Now pick an edge case you haven't traced yet, such as a negative `n` or a fairly large one, and predict what your changed code returns for it.
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+You're right that `fib(0)` was the case that was wrong. Since you changed the early `return`, could that change affect any input that already worked, such as `fib(1)` or an `n` large enough that the `for` loop does the work, and how can you tell?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You identified that the shared base case treated `fib(0)` and `fib(1)` the same, proposed returning `n` for those inputs, and checked it by tracing `fib(0)`, `fib(1)`, `fib(2)` and `fib(3)`. Your point that the loop only runs for `n >= 2` also shows the change leaves the larger inputs alone. Run your updated function on a few more values and on an edge case like a negative `n`, and compare the results with the problem's definition.
+````

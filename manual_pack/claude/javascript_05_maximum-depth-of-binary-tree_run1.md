@@ -141,19 +141,31 @@ Non-empty trees behave as before since the new check only triggers on null, and 
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, you've spotted where the recursion goes past the end of the tree. Let's confirm it on a concrete input: a tree with just a single node, whose `left` and `right` are both `null`. What happens, step by step, when `maxDepth` is called on that tree's `root.left`?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That's a sound plan, since it guards the access before it happens. Trace your change on a tree where the root has a `left` child but its `right` is `null`: what value does each call return as the recursion unwinds, and what final depth do you get?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice, that trace gives the depth of 1 the problem requires for a single node. In your own words, why does your change make the earlier failing case, where the recursion reached an empty child, behave correctly now?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, the base case is what stops the recursion before it reads a property of `null`. Now pick an edge case, such as an empty tree or a tree with a long chain of nodes on only one side, and predict what your changed code returns for it.
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, an empty tree returns 0 immediately, which matches the requirement. Could your added base case change the result for any input that already worked, such as a tree where every node has two children? What would you expect to see there?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You identified that the recursion was reading `.left` on `null`, proposed returning 0 before touching `root.left` and `root.right`, and checked it on a single-node tree, an empty tree, and the reasoning that non-empty trees behave as before. I'd encourage you to run your updated `maxDepth` on the original example and on an empty tree to confirm it matches what you traced by hand.
+````

@@ -153,19 +153,31 @@ The updates left = mid + 1 and right = mid - 1 still shrink the range each time,
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation, you've spotted where the loop's stopping condition might cut things short. Can you pick a small input, say `nums = [5]` with `target = 5`, and say what your code returns and why?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That change targets the problem you found. Try tracing it on `nums = [2, 4, 6]` with `target = 6`: what are `left`, `right`, and `mid` on each pass, and what does the function return?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice, that trace confirms the single-element case now works. In your own words, why does the changed loop condition make that case behave correctly when the original condition did not?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, inclusive bounds mean an equal `left` and `right` still leaves one candidate. Now try an edge case: with your changed condition, what does the function return for `nums = []` with `target = 3`, and what are `left` and `right` at the start?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, `left` is 0 and `right` is -1, so the loop never runs and -1 comes back. Does your changed condition affect any input that already worked with the original code, such as a target that isn't in the array at all?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Good point that both updates keep shrinking the range, so the loop still terminates. You diagnosed that the original `left < right` condition skipped the last remaining candidate, changed it so equal bounds still get checked, and confirmed it by tracing `[5]` and the empty array. Run your version on `[2, 4, 6]` with a target that is present and with one that is missing to confirm both outcomes.
+````

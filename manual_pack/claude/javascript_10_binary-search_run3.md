@@ -153,19 +153,31 @@ The updates left = mid + 1 and right = mid - 1 still shrink the range each time,
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, you've spotted something real about when the loop exits. To confirm it on a concrete input, try `nums = [5]` with `target = 5`: what does `search` return, and which line decides that?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That addresses the exit condition you found. Trace your change on `nums = [1, 3]` with `target = 3`: what are `left`, `right`, and `mid` on each pass, and what does `search` return?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+That trace works with your change. In your own words, why does the original `left < right` condition return -1 for that same input, while your version finds the target?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, and that's the key idea about what `left` and `right` mean. Now pick an edge case, such as an empty array or a target smaller than every element, and predict what your changed `search` returns and why the loop ends.
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Correct, an empty array gives `right` as -1, so the loop never runs. Could your change to the loop condition affect any input that already worked before, for example a target that isn't in the array, and does the loop still terminate for it?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You found that the original `left < right` condition skipped the last remaining candidate, proposed checking while `left` is less than or equal to `right`, and backed that up by tracing `[5]` and the empty array. Your point that `left = mid + 1` and `right = mid - 1` shrink the range each pass also explains why the loop still terminates. Run your version on your original example and on a target that is missing from the array to confirm it returns -1 there as well.
+````

@@ -141,19 +141,31 @@ Non-empty trees behave as before since the new check only triggers on null, and 
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, you've spotted where the recursion goes wrong. Take a tree with a single node, so `root.left` and `root.right` are both `null`: what do you think happens when `maxDepth(root.left)` runs, and what would you want it to return instead for an empty tree?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That matches what the problem says about an empty tree. Try your change on a tree with just a root and one left child, where the right child is `null`: what does each call to `maxDepth` return, and what final value do you get?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+That trace checks out. In your own words, why does returning 0 for a `null` root fix the crash you saw earlier on a node's missing children?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, the base case is what stops the recursion at the `null` children. Now pick an edge case, such as `root` being `null` from the very first call, and predict what your changed function returns for it.
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, that edge case follows the requirement. Does adding that early return change the result for any tree that your original code already handled correctly, or does it only affect the `null` cases?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You diagnosed the missing `null` case, proposed returning 0 before touching `root.left` and `root.right`, and checked it by tracing a single-node tree and an empty tree. You also reasoned that non-empty trees behave exactly as before. Run your change yourself on the original example and on an empty tree to confirm it behaves as you predicted.
+````

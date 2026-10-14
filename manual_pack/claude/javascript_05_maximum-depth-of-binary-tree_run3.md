@@ -141,19 +141,31 @@ Non-empty trees behave as before since the new check only triggers on null, and 
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, you've spotted that the empty child is the troublem spot. Take a tree with a single node, so `root.left` and `root.right` are both null: what do you think you'd want `maxDepth(null)` to give back for the problem's rule about an empty tree, and what would you change so that call gets there?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That would handle the null case before the code touches `root.left` or `root.right`. Try your change on a tree with a single node, whose `left` and `right` are both null. What does each of the three calls to `maxDepth` return, and does the final result match the depth the problem expects?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Your trace checks out, and it matches the depth the problem expects for a single node. In your own words, why does returning 0 for a null `root` make the earlier failing case, where the recursion reached an empty child, behave correctly now?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, the base case is what stops the recursion at the null children. Now try an edge case: a root with a left child but no right child, where `root.right` is null. What does your changed code return for that tree, and which calls produce that value?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice work: you diagnosed that the recursion was reading `.left` on a null node, proposed returning 0 for a null `root` before touching its children, and checked it on a single-node tree and an empty tree. I'd encourage you to run your changed function on the original example and on a tree where a node has only one child, and confirm the results match what the problem expects.
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, the null check only fires when there is no node, so every real node still contributes 1 plus the deeper of its two sides, and trees that worked before are unaffected. The takeaway is that a recursive function needs a base case for the empty input before it touches a node's fields, and it's worth running your version on a one-child tree to confirm the result matches the problem's definition.
+````

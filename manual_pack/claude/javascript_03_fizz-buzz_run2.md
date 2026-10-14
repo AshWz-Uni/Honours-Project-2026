@@ -152,19 +152,31 @@ Only the order changed, so numbers divisible by just 3 or just 5 still reach the
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good diagnosis, that's the right place to look. How would you change the code so that an input like 15 ends up with "FizzBuzz"?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That would address it. Try tracing your reordered version with n = 15: which branch runs for i = 3, i = 5, and i = 15, and what does the final array look like?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice, that trace covers 15 as well as the cases that already worked. In your own words, why does moving the check for 15 earlier fix what went wrong for 15, when the original order got it wrong?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, once a branch matches, the remaining ones never run. Pick an edge case, such as n = 0 or n = 1, and predict what your reordered code returns for it.
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Both predictions are right, including the empty case. Could moving the check for 15 to the front change the result for any input that was already correct under the original order, such as 9, 10, or 7?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+That's right: 9, 10, and 7 reach the same branches as before, so the reorder only changes numbers divisible by both. You identified the shadowed condition, proposed checking 15 first, and checked it on 15, n = 1, and n = 0. Run your reordered version yourself on n = 15 and on an edge case like n = 0 to confirm it behaves as you predicted.
+````

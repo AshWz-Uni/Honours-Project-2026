@@ -147,30 +147,30 @@ The all-positive and mixed cases still work because the running sum only restart
 
 ### TURN 1 REPLY
 ````text
-
+You've narrowed it down to an all-negative array, which is a good start. For the input `[-3, -1, -2]`, what should the function return according to the problem statement, and what do you observe it returning instead?
 ````
 
 ### TURN 2 REPLY
 ````text
-
+That's a concrete idea, so let's test it. Trace your changed version on `[-3, -1, -2]`: what are `current` and `best` after each element, and what does the function finally return?
 ````
 
 ### TURN 3 REPLY
 ````text
-
+Good, that trace gives -2, which matches the largest single element. Now try `[2, -1, 3]`: with your restart rule, what do `current` and `best` become after each element, and does the final result still match what you'd expect for the best contiguous subarray?
 ````
 
 ### TURN 4 REPLY
 ````text
-
+Right, the 0 quietly allowed an empty subarray, which the problem forbids. Now take an edge case: with your restart rule, what would your changed code return for the single-element array `[-7]`, and why?
 ````
 
 ### TURN 5 REPLY
 ````text
-
+Good, both single-element cases behave correctly. Now consider whether your change could break an input that already worked: take `[-2, 1, -3, 4, -1, 2, 1, -5, 4]`, where the best subarray mixes negatives and positives. Does restarting `current` at the number itself, rather than at 0, change how the running sum behaves when `current` goes negative partway through?
 ````
 
 ### TURN 6 REPLY
 ````text
-
+You've pinned down the cause (the 0 allowed an empty subarray), proposed starting `best` from `nums[0]` and restarting `current` at the number itself, and checked it on all-negative and single-element inputs. Your point that the running sum only restarts when the number alone is better is the key reason the mixed and all-positive cases still hold. Run your changed code on `[-2, 1, -3, 4, -1, 2, 1, -5, 4]` and on a few edge cases of your own to confirm it behaves as you expect.
 ````

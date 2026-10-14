@@ -147,19 +147,31 @@ The pointer reversal is the same; only the order of statements and one saved ref
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, you've spotted something real: once `current.next = previous` runs, the original link is gone before `current = current.next` ever uses it. Let's check that on a concrete input: for a list 1 → 2 → 3, what node does `current` hold after the first pass through the loop, and what does that do to the second iteration?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That would keep hold of the original next node, so it addresses what you found. Try tracing your change on 1 → 2 → 3: after each pass through the loop, what do `previous`, `current`, and your saved variable hold, and what does `return previous` give back at the end?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice, that trace checks out on 1 -> 2 -> null. Now think back to your original code on that same list: in your own words, why does saving the next node first make the earlier failing case behave correctly?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, the saved reference is what lets the loop keep moving after the link is overwritten. Now try an edge case: what does your changed code return if `head` is `null`, and what about a list with just one node?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Both edge cases check out, since the loop never runs for `null` and a single node ends up with `next` as `null`. Now consider the other direction: could adding that saved variable change how the loop behaves for any list that already reversed correctly, or affect any other part of your algorithm?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You identified that overwriting `current.next` loses the rest of the list, proposed remembering that reference first, and checked it on 1 -> 2 -> null and on the empty and single-node cases. Your reasoning that the reversal logic is unchanged and only the ordering differs holds up. Run your version on the original 1 -> 2 -> 3 example and on a two-node list to confirm the behavior matches your traces.
+````

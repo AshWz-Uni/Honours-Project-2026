@@ -147,19 +147,31 @@ The pointer reversal is the same; only the order of statements and one saved ref
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, that's the right area to look at: overwriting `current.next` is what cuts you off from the rest of the list. How would you change the code so the original next node is still reachable after that line runs?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That sounds like it addresses the problem. Try it on a list with three nodes, 1 → 2 → 3 → null, and walk through each loop iteration with your temporary variable in place: what are `previous` and `current` at the end of each pass, and what does `previous` hold when the loop exits?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice trace, and it ends with 2 → 1 → null as required. In your own words, why does saving the next node first make this two-node case work, when the original code would have behaved differently on the same input?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+That's the core of it. Now pick an edge case, such as an empty list or a list with a single node, and predict what your changed code returns for it.
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Both edge cases check out. Looking at your changed code as a whole, could saving the next node first affect any input that already worked, or any other part of the loop?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Your reasoning holds up: you diagnosed that overwriting `current.next` loses the rest of the list, proposed saving the next node before reassigning it, and checked that with your two-node trace and the empty and single-node cases. As a last step, run your finished version on the original example plus a longer list to confirm the links all end up reversed, and keep in mind that this kind of bug, overwriting a reference before you've saved it, can show up in any pointer-manipulating code.
+````

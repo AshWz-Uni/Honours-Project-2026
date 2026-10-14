@@ -154,19 +154,31 @@ push can stay the same, but empty() has to check both stacks, and I should only 
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, you've spotted that a single stack's pop is last-in-first-out, which conflicts with the queue's ordering. If you push 1, 2, 3 and then call pop, the queue should return 1, so how would you change your approach so that 1 comes out first?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That's a solid idea, and your plan of moving items over to reverse their order is a good start. Trace it on this sequence: push 1, 2, 3, then pop, then push 4, then pop. Where does each value sit after every step, and what does each pop return?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Your trace works for the first two pops, but it skips the interleaved part of my sequence. After the first pop, push 4: which stack does 4 go into, and what does your plan make the next pop return compared with what a queue requires?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+You're right that the transfer puts the oldest item on top, and that explains why the first pops come out correctly. Let's narrow in on the step after the first pop: if 2 and 3 are still in your second stack with 2 on top, and you push 4 onto that same stack, what would the next pop return, and is that what a queue requires?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+You're right that `empty()` has to account for both stacks, so that's worth keeping in mind. Back to the interleaved sequence, though: after your first pop leaves 2 and 3 in the second stack, when exactly does your plan move items from the first stack to the second, on every pop/peek or only under some condition, and why?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, refilling only when the second stack is empty is what keeps the order from getting mixed, and you've also covered `empty()`. Now trace your plan on push 1, 2, 3, pop, push 4, pop, pop, pop: after each step, which stack holds which values, and what does each of the three pops return?
+````

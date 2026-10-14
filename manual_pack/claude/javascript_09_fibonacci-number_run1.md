@@ -148,19 +148,31 @@ The loop only runs for n >= 2 so it is not affected; only the two smallest input
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good catch, that's the mismatch. How would you change the code inside that `if (n <= 1)` block so that n = 0 and n = 1 each return the value the problem specifies?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That change addresses the mismatch you found. Try tracing your updated code on n = 2: which path does it take, what value does it return, and does that match F(2) from the problem's definition?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Those traces check out against the definition. In your own words, why does returning n itself for n <= 1 fix the case that was failing before?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, the two base cases need different outputs. Now pick an edge case, say a larger input like n = 10 or an input right at the boundary of the loop, and predict what your updated code returns before running it. What do you expect?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, that matches what you traced: only n = 0 was ever wrong. Since you changed the `n <= 1` block, could that change alter the result for any input that was already correct before, such as n = 1 or n = 5?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You correctly spotted that the shared base case treated 0 and 1 the same, proposed returning n itself for n <= 1, and checked it by tracing fib(0), fib(1), fib(2) and fib(3). You also reasoned that the loop only runs for n >= 2, so inputs that already worked aren't affected. Run your updated function on the original failing input and on an edge case or two, such as n = 0 and a larger n like 10, to confirm the results match the definition.
+````

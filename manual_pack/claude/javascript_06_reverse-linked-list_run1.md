@@ -147,19 +147,31 @@ The pointer reversal is the same; only the order of statements and one saved ref
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, that's the right suspicion: once `current.next = previous` runs, the link to the rest of the list is gone. What do you think you would need to do before that assignment so the loop can still reach the original next node?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That sounds like it addresses the problem. Try tracing your change on the list 1 -> 2 -> 3: after the first pass through the loop, what do `previous`, `current`, and your saved variable each point to, and what does node 1's `next` point to?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice, that trace checks out and returns 2 -> 1 -> null. In your own words, why does saving the next node first fix the original behavior, where the loop stopped after the first node?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, that one assignment overwrites the only reference to the rest of the list. Now consider an edge case: if `head` is `null`, what would your changed code return, and which statements would run?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Both edge cases are right: the loop is skipped for an empty list, and a single node ends up as the returned node with its `next` as null. Now think about the rest of your algorithm: could saving the next node first change the behavior for any input that already worked correctly, such as the first node of a longer list?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You diagnosed that `current.next = previous` overwrites the only link to the rest of the list, proposed saving the next node first, and checked it by tracing 1 -> 2 -> null and the empty and single-node cases. Your reasoning that the reversal logic is unchanged and only the order of operations differs holds up. I'd encourage you to run your version on the original example and a longer list to confirm it behaves the way your traces predict.
+````

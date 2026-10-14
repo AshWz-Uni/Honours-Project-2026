@@ -146,19 +146,31 @@ The all-positive and mixed cases still work because the running sum only restart
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good instinct to test that case. Take `[-3, -1, -2]`: what does the problem statement say the answer should be, and what do you think your code returns for it?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That sounds like a promising change. Trace it by hand on `[-3, -1, -2]`: what are `current` and `best` after each element, and does the final result match what the problem requires?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice, that trace gives the result the problem requires. In your own words, why does your change fix the earlier failing case where the old version returned 0, even though no subarray in that array has a sum of 0?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, that's the key insight about the empty subarray. Now take an edge case: what does your changed code return for an array with a single element, like `[-7]`, and for `[5]`?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+You correctly spotted that starting at 0 let an empty subarray sneak in, and your change to begin `best` at `nums[0]` and restart `current` at the element itself addresses that. Your traces on the all-negative array and the single-element arrays back it up. Run your updated function on the original failing example and a mixed array like one with both positives and negatives, to confirm the cases that already worked still do.
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+That's a sound way to put it: the running sum only gives way to a fresh start when the element alone beats extending the earlier run, which is why the positive and mixed cases are unaffected. You've reasoned through the diagnosis, your change, and the edge cases well, so go ahead and run it against your original examples to confirm.
+````

@@ -148,19 +148,31 @@ The loop only runs for n >= 2 so it is not affected; only the two smallest input
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good catch, that's exactly the spot to look at. How would you change that part of the code so that `fib(0)` and `fib(1)` each return the value the problem requires?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That would handle both base cases. Can you trace `fib(2)` through the whole function with your change, and say whether the result matches what the problem requires?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Your traces for `fib(2)` and `fib(3)` check out. In your own words, why does your change fix `fib(0)`, which the original code got wrong?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, a single hard-coded return value can't serve two different starting values. Now pick an edge case of your own, such as a larger input or one outside the usual range, and predict what your changed function returns for it before you work through it.
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Fair point, `fib(0)` was the case that was broken. Now that the early return gives back `n` itself, does that change affect any input that already worked, and how do you know the loop path for larger `n` is untouched?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You're right that the loop only runs for `n >= 2`, so your change leaves that path alone. You spotted that the shared base-case return was the problem, proposed returning `n` itself for the two smallest inputs, and checked it by tracing `fib(0)`, `fib(1)`, `fib(2)` and `fib(3)`. Run your version in your own environment against the original failing input and a larger value like `fib(10)` to confirm it behaves the way your traces predicted.
+````

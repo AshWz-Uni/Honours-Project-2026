@@ -146,19 +146,31 @@ Only one line was added; the early return true and the final return false behave
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good catch, that matches what happens with `seen` in your loop. What would you change in the loop so that `seen` reflects the values you've already visited?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That fits the problem you found. Try tracing your change with `nums` as `[1, 2, 1]`: what does `seen` hold after each iteration, and at which point does the function return?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Your trace checks out, including the point where the second 1 is found in `seen`. In your own words, why did the original code return false for `[1, 2, 1]`, and what does your change do differently?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+That's the key idea: record each value only after it has been checked. Now pick an edge case, such as an empty array or a single-element array, and predict what your changed code returns for it.
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Your predictions for both edge cases hold up. Does adding the push affect any input the original code already handled correctly, such as `[1, 2, 3]` with no duplicates?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You diagnosed that `seen` was never being filled, proposed recording each value after it is checked, and your trace of `[1, 2, 1]` showed the second 1 being found. Your reasoning about the unchanged early return and final return also holds up. Run your updated function on `[1, 2, 1]` and on an edge case like `[]` or `[5]` to confirm it behaves the way you predicted.
+````

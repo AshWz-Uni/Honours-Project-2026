@@ -149,19 +149,31 @@ The loop update is untouched, so the sequence of values is the same; only the fi
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good instinct to test with a small input. Before running it, what value do you predict `climbStairs(3)` returns, and which statements in your code produce that value?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That sounds like a reasonable change to try. Trace `climbStairs(4)` through your code with that change, writing down `prev` and `curr` after each loop iteration, and tell me whether the returned value matches the number of ways you'd count by hand.
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Those results match what you'd count by hand. In your own words, why does returning `curr` instead of `prev` fix the case that originally failed for 3 stairs?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, that explains why the original returned the wrong value. Now pick an edge case, such as the smallest value of `n`, and predict what your changed function returns for it, and which path through the code produces that result.
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, both paths check out. Your change only touches the final `return`, so which inputs, if any, that gave correct results before could it now break, and how do you know?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You diagnosed that `prev` held the count for n - 1 after the loop, proposed returning `curr` instead, and checked it by hand for n = 1 through 4, including the early-return path. Since only the final `return` changed, your reasoning that the earlier values are unaffected holds up. I'd encourage you to run your changed function on the original 3-stair example and a few edge cases to confirm it matches your traces.
+````

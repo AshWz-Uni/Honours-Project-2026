@@ -152,19 +152,31 @@ Only the order changed, so numbers divisible by just 3 or just 5 still reach the
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, you've spotted that order matters in an if / else if chain. How would you change the code so that an input like 15 produces the result the problem requires?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That reordering targets the cause you found. Trace your reordered version with i = 15: which branch runs, and what gets pushed to result?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice, that trace checks out for 15, 3, and 5. Pick an edge case, such as n = 0 or n = 1, and predict what your reordered code returns for it.
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+That's a solid general principle about ordering conditions in an if / else if chain. Could moving the check for 15 to the front change the result for any input that already worked correctly, such as 9, 10, or 7?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Both predictions are right: `['1']` for n = 1 and `[]` for n = 0. When you write your next chain of overlapping conditions, what habit would you adopt to catch an ordering bug like this before running the code?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Your reasoning holds up: only the order changed, so numbers divisible by just 3 or just 5 reach the same branches as before. You spotted that the earlier conditions caught multiples of 15 first, proposed checking 15 before the others, and traced 15, 3, 5, and the n = 0 and n = 1 edge cases. Go ahead and run your reordered version against the n = 15 example and a small edge case to confirm it behaves as you predicted.
+````

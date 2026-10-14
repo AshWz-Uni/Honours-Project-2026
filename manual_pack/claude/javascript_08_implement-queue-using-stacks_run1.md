@@ -154,19 +154,31 @@ push can stay the same, but empty() has to check both stacks, and I should only 
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+You're right that the ordering is the issue: your `pop` returns the last item pushed, not the first. Say you push 1, 2, 3 and then call `pop`. What change would you make so it returns 1 instead of 3 while you still only use stack operations?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+A second stack to reverse the order is a promising idea. Trace it on this sequence: push 1, push 2, push 3, pop, push 4, pop, pop. Which items sit in which stack after each step, and does each pop return what a queue would?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, that handles the first three pushes. Now continue the trace from where you left off: after the first pop, your second stack holds 3 on the bottom and 2 on top, and you push 4. Where does 4 go, and what does the next pop return?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+That's true, and it's why the first three items come out in the right order. But it doesn't yet tell me about the `push(4)` that comes after the first `pop`. Which of your two stacks should 4 go onto, and would the next `pop` still return 2?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+You're right that `empty()` has to account for both stacks. Let's stay with the trace for a moment: suppose you push 4 straight onto the same stack that currently holds 3 and 2, with 2 on top. What would be on top of that stack, and what would the next `pop` return?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+That refill-only-when-empty rule sounds like it addresses the ordering problem. Trace it on push 1, push 2, push 3, pop, push 4, pop, pop, pop. After each step, which stack holds which items, and does each `pop` return what a queue would?
+````

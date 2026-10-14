@@ -146,19 +146,31 @@ Only one line was added; the early return true and the final return false behave
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, you've spotted a real problem: `seen` starts empty and nothing in the loop ever changes it. Using the input `[1, 2, 1]`, how would you change your code so that `seen.includes(num)` can succeed when the loop reaches the second `1`?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That's a sensible change. Now trace it on `[1, 2, 1]`: what does `seen` contain at the start of each iteration, and what does the function return?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Your trace checks out. Before the change, what exactly was different about `seen` when the loop reached the second `1`, and why does that difference make the function return `true` now?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, the check only means something once the earlier values have been recorded. Now try an edge case: what would your changed code return for an empty array, and for an array with a single element like `[7]`?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, both of those return `false`, which matches the problem. Does recording each value in `seen` change the result for any input your original code already handled correctly, such as `[1, 2, 3]` with no repeats?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You diagnosed that `seen` was never being filled, proposed recording each value as the loop goes, and checked it by tracing `[1, 2, 1]`, the empty array, `[5]`, and the no-repeat case. Run your updated function on `[1, 2, 1]` and on an edge case like `[7]` to confirm it behaves as your traces predicted.
+````

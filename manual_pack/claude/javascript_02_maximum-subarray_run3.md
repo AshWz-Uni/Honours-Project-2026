@@ -146,19 +146,31 @@ The all-positive and mixed cases still work because the running sum only restart
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+What should the function return for an input like `[-3, -1, -2]` according to the problem statement, and what do you observe when you run your code on it?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That sounds like a promising direction. Could you trace your changed version by hand on `[-3, -1, -2]`, writing down the values of `current` and `best` after each element, and tell me whether the final result matches what the problem requires?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice, that trace gives the right answer for an all-negative array. Your original code was failing on exactly that kind of input, so I'd like to check the other side: take a mixed array like `[2, -1, 3]` and trace your changed version through it. Does `current` ever behave differently than it did before, and does the final result still match what the problem requires?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, your 0 quietly allowed an empty subarray, which the problem rules out. Now consider an edge case: if `nums` is just `[-4]`, what does your changed code return, and which statements run to get there?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, both single-element cases check out. Now think about inputs that already worked before your change, like `[2, -1, 3]` or an array containing zeros: does starting `best` from `nums[0]` and restarting `current` at the number itself ever change the result for those?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, that restart behavior is what keeps the earlier cases intact. Looking beyond this one bug, what general lesson would you take from it about choosing the starting values for variables like `current` and `best` in your next program?
+````
