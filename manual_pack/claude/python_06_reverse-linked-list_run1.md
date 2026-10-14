@@ -143,19 +143,31 @@ The pointer reversal is the same; only the order of statements and one saved ref
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, that's the right spot: once `current.next = previous` runs, the link to the rest of the list is overwritten. How would you change the loop so the original next node is still reachable after that assignment?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That's a sound plan. Try it on a three-node list 1 → 2 → 3: after the first pass through the loop, what do `previous`, `current`, and your saved variable each point to?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice trace, and it ends with the right list. In your own words, why does saving the next node first fix what went wrong in the original loop on this same 1 -> 2 -> None input?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, that one assignment destroys the only reference to the rest of the list. Now consider an edge case: what would your changed code return if the list were empty, meaning `head` is `None`?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Both edge cases check out. Now think about the inputs that already worked before your change, like a single-node list: could saving the next node first affect any of them?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You diagnosed the lost link, proposed saving the next node before overwriting it, and traced that change on a two-node list. You also checked the empty and single-node cases and argued that inputs that already worked are unaffected. Run your version against the original example and an edge case or two, and notice how the reasoning you just did carries over to other pointer-manipulation problems.
+````

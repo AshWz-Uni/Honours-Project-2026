@@ -144,19 +144,31 @@ The loop update is untouched, so the sequence of values is the same; only the fi
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, you've spotted that the update is shifted. Given that, what would you change in your code so the result for 3 stairs comes out right?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That reasoning about what `curr` holds sounds sensible. Try tracing your change by hand for n = 4 and for n = 2: what does your code return in each case, and does it match the number of ways you'd count?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Those traces all match the counts you'd expect, nice work. In your own words, why does returning `curr` instead of `prev` fix the case that was failing before for 3 stairs?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+That's a clear explanation of the off-by-one. Now try an edge case: pick n = 1 (or n = 0) and predict what your changed code returns, and which path through the code produces that result.
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, both of those paths check out. Does your change to the return statement affect any input that was already giving correct results before, such as the n <= 1 case or small values like n = 2?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You diagnosed the off-by-one in the Fibonacci-style update, changed the return from `prev` to `curr`, and hand-traced n = 2, 3 and 4, plus the n <= 1 early return, to confirm the change. Your point that the loop update is untouched, so only the final return differs, is a good way to reason about a change's scope. Run your version in Python on the original 3-stair example and on an edge case like n = 1 to confirm the results match your traces.
+````

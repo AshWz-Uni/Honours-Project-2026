@@ -147,19 +147,31 @@ Only the order changed, so numbers divisible by just 3 or just 5 still reach the
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good catch. What would you change in your code so that an input like 15 ends up with the result the problem requires?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That reordering addresses the problem you spotted. Trace your changed code on `i = 15` and then on `i = 9`: which branch does each one take, and what gets appended?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice, that trace shows the earlier failing case now behaves correctly. In your own words, why did 15 fail before the reordering, and why does checking it first fix that?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+The conditions are checked in order and the first true one wins, so the most specific case has to come before the general ones.
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+For n = 1 the list is ['1'], and for n = 0 the loop does not run so it returns [].
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Only the order changed, so numbers divisible by just 3 or just 5 still reach the same branches as before.
+````

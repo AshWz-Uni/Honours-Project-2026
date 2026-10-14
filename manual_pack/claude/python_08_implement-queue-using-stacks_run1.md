@@ -148,19 +148,31 @@ push can stay the same, but empty() has to check both stacks, and I should only 
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, a single stack returns items in last-in-first-out order, which is the opposite of what a queue needs. Say you push 1, 2, 3 in that order: what would you change in your code so the first call to `pop` returns 1?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+A second stack to reverse the order is a promising idea. Trace it on this sequence: push 1, push 2, push 3, pop, push 4, pop. Which values does each stack hold after each step, and does each `pop` return what a queue should?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice, that trace gives the first-in-first-out order you wanted. In your own words, why does moving the items onto the second stack make `pop` return 1, when your original code returned 3 for the same pushes?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, the transfer flips the order, so the oldest item ends up on top. Let's test a boundary: suppose your queue is brand new and nothing has been pushed, what would `peek()` and `empty()` do with your changed code, and does that match what a queue should do?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, both of those conditions match how a queue should behave. Now think about inputs that already worked: if you push 1 and 2, call `pop` (which moves the items over), and then push 3, where does 3 end up, and could it interfere with the order of what's still waiting?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You've pinned the problem down to a single stack giving last-in-first-out order, and your fix of a second stack that reverses items on transfer works. Your trace of the pushes and pops showed FIFO order, and your last point about refilling the second stack only when it is empty, with `empty()` checking both stacks, keeps older items ahead of newer ones. Run your version on the original push 1, 2, 3 example and on an empty queue to confirm it behaves the way your reasoning says it should.
+````

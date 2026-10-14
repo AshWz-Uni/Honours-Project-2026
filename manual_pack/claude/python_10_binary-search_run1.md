@@ -148,19 +148,31 @@ The updates left = mid + 1 and right = mid - 1 still shrink the range each time,
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, that's a precise observation about what happens when `left` and `right` meet. Using `nums = [5]` and `target = 5` as a test case, what would you change in your code so it returns the correct index there?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That change would let the final remaining index get checked. Could you trace your updated loop condition on `nums = [1, 3, 5]` with `target = 5`, and tell me the values of `left`, `right`, and `mid` on each iteration?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+That checks out for the single-element case. Now try `nums = [1, 3, 5]` with `target = 5`, and also `nums = [1, 3, 5]` with `target = 4`: what are `left`, `right`, and `mid` at each iteration, and what does your loop return in each case?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, treating `left` and `right` as inclusive bounds explains why the equal case still matters. Now try an edge case: with `nums = []` and `target = 5`, what do `left` and `right` start as, and what does your changed loop return?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, an empty list never enters the loop, so -1 comes back as it should. Now that the condition allows `left` and `right` to be equal, could that change affect any input that already worked before, for example whether the loop could ever run forever when the target is missing?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, both updates move past `mid`, so the range shrinks on every pass and the loop has to end. Thinking beyond this one problem, what general lesson about loop conditions and boundaries would you carry into your next program?
+````

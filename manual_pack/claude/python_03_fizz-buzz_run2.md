@@ -147,19 +147,31 @@ Only the order changed, so numbers divisible by just 3 or just 5 still reach the
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, you've spotted that the order of your conditions matters. Using 15 as an example, how would you change the code so it ends up with the result the problem requires?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That reordering addresses the problem you spotted. Trace your changed version with n = 15: which branch does each of 3, 5, and 15 take, and does the final list match what the problem requires?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice, that trace confirms your reordering works for 15 and leaves 3 and 5 alone. In your own words, why does checking 15 first make the case that was failing before come out right?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, the most specific condition has to come first when the checks overlap. Now try an edge case: what would your changed code return for n = 0, and what in the code produces that result?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, both edge cases check out: the loop never runs for n = 0, so the empty list comes back untouched. Does moving the check for 15 to the front change what happens for any number that already gave the right answer, such as 7, 9, or 10?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You diagnosed the overlapping conditions, proposed checking 15 before 3 and 5, and traced it on 15, 3, 5, and the n = 0 edge case, including why numbers that already worked are unaffected. Run your changed version against n = 15 in your own environment and try a couple of other values like n = 1 and n = 30 to confirm it behaves the way you predicted.
+````

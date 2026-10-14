@@ -141,19 +141,31 @@ Only one line was added; the early return True and the final return False behave
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good catch, that's a specific and plausible cause. Given your idea, how would you change the code so that `seen` reflects the values already visited when the loop reaches a later element, say the second `1` in `[1, 2, 1]`?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That's a clear plan for updating `seen`. Trace your change on `[1, 2, 1]`: what does `seen` contain after each iteration, and what does the function return?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Your trace matches what the problem requires. In your own words, why does adding `num` to `seen` make `[1, 2, 1]` return `True` when the original code returned `False`?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, recording each value after the check is what lets later elements find it. Now pick an edge case, such as an empty list or a list with a single element, and predict what your changed code returns and why.
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Both cases check out, since neither has a repeat to find. Could your change affect any input that already worked with the original code, for example a list with no duplicates at all?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You identified that `seen` was never being filled, proposed recording each `num` after the check, and traced `[1, 2, 1]` to confirm it returns `True`. You also reasoned that the early `return True` and final `return False` behave as before for lists without duplicates. Run your updated version on the original example and on an edge case like `[]` to confirm it behaves the way you predicted.
+````

@@ -138,19 +138,31 @@ Non-empty trees behave as before since the new check only triggers on None, and 
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, that's the right diagnosis: the call on an empty child is where it breaks. How would you change the function so that case is handled, given what the problem says an empty tree's depth should be?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That addresses the problem you found, and it matches the problem's rule for an empty tree. Try tracing your change on a tree with just one node and no children: what does each call return, and what final value comes out?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+That trace checks out: a single node gives a depth of 1. In your own words, why does your added condition stop the original failure when the recursion reaches an empty child?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, the base case is what stops the recursion from ever reading `.left` on `None`. Now pick an edge case, such as an empty tree or a tree where every node has only a left child, and predict what your changed function returns for it.
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, that matches the requirement. Your added condition is a change to the recursion's stopping point, so could it affect any input that already worked, such as a tree where one node has a left child but no right child?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Your reasoning holds up: you found that the recursion reached an empty child and tried to read its children, proposed returning 0 for `None` before touching `root.left` or `root.right`, and checked it on a single-node tree, an empty tree, and the question of whether existing inputs were affected. I'd encourage you to run your change on the original example and on an empty tree and a one-sided tree, to confirm the results match what you predicted.
+````

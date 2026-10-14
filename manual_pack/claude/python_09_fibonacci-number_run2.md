@@ -143,19 +143,31 @@ The loop only runs for n >= 2 so it is not affected; only the two smallest input
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, that's the right spot to look. Using `n = 0` as your test input, what does your code return right now, and how would you change the `if n <= 1` branch so it matches what the problem requires?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That change addresses the mismatch you spotted. Now trace your updated version on `n = 2`: what values do `a` and `b` hold after the loop runs, and does the returned value match F(2) from the recurrence?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice, those traces all line up with the recurrence. In your own words, why does returning `n` for `n <= 1` make the case that failed before, `fib(0)`, behave correctly?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, a single shared return value can't match two different starting values. Now try an extreme input: what does your changed code return for `n = 10`, and how many times does the loop body run to get there?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+That matches what you found: only the `n <= 1` branch changed. What in your code makes you confident that inputs like `n = 1` and `n = 10` behave the same as before your change?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You've got it: you spotted that the base case treated 0 and 1 the same, proposed returning `n` for `n <= 1`, and checked it by tracing `fib(0)`, `fib(1)`, `fib(2)` and `fib(3)`. Your reasoning that the loop only runs for `n >= 2` also shows the change doesn't disturb the inputs that already worked. As a final step, run your updated code on the original example and on a larger input like `n = 10` to confirm it behaves as you traced.
+````

@@ -142,19 +142,31 @@ The all-positive and mixed cases still work because the running sum only restart
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good instinct to test that case. Take the input `[-3, -1, -2]`: what does the problem statement say the answer should be, and what do you observe your function returning for it?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That's a clear change to the initialization and the restart behavior. Trace your version on `[-3, -1, -2]`: what are `current` and `best` after each element, and does the final result match what the problem requires?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Your trace gives -2, which matches what the problem requires for that input. In your own words, why does starting `best` from `nums[0]` and restarting `current` at the number itself make this all-negative case come out right, when the original version couldn't?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, the 0 quietly allowed an empty subarray, which the problem forbids. Now pick an edge case, such as an array with a single element or one mixing positives and negatives, and predict what your changed code returns before you run it. What do you get?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Both single-element results are right. Now think about the inputs that already worked before your change, like arrays with a mix of positive and negative numbers. Could restarting `current` at the number itself, rather than at 0, change the result for any of them?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You correctly spotted that starting from 0 let an empty subarray sneak in, proposed initializing `best` from `nums[0]` and restarting `current` at the number itself, and checked it on all-negative, single-element, and mixed cases. Run your updated version against your original examples plus an empty-adjacent edge like a single negative value to confirm it behaves the way your traces predicted.
+````

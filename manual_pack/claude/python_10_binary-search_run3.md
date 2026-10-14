@@ -148,19 +148,31 @@ The updates left = mid + 1 and right = mid - 1 still shrink the range each time,
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation, that's a specific spot to look at. Take `nums = [1, 3, 5]` with `target = 5`: what are `left` and `right` when the loop exits, and what change would you make so that case is handled correctly?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That change targets the right spot. Trace `nums = [1, 3, 5]` with `target = 5` through your updated loop: what are `left`, `right`, and `mid` on each iteration, and what does the function return?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice, that confirms the single-element case now works. Can you explain in your own words why your change makes the original failing case, `nums = [1, 3, 5]` with `target = 5`, behave correctly?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, with both bounds inclusive, `left == right` still leaves one candidate to check. Now try an edge case: what does your changed code return for `nums = []` with any target, and how do you get there?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+That matches what the problem requires for a missing target. Could your change to the loop condition affect any input that already worked before, for example a target that sits at the middle index on the first pass?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You've pinned down that the loop exited too early with one candidate left, changed the condition so that last index gets checked, and traced it on a single-element list and an empty list. Your point that both bounds still move past `mid` each iteration also shows the loop terminates. Run your updated version on the original `[1, 3, 5]` example and on a target that isn't in the list to confirm it behaves as you traced.
+````

@@ -148,19 +148,31 @@ push can stay the same, but empty() has to check both stacks, and I should only 
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, `pop` and `peek` both act on the most recently pushed element, which is the opposite of the order a queue needs. Given that, what would you want to change about how the elements are stored or moved around so the oldest element is the one `pop` returns?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+A second stack to reverse the order is a good direction. Try tracing it on this sequence: push 1, push 2, push 3, pop, push 4, pop. Where does each value sit in your two stacks after each operation, and what do the two pops return?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Your trace gives 1 then 2, which is the FIFO order you wanted. In your own words, why does moving the items into the second stack make `pop` return the oldest value, where your original single stack returned 3?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, that's the key idea. Now pick an edge case, such as calling `empty()` right after `pop()` has returned the only element you ever pushed, or a `pop()` on a brand-new queue, and tell me what your changed code would return or do in that case.
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, both of those match how a queue should behave. Now think about the rest of the algorithm: could moving items between stacks affect any operation or input that already worked, for example a `push` that arrives after you've already moved items to the second stack?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You diagnosed that a single stack gives last-in-first-out order, proposed a second stack to reverse it, and traced it to get 1 then 2. You also pointed out that `empty()` must check both stacks and that refilling only when the second stack is empty keeps the order intact. Try running your version on the original sequence of push 1, push 2, push 3, pop, push 4, pop, and on a pop from an empty queue, to confirm it behaves the way you described.
+````

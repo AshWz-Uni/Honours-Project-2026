@@ -138,19 +138,31 @@ Non-empty trees behave as before since the new check only triggers on None, and 
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, that's the right diagnosis: the call on an empty child is where it breaks. Given what the problem says about an empty tree, how would you change your function so that case is handled before anything tries to touch `root.left` or `root.right`?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That matches what the problem says about an empty tree. Try tracing your change on a tree with a single node and no children: what does each recursive call return, and what does the top-level call return in the end?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Your trace checks out: the single-node case gives 1. Now think back to the original failure. In your own words, why does your change make the call on an empty child behave correctly, and how does that result feed into the call above it?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, the base case is what stops the recursion at the empty children. Now try an edge case: for a tree that is just a root with a single left child (no right child), what does your changed code return, and what does the call on the missing right child contribute?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, an empty tree returns 0, as the problem requires. Could your added base case change the result for any input that already worked before, such as a tree where every node has two children?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You identified that the recursion was reaching an empty child and reading its children, proposed returning 0 when `root` is None, and checked it on a single-node tree, an empty tree, and trees that already worked. I'd encourage you to run your change against the original example and an edge case like a root with only a left child, to confirm it behaves the way your reasoning predicts.
+````

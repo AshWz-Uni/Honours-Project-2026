@@ -141,19 +141,31 @@ Only one line was added; the early return True and the final return False behave
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good catch, that's a specific and plausible cause. Tracing `[1, 2, 1]`, what would you want `seen` to contain by the time the loop reaches the second `1`, and what would you change in the loop to make that happen?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That addresses the cause you found. Trace `[1, 2, 1]` through the loop with your change: what does `seen` hold after each iteration, and what does the function return?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Your trace checks out. In your own words, why does adding each value to `seen` make `[1, 2, 1]` behave differently from the original code?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, recording each value after the check is what lets a later duplicate find it. Now try an edge case: what does your changed code return for an empty list, and what about a list with a single element like `[7]`?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Both edge cases check out. Does your change alter the result for any input that the original code already handled correctly, such as a list with no duplicates like `[1, 2, 3]`?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You diagnosed that `seen` was never being filled, proposed recording each value after the membership check, and traced `[1, 2, 1]` to confirm it returns True. You also checked `[]` and `[5]` and reasoned that the existing returns are unaffected. Run your updated version on the original example and on an edge case like `[7]` to confirm it behaves as you predicted.
+````

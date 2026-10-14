@@ -148,19 +148,31 @@ push can stay the same, but empty() has to check both stacks, and I should only 
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, with one stack, `pop` hands back the newest item, which is the opposite of FIFO. Suppose you push 1, 2, 3 in that order: how would you change what your class does so that `pop` returns 1, given that you're limited to stack operations?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That's a promising direction. Try tracing your idea on this sequence: push 1, push 2, push 3, pop, push 4, pop. What does each stack hold after each operation, and do the two pops return 1 and then 2?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+That works for the items you moved, but your trace skipped the `push 4` step in my sequence. After the first pop, which stack does 4 go into, and what does your second pop do about it?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, the reversal is what puts the oldest item on top. Now take a narrower step: after that first pop, your second stack holds 3 and 2, with 2 on top. When `push 4` runs, which stack does your `push` put 4 on, and what would sit on top of 2 if you then moved items again?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Good point on `empty()`: it does need to consider both stacks. Setting that aside for a moment, take the state right before the second pop, where the second stack holds 3 and 2 (2 on top) and 4 has just been pushed. If your `pop` moved every item over again each time it ran, which value would come out first, and would that match FIFO?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+That refill-only-when-empty rule is the key idea. Trace it on push 1, push 2, push 3, pop, push 4, then three more pops: where does 4 sit at each step, and in what order do the four values come out?
+````

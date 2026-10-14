@@ -148,19 +148,33 @@ The updates left = mid + 1 and right = mid - 1 still shrink the range each time,
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good observation about where the loop stops. The student has named a specific cause, so this is the propose stage: acknowledge briefly, then ask one question that gets them to confirm on a concrete input or say what they'd change.
+
+You've spotted something real about when the `while left < right` loop exits. To confirm it, try tracing `nums = [5]` with `target = 5`: what happens in your code, and what does the problem say it should return?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That change targets the case where the loop exits with one index left unchecked. Try tracing your modified loop on `nums = [1, 3]` with `target = 2`. What are `left`, `right`, and `mid` on each pass, and what does the function return in the end?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+That trace checks out for the case that was failing before. In your own words, why does changing the loop condition make that earlier failing case behave correctly?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, inclusive bounds mean that when `left` equals `right`, one candidate is still unchecked. Now try an edge case: what does your changed code return for `nums = []` with `target = 5`, and which lines does it go through to get there?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, the empty list never enters the loop and falls straight through to `return -1`. Now that the loop runs one more time than before, could that extra pass affect any input that already worked, such as `nums = [1, 3]` with `target = 2`, which we haven't traced yet?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You diagnosed that the loop exited with one index still unchecked, changed the condition so that case is covered, and checked it on `[5]` and the empty list. Your point that both bounds move past `mid` each pass also shows the loop still terminates. Next, run your modified code yourself on the original example and on an edge case like `nums = [1, 3]` with `target = 2`, and confirm the results match what the problem requires.
+````

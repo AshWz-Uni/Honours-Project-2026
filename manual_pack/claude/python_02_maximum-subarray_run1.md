@@ -142,19 +142,31 @@ The all-positive and mixed cases still work because the running sum only restart
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good instinct to test that case. Take `[-3, -1, -2]`: what does the problem say the function should return, and what do you think your code actually returns?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That sounds like a sensible direction. Trace your changed version on `[-3, -1, -2]` step by step: what are `current` and `best` after each number, and does the final result match what the problem requires?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice, that trace gives -2, which is the correct answer. In your own words, why did the original version fail on an all-negative array, and what about your change fixes that?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Exactly, that's the heart of it. Now try an edge case: what would your changed code return for a single-element array like `[-7]`, and what about `[5]`?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, those single-element cases hold up. Now think about the inputs that already worked before your change, like arrays with a mix of positive and negative numbers: could restarting `current` at the number itself instead of at 0 change the result for any of them?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You diagnosed the real issue, that the 0 wrongly allowed an empty subarray. Your fix of starting from the first element and restarting `current` at the number itself, which you traced on all-negative input and single-element arrays, also leaves the mixed and all-positive cases working. Run your changed code on the original example and on an edge case or two of your own to confirm it behaves as you reasoned.
+````

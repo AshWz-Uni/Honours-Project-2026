@@ -140,30 +140,30 @@ It only changes what gets returned, so the loops and the check that already work
 
 ### TURN 1 REPLY
 ````text
-
+Yes, you've spotted something real: the `return [i]` line only reports one element of the pair. Using `nums = [2, 7, 11, 15]` with `target = 9`, what would you want your function to return, and how would you change the code to produce that?
 ````
 
 ### TURN 2 REPLY
 ````text
-
+That matches what the problem asks for. Now trace your changed code by hand on `nums = [3, 2, 4]` with `target = 6`: what values do `i` and `j` take on each step, and what does the function finally return?
 ````
 
 ### TURN 3 REPLY
 ````text
-
+Nice, that trace supports your change. In your own words, why does returning `[i, j]` fix the case where the old `return [i]` gave the wrong answer?
 ````
 
 ### TURN 4 REPLY
 ````text
-
+Good, that explanation captures it. Now try an edge case: with `nums = [3, 3]` and `target = 6`, what do you predict your changed code returns, and which values of `i` and `j` produce that?
 ````
 
 ### TURN 5 REPLY
 ````text
-
+Right, and starting `j` at `i + 1` is what keeps the same element from being used twice. Could changing `[i]` to `[i, j]` affect any other part of your algorithm, or any input that already worked before?
 ````
 
 ### TURN 6 REPLY
 ````text
-
+Agreed, the change is confined to the return value, so the search logic stays as it was. Now that you've checked your fix on `[2, 7, 11, 15]` and `[3, 3]`, what general lesson about this kind of bug would you carry into your next program?
 ````

@@ -147,19 +147,31 @@ Only the order changed, so numbers divisible by just 3 or just 5 still reach the
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good insight, that's exactly the kind of thing to look at. Given that, what change would you make to your code so that a number like 15 gets the result the problem requires?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That ordering idea addresses the problem you found. Try tracing your reordered checks on i = 15 and then i = 9: what gets appended in each case, and does it match what the problem requires?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice, that trace checks out for 15, 3, and 5. In your own words, why does moving the check for 15 to the front fix the case that was failing before?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, that explains why the order matters. Now pick an edge case, such as n = 1 or n = 0, and predict what your reordered code returns for it.
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Both predictions are correct. Could moving the check for 15 to the front change the result for any input that already gave the right answer, such as 7 or 10?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You spotted that an earlier branch was catching multiples of both 3 and 5, proposed checking 15 first, and traced it on 15, 3, and 5 to confirm it. Your reasoning that the most specific condition must come before the general ones also held up on the edge cases and on numbers that already worked. Run your reordered version on n = 15 and on an edge case like n = 1 to confirm it behaves as you predicted.
+````

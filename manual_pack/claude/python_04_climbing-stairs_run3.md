@@ -144,19 +144,31 @@ The loop update is untouched, so the sequence of values is the same; only the fi
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+You're on to something with the off-by-one idea. Trace `n = 3` by hand: what are `prev` and `curr` when the loop ends, and which of them holds the 3 you expect to get back?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That reasoning about `curr` tracking the current step count sounds right. Before you rely on it, trace your change on `n = 2`, where the loop body never runs. What does the function return, and does it match the number of ways to climb 2 stairs?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Those traces all check out against the expected counts. In your own words, why does returning `curr` fix the `n = 3` case that was failing before, when the loop ran once and `prev` was handed back instead?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, that explains why the `n = 3` case was off. Now pick an edge case, such as the smallest values of `n` the problem allows, and predict what your changed code returns for it, including which line produces that result.
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Both edge cases check out, and you named the line responsible each time. Your change only touched what the function returns, so could it affect any input that already gave the right answer before, such as `n = 1` or the inputs where the loop never runs?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice work: you diagnosed that `prev` holds the count for n - 1 while `curr` holds the count for n, changed what the function returns, and checked it by hand on `n = 1`, 2, 3 and 4. I'd encourage you to run the updated function on your original `n = 3` example and on an edge case like `n = 1` to confirm the results match your traces.
+````

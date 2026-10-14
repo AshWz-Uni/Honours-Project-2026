@@ -138,19 +138,31 @@ Non-empty trees behave as before since the new check only triggers on None, and 
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good catch, that's exactly where a call on an empty child would fail. How would you change `maxDepth` so that case is handled, given that the problem says an empty tree has depth 0?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That sounds like it targets the right spot. Try tracing your change on a tree with just one node, where both children are empty: what does each recursive call return, and what does the top-level call end up returning?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+That trace checks out. In your own words, why does your change fix the case that was failing before, where a call reached an empty child?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, the base case is what stops the recursion at the empty children. Now pick an edge case, such as an empty tree or a tree where one side is much deeper than the other, and predict what your changed code returns for it.
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, that edge case matches the requirement. Could your base case change the result for any input that already worked, such as a tree where one side is much deeper than the other?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You spotted that the recursion was reaching an empty child and touching its children, proposed returning 0 when root is None before accessing them, and checked it by tracing a single-node tree and the empty tree. Your reasoning that non-empty trees behave as before, since each real node still adds 1 to the deeper side, is sound. Run your change on a few of your own trees, including the empty tree and one that is lopsided, to confirm it matches the problem's definition of depth.
+````

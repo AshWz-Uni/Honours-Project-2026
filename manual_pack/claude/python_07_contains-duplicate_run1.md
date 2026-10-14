@@ -141,19 +141,31 @@ Only one line was added; the early return True and the final return False behave
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, that's a sharp observation about `seen`. Take the input `[1, 3, 3]`: what would you need to be true about `seen` by the time the loop reaches the second `3`, and what would you change in your code to make that happen?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That plan targets the missing step you spotted. Trace your changed code on `[1, 3, 3]` and tell me what `seen` holds after each pass through the loop and what the function finally returns.
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Nice, that trace checks out. In your own words, why does adding each value to `seen` make the duplicate get caught now, when the original code returned `False` for that same input?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, that captures the cause and the fix. Now pick an edge case, such as an empty list or a list with a single element, and predict what your changed code returns for it.
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, both inputs end with `False`, which matches the problem. Could your change affect any input that already worked before, such as a list where every value is distinct?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You spotted that `seen` was never being filled, proposed recording each value after the check, and traced `[1, 2, 1]` to see the duplicate get caught. You also reasoned that distinct-value lists and the empty or single-element cases still end in `False`. Run your updated version on `[1, 2, 1]` and on `[]` or `[5]` to confirm it matches your traces.
+````

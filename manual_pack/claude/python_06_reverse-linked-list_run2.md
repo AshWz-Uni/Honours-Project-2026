@@ -143,19 +143,31 @@ The pointer reversal is the same; only the order of statements and one saved ref
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+Good catch, that's exactly the spot to focus on. Looking at the loop body, how would you change your code so you can still reach the original next node after `current.next = previous` runs?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That sounds like a sound plan. Try tracing your change on the list 1 -> 2 -> 3: what do `previous`, `current`, and the saved variable hold after each of the three iterations, and what does the function return at the end?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Your trace checks out for 1 -> 2 -> None. In your own words, why does saving the next node first fix what went wrong when the original code ran on that same list?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, that overwritten link is the whole issue. What would your changed code return if the list is empty, meaning `head` is `None`, and how does it get there?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Both edge cases check out. Now think about the inputs that already worked before your change, such as the empty list and the single node. Could saving the next node first affect any of them, and why or why not?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+You identified that overwriting `current.next` loses the rest of the list, proposed saving the next node first, and checked it by tracing 1 -> 2 -> None and the empty and single-node cases. Your reasoning that only the statement order changed, so existing behavior is preserved, is sound. Next, run your change on the original example and on a longer list, such as five nodes, to confirm it behaves the way your traces predicted.
+````

@@ -143,19 +143,31 @@ The loop only runs for n >= 2 so it is not affected; only the two smallest input
 ## RECORD REPLIES
 
 ### TURN 1 REPLY
-<!-- paste the model's reply here -->
+````text
+You've spotted it: the `n <= 1` branch is treating two inputs that have different required outputs as one case. How would you change that part of the code so that both `fib(0)` and `fib(1)` give what the problem requires?
+````
 
 ### TURN 2 REPLY
-<!-- paste the model's reply here -->
+````text
+That addresses the base case. Take `fib(5)` and trace your changed code through the loop, keeping track of `a` and `b` after each iteration. What value do you end up returning, and does it match F(5) from the problem's definition?
+````
 
 ### TURN 3 REPLY
-<!-- paste the model's reply here -->
+````text
+Those traces for `fib(2)` and `fib(3)` check out. In your own words, why does returning `n` for `n <= 1` fix the case that originally failed, `fib(0)`, when the loop never runs for that input?
+````
 
 ### TURN 4 REPLY
-<!-- paste the model's reply here -->
+````text
+Right, and that's the heart of why the change works. Now pick an edge case you haven't traced yet, such as a large `n` like 30 or the smallest input that actually enters the loop, and predict what your changed code returns for it before you run it. What do you expect, and why?
+````
 
 ### TURN 5 REPLY
-<!-- paste the model's reply here -->
+````text
+Good, that fits what you've traced: `fib(0)` was the only input the original code got wrong. Your change touches the `n <= 1` branch, so could it alter the result for any input that was already correct, such as `fib(1)` or any `n` that reaches the loop, and how can you tell?
+````
 
 ### TURN 6 REPLY
-<!-- paste the model's reply here -->
+````text
+Yes, the loop's range starts at 2, so inputs of 2 or more never touch the changed branch. Looking back over this bug, what general lesson would you take about how base cases should be checked in your next program?
+````
