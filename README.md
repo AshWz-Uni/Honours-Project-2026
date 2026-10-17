@@ -131,4 +131,4 @@ python -m evaluation.cross_model.run_cross_model_eval analyse --run-dir results/
 python -m evaluation.cross_model.run_cross_model_eval analyse --run-dir results/cross_model/claude-web
 ```
 
-See `evaluation/cross_model/README.md` for collection protocol and limitations. Web-app sampling and latency are not directly controllable/comparable with local model generation, and this should be reported in the thesis.
+See `evaluation/cross_model/README.md` for collection protocol and limitations. Web-app sampling and latency are not directly controllable/comparable with local model generation.
