@@ -163,15 +163,15 @@ Nice, that trace shows the earlier failing case now behaves correctly. In your o
 
 ### TURN 4 REPLY
 ````text
-The conditions are checked in order and the first true one wins, so the most specific case has to come before the general ones.
+Right, and that principle of ordering conditions from most specific to most general is worth remembering. Now consider an edge case: what would your changed code return for `n = 1`, and which branch produces it?
 ````
 
 ### TURN 5 REPLY
 ````text
-For n = 1 the list is ['1'], and for n = 0 the loop does not run so it returns [].
+Correct on both counts, and checking `n = 0` was a good extra step. Does moving the check for 15 to the front change what happens for any other input that already gave the right answer before, such as 3, 5, or 7?
 ````
 
 ### TURN 6 REPLY
 ````text
-Only the order changed, so numbers divisible by just 3 or just 5 still reach the same branches as before.
+Your reasoning holds: moving the check for 15 to the front only changes the multiples of 15, and 7 and the numbers divisible by just 3 or just 5 still take the same branches as before. You diagnosed the ordering problem, proposed the reordering, and traced it on 15, 9, 1 and 0. As a final check, run your changed code on the original example with n = 15, and on a small edge case like n = 1, to confirm the output matches what you traced by hand.
 ````
