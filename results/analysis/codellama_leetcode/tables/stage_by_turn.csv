@@ -1,0 +1,13 @@
+language,turn,propose,test,consolidate,conclude
+javascript,1,27,3,0,0
+javascript,2,3,18,9,0
+javascript,3,3,0,27,0
+javascript,4,3,0,27,0
+javascript,5,3,0,27,0
+javascript,6,0,0,0,30
+python,1,27,3,0,0
+python,2,3,9,18,0
+python,3,0,0,30,0
+python,4,0,0,30,0
+python,5,0,0,30,0
+python,6,0,0,0,30

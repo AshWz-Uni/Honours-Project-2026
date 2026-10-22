@@ -366,7 +366,7 @@ def cmd_run(args) -> None:
 # --------------------------------------------------------------------------- #
 # Subcommands: export-manual / import-manual (web-app route)
 # --------------------------------------------------------------------------- #
-_REPLY_HEADING = re.compile(r"^### TURN (\d+) REPLY[ \t]*$", re.M)
+_REPLY_HEADING = re.compile(r"^#{2,4}[ \t]*TURN[ \t]*(\d+)[ \t]*REPLY[ \t]*:?[ \t]*$", re.M | re.I)
 _HEADER = re.compile(r"<!-- cross_model: version=(\S+) language=(\S+) id=(\d+) condition=(\S+)(?: repeat=(\d+))? -->")
 
 def _slug(name: str) -> str:
@@ -411,16 +411,45 @@ def cmd_export_manual(args) -> None:
     print(f"Wrote {count} independent run sheets to {out}")
 
 
+# A reply recorded inside a code fence (e.g. ````text ... ````) is a *wrapper* added while
+# copying, not part of what the model said. Left in, it makes every reply look like it
+# contains a code block and hides the whole reply from the sentence counter.
+_OUTER_FENCE = re.compile(r"\A(`{3,})([A-Za-z]*)[ \t]*\n(.*?)\n?[ \t]*\1[ \t]*\Z", re.S)
+_WRAPPER_TAGS = {"text", "txt", "markdown", "md", "plaintext"}
+
+
+def unwrap_reply(body: str) -> str:
+    """Return the model's reply with recording artefacts removed.
+
+    Removes HTML comments (the placeholder), normalises line endings and strips ONE outer
+    wrapper fence: any fence of 4+ backticks, or a 3-backtick fence explicitly tagged as
+    plain text/markdown. A bare 3-backtick block is left alone because that could be a
+    genuine code block in the reply, which the metrics must still see.
+    """
+    body = re.sub(r"<!--.*?-->", "", body, flags=re.S)
+    body = body.replace("\r\n", "\n").replace("\r", "\n").strip()
+    m = _OUTER_FENCE.match(body)
+    if m:
+        fence, tag, inner = m.groups()
+        if len(fence) >= 4 or tag.lower() in _WRAPPER_TAGS:
+            body = inner.strip()
+    return body
+
+
 def parse_manual_sheet(text: str) -> tuple[dict, list[list[str]]]:
     header = _HEADER.search(text)
     if not header:
         raise ValueError("missing the '<!-- cross_model: ... -->' header line")
     version, language, pid, condition, repeat = header.groups()
-    replies = {}
-    headings = list(re.finditer(r"^### TURN (\d+) REPLY\s*$", text, re.M))
+    replies: dict[int, str] = {}
+    headings = list(_REPLY_HEADING.finditer(text))
+    seen = [int(h.group(1)) for h in headings]
+    dupes = sorted({n for n in seen if seen.count(n) > 1})
+    if dupes:
+        raise ValueError(f"reply heading(s) for turn(s) {dupes} appear more than once; keep exactly one")
     for idx, heading in enumerate(headings):
         end = headings[idx + 1].start() if idx + 1 < len(headings) else len(text)
-        body = re.sub(r"<!--.*?-->", "", text[heading.end():end], flags=re.S).strip()
+        body = unwrap_reply(text[heading.end():end])
         if body:
             replies[int(heading.group(1))] = body
     ordered = [replies.get(i, "") for i in range(1, EXPECTED_TURNS + 1)]
@@ -431,60 +460,153 @@ def parse_manual_sheet(text: str) -> tuple[dict, list[list[str]]]:
             "repeat": int(repeat) if repeat else 1}, [ordered]
 
 
-def cmd_import_manual(args) -> None:
-    run_dir = Path(args.out) / args.run_id
-    run_dir.mkdir(parents=True, exist_ok=True)
-    transcripts = run_dir / "transcripts.jsonl"
-    done = {_key(r) for r in read_jsonl(transcripts)}
-    problems = {(p["language"], p["id"]): p for lang in cp.LANGUAGES for p in get_problems(lang)}
+# --- recording audit: catches copy/paste mistakes the parser cannot ----------- #
+_UI_JUNK = re.compile(
+    r"^(?:ChatGPT said:|You said:|Claude responded:?|Thought for \d+|Copy|Retry|Regenerate|Show thinking|"
+    r"Share|Good response|Bad response)\s*$", re.I | re.M)
+_LABEL = re.compile(r"\b(?:Hint|Question)\s*:", re.I)
 
-    imported, failures = 0, []
-    for path in sorted(Path(args.dir).glob("*.md")):
+
+def _jaccard(a: str, b: str) -> float:
+    ta_, tb_ = mx._tokens(a), mx._tokens(b)
+    return len(ta_ & tb_) / len(ta_ | tb_) if ta_ and tb_ else 0.0
+
+
+def audit_replies(replies: list[str], scripted: list[str]) -> list[tuple[str, str]]:
+    """Problems in one sheet's six replies as (level, message). Empty list = nothing suspicious.
+
+    ERROR = almost certainly a recording mistake (the data is wrong, re-collect it).
+    WARN  = could be real model behaviour or a slip; a human should look.
+    """
+    notes: list[tuple[str, str]] = []
+    for i, reply in enumerate(replies, start=1):
+        if "TUTOR INSTRUCTIONS" in reply or "Student message:" in reply:
+            notes.append(("ERROR", f"turn {i}: contains the pasted prompt, not a reply"))
+        if _UI_JUNK.search(reply):
+            notes.append(("ERROR", f"turn {i}: contains chat-UI text (e.g. 'ChatGPT said:', 'Copy')"))
+        if i - 1 < len(scripted) and _jaccard(reply, scripted[i - 1]) >= 0.8:
+            notes.append(("ERROR", f"turn {i}: reply is (almost) identical to the scripted STUDENT message - wrong box?"))
+        for j in range(i + 1, len(replies) + 1):
+            if replies[j - 1] == reply:
+                notes.append(("ERROR", f"turns {i} and {j}: identical replies (duplicate paste?)"))
+        if _LABEL.search(reply):
+            notes.append(("WARN", f"turn {i}: has a Hint:/Question: label (real model behaviour or a paste slip - check)"))
+        if len(reply.split()) > 250:
+            notes.append(("WARN", f"turn {i}: {len(reply.split())} words - more than one reply pasted?"))
+    return notes
+
+
+def load_manual_records(directory, condition: str, model: str, run_id: str, keep_invalid: bool = False):
+    """Parse every sheet in ``directory`` into transcript records.
+
+    Returns (records, failures, audit_notes). Shared by ``import-manual`` and the
+    analysis scripts so both read worksheets in exactly the same way. Sheets with a
+    recording ERROR (see ``audit_replies``) are left out and listed in ``failures``
+    unless ``keep_invalid`` is True.
+    """
+    problems = {(p["language"], p["id"]): p for lang in cp.LANGUAGES for p in get_problems(lang)}
+    records, failures, audit, seen = [], [], [], set()
+    for path in sorted(Path(directory).glob("*.md")):
         try:
             info, repeat_replies = parse_manual_sheet(path.read_text(encoding="utf-8"))
             if info["version"] != cp.PROMPT_VERSION:
                 raise ValueError(f"sheet is for prompt {info['version']}, current is {cp.PROMPT_VERSION}")
-            if info["condition"] != args.condition:
-                raise ValueError(f"sheet condition is '{info['condition']}', not '{args.condition}'")
+            if info["condition"] != condition:
+                raise ValueError(f"sheet condition is '{info['condition']}', not '{condition}'")
             problem = problems[(info["language"], info["id"])]
         except (ValueError, KeyError) as exc:
             failures.append(f"{path.name}: {exc}")
             continue
         for replies in repeat_replies:
-            repeat = info["repeat"]
-            rec = _base_record(args.run_id, args.condition, {"provider": "manual", "model": args.model}, problem, repeat, False)
+            turns_meta = scripted_turns(problem)
+            rec = _base_record(run_id, condition, {"provider": "manual", "model": model}, problem, info["repeat"], False)
             rec["prompt_delivery"] = "inline_first_message"
             rec["kind"] = "prompt"
             rec["prompt_version"] = cp.PROMPT_VERSION
             rec["prompt_sha256"] = cp.prompt_sha256(problem["language"])
             rec["manual"] = True
+            rec["source_file"] = path.name
             rec["turns"] = [
                 {"turn": i, "scripted_role": role, "student": text, "tutor": replies[i - 1], "stage": "",
                  "finish_reason": "", "input_tokens": None, "output_tokens": None, "latency_s": None}
-                for i, (role, text) in enumerate(scripted_turns(problem), start=1)
+                for i, (role, text) in enumerate(turns_meta, start=1)
             ]
-            rec["model_returned"] = [args.model]
+            rec["model_returned"] = [model]
             rec["sampling"] = {"note": "set by the web app; not controllable"}
-            if _key(rec) in done:
-                failures.append(f"{path.name} run {repeat}: already imported into {run_dir.name}")
+            if _key(rec) in seen:
+                failures.append(f"{path.name}: duplicate of an earlier sheet (same language/problem/repeat)")
                 continue
-            append_jsonl(transcripts, rec)
-            done.add(_key(rec))
-            imported += 1
+            notes = audit_replies(replies, [t for _, t in turns_meta])
+            errors = [m for lvl, m in notes if lvl == "ERROR"]
+            rec["recording_errors"] = errors
+            for lvl, m in notes:
+                audit.append(f"{lvl} {path.name}: {m}")
+            if errors and not keep_invalid:
+                failures.append(f"{path.name}: EXCLUDED (recording error - re-collect this run)")
+                continue
+            seen.add(_key(rec))
+            records.append(rec)
+    return records, failures, audit
+
+
+def _default_model_label(condition: str) -> str:
+    return f"{condition} web (model/version/date NOT recorded)"
+
+
+def cmd_import_manual(args) -> None:
+    run_dir = Path(args.out) / args.run_id
+    run_dir.mkdir(parents=True, exist_ok=True)
+    transcripts = run_dir / "transcripts.jsonl"
+    done = {_key(r) for r in read_jsonl(transcripts)}
+    model = args.model or _default_model_label(args.condition)
+    if not args.model:
+        print(f"NOTE: --model not given; labelling results '{model}'. Pass --model "
+              f"\"{args.condition} web, <model shown in UI>, <YYYY-MM-DD>\" before reporting these numbers.")
+
+    records, failures, audit = load_manual_records(args.dir, args.condition, model, args.run_id,
+                                                   keep_invalid=args.keep_invalid)
+    imported = 0
+    for rec in records:
+        if _key(rec) in done:
+            failures.append(f"{rec['source_file']}: already imported into {run_dir.name}")
+            continue
+        append_jsonl(transcripts, rec)
+        done.add(_key(rec))
+        imported += 1
 
     meta_path = run_dir / "run_metadata.json"
     if not meta_path.exists():
         meta_path.write_text(json.dumps({
             "run_id": args.run_id, "created_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-            "dry_run": False, "manual": True, "prompt_version": cp.PROMPT_VERSION,
+            "dry_run": False, "manual": True, "model_label": model, "prompt_version": cp.PROMPT_VERSION,
             "prompt_sha256": {lang: cp.prompt_sha256(lang) for lang in cp.LANGUAGES},
             "prompt_delivery": "inline_first_message", "git_commit": git_commit(),
         }, indent=2), encoding="utf-8")
     print(f"Imported {imported} conversation(s) into {run_dir}")
     for failure in failures:
         print(f"  SKIPPED {failure}")
+    for note in audit:
+        print(f"  CHECK   {note}")
     if imported:
         write_analysis(run_dir)
+
+
+def cmd_check_manual(args) -> None:
+    """Audit filled-in sheets WITHOUT importing anything. Exit status 1 if any ERROR."""
+    records, failures, audit = load_manual_records(
+        args.dir, args.condition, _default_model_label(args.condition), "check", keep_invalid=True)
+    errors = [a for a in audit if a.startswith("ERROR")]
+    warns = [a for a in audit if a.startswith("WARN")]
+    print(f"{args.dir}: {len(records)} sheet(s) parsed, {len(failures)} unparseable, "
+          f"{len(errors)} recording ERROR(s), {len(warns)} warning(s).")
+    for f in failures:
+        print(f"  UNPARSEABLE {f}")
+    for a in errors + warns:
+        print(f"  {a}")
+    if not (failures or audit):
+        print("  Nothing suspicious: all replies present, none duplicated, none look like pasted prompts or UI text.")
+    if failures or errors:
+        sys.exit(1)
 
 
 def cmd_analyse(args) -> None:
@@ -519,10 +641,18 @@ def build_parser() -> argparse.ArgumentParser:
     imp = sub.add_parser("import-manual", help="read filled-in run sheets back into a results folder")
     imp.add_argument("--condition", required=True)
     imp.add_argument("--dir", required=True, help="folder of filled-in sheets")
-    imp.add_argument("--model", required=True, help="exact model name/version shown in the app, plus date")
+    imp.add_argument("--model", default=None,
+                     help="exact model name/version shown in the app, plus date (recommended; a placeholder label is used if omitted)")
     imp.add_argument("--run-id", required=True)
     imp.add_argument("--out", default=str(DEFAULT_OUT))
+    imp.add_argument("--keep-invalid", action="store_true",
+                     help="also import sheets that have a recording ERROR (default: exclude them)")
     imp.set_defaults(func=cmd_import_manual)
+
+    chk = sub.add_parser("check-manual", help="audit filled-in sheets for recording mistakes (imports nothing)")
+    chk.add_argument("--condition", required=True)
+    chk.add_argument("--dir", required=True)
+    chk.set_defaults(func=cmd_check_manual)
 
     analyse = sub.add_parser("analyse", help="recompute metrics and summaries for a run folder")
     analyse.add_argument("--run-dir", required=True)

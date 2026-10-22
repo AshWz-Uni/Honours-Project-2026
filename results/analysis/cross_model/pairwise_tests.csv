@@ -1,0 +1,91 @@
+metric,description,comparison,family,better_is,n_items,mean_diff,p_wilcoxon,p_holm
+structure,"Right turn structure (exactly 1 question on turns 1-5, none on turn 6)",codellama_agent - chatgpt,primary,higher,20,0.10555555555555549,0.00017157742280778584,0.009265180831620435
+structure,"Right turn structure (exactly 1 question on turns 1-5, none on turn 6)",codellama_agent - claude,primary,higher,20,0.10555555555555551,0.0001121414727178076,0.007064912781221879
+structure,"Right turn structure (exactly 1 question on turns 1-5, none on turn 6)",codellama_prompt - chatgpt,primary,higher,20,-0.2361111111111111,0.0003853103974981943,0.017724278284916937
+structure,"Right turn structure (exactly 1 question on turns 1-5, none on turn 6)",codellama_prompt - claude,primary,higher,20,-0.23611111111111116,0.00019370211549818298,0.010266212121403698
+structure,"Right turn structure (exactly 1 question on turns 1-5, none on turn 6)",codellama_agent - codellama_prompt,secondary,higher,20,0.3416666666666667,8.140252528590111e-05,0.005453969194155374
+structure,"Right turn structure (exactly 1 question on turns 1-5, none on turn 6)",chatgpt - claude,secondary,higher,20,-1.1102230246251566e-17,0.8032009751049104,1.0
+rule_compliance,"Structure AND every model-neutral format rule (<=3 sentences, no code/labels/repeats)",codellama_agent - chatgpt,primary,higher,20,-0.12222222222222226,0.003640320678266706,0.13833218577413484
+rule_compliance,"Structure AND every model-neutral format rule (<=3 sentences, no code/labels/repeats)",codellama_agent - claude,primary,higher,20,-0.1166666666666667,0.0012399664084705793,0.05455852197270549
+rule_compliance,"Structure AND every model-neutral format rule (<=3 sentences, no code/labels/repeats)",codellama_prompt - chatgpt,primary,higher,20,-0.825,8.354186598692902e-05,0.005466387236620168
+rule_compliance,"Structure AND every model-neutral format rule (<=3 sentences, no code/labels/repeats)",codellama_prompt - claude,primary,higher,20,-0.8194444444444444,7.413270711012498e-05,0.005041024083488499
+rule_compliance,"Structure AND every model-neutral format rule (<=3 sentences, no code/labels/repeats)",codellama_agent - codellama_prompt,secondary,higher,20,0.7027777777777778,8.282404903969953e-05,0.005466387236620168
+rule_compliance,"Structure AND every model-neutral format rule (<=3 sentences, no code/labels/repeats)",chatgpt - claude,secondary,higher,20,0.005555555555555547,0.8969850830529845,1.0
+on_time_conclusion,Concluded exactly on turn 6,codellama_agent - chatgpt,primary,higher,20,0.5166666666666667,0.00015138248214312665,0.008628801482158218
+on_time_conclusion,Concluded exactly on turn 6,codellama_agent - claude,primary,higher,20,0.5833333333333333,0.00010342841121718541,0.006619418317899866
+on_time_conclusion,Concluded exactly on turn 6,codellama_prompt - chatgpt,primary,higher,20,-0.4833333333333333,0.00021982609891843375,0.01111116182023239
+on_time_conclusion,Concluded exactly on turn 6,codellama_prompt - claude,primary,higher,20,-0.41666666666666663,0.00031642956215379033,0.015151756650397651
+on_time_conclusion,Concluded exactly on turn 6,codellama_agent - codellama_prompt,secondary,higher,20,1.0,7.74421643104407e-06,0.0005420951501730849
+on_time_conclusion,Concluded exactly on turn 6,chatgpt - claude,secondary,higher,20,0.06666666666666668,0.4486773310299753,1.0
+premature_conclusion,Concluded before turn 6,codellama_agent - chatgpt,primary,lower,20,-0.36666666666666664,0.0004510953476143062,0.02029929064264378
+premature_conclusion,Concluded before turn 6,codellama_agent - claude,primary,lower,20,-0.4166666666666667,0.0003156615968832844,0.015151756650397651
+premature_conclusion,Concluded before turn 6,codellama_prompt - chatgpt,primary,lower,20,-0.2833333333333333,0.008227578039678385,0.28796523138874347
+premature_conclusion,Concluded before turn 6,codellama_prompt - claude,primary,lower,20,-0.3333333333333333,0.006061145775952373,0.22426239371023782
+premature_conclusion,Concluded before turn 6,codellama_agent - codellama_prompt,secondary,lower,20,-0.08333333333333333,0.10247043485974937,1.0
+premature_conclusion,Concluded before turn 6,chatgpt - claude,secondary,lower,20,-0.05,0.5817769165906228,1.0
+never_concluded,Never concluded (a question on turn 6 and no earlier conclusion),codellama_agent - chatgpt,primary,lower,20,-0.15,0.011412036386001651,0.38800923712405616
+never_concluded,Never concluded (a question on turn 6 and no earlier conclusion),codellama_agent - claude,primary,lower,20,-0.16666666666666669,0.006655605482949377,0.23960179738617757
+never_concluded,Never concluded (a question on turn 6 and no earlier conclusion),codellama_prompt - chatgpt,primary,lower,20,0.7666666666666666,0.00016565776590802262,0.009111177124941245
+never_concluded,Never concluded (a question on turn 6 and no earlier conclusion),codellama_prompt - claude,primary,lower,20,0.7499999999999999,0.00015157397925012766,0.008628801482158218
+never_concluded,Never concluded (a question on turn 6 and no earlier conclusion),codellama_agent - codellama_prompt,secondary,lower,20,-0.9166666666666666,2.3088353712676434e-05,0.001593096406174674
+never_concluded,Never concluded (a question on turn 6 and no earlier conclusion),chatgpt - claude,secondary,lower,20,-0.016666666666666666,0.7054569861112734,1.0
+multi_question_turns,Turns with 2+ questions (of 6),codellama_agent - chatgpt,primary,lower,20,0.0,,
+multi_question_turns,Turns with 2+ questions (of 6),codellama_agent - claude,primary,lower,20,-0.016666666666666666,0.31731050786291415,1.0
+multi_question_turns,Turns with 2+ questions (of 6),codellama_prompt - chatgpt,primary,lower,20,1.1,0.0021916819945457977,0.08985896177637771
+multi_question_turns,Turns with 2+ questions (of 6),codellama_prompt - claude,primary,lower,20,1.0833333333333333,0.002200340526906492,0.08985896177637771
+multi_question_turns,Turns with 2+ questions (of 6),codellama_agent - codellama_prompt,secondary,lower,20,-1.1,0.0021916819945457977,0.08985896177637771
+multi_question_turns,Turns with 2+ questions (of 6),chatgpt - claude,secondary,lower,20,-0.016666666666666666,0.31731050786291415,1.0
+over_length_turns,Turns longer than 3 sentences (of 6),codellama_agent - chatgpt,primary,lower,20,1.2833333333333334,0.00014828993161017286,0.008600816033390026
+over_length_turns,Turns longer than 3 sentences (of 6),codellama_agent - claude,primary,lower,20,1.2666666666666668,0.00012127016212252712,0.007518750051596682
+over_length_turns,Turns longer than 3 sentences (of 6),codellama_prompt - chatgpt,primary,lower,20,1.9166666666666667,0.0014443560411159027,0.062107309767983815
+over_length_turns,Turns longer than 3 sentences (of 6),codellama_prompt - claude,primary,lower,20,1.9000000000000004,0.0014590203259492514,0.062107309767983815
+over_length_turns,Turns longer than 3 sentences (of 6),codellama_agent - codellama_prompt,secondary,lower,20,-0.6333333333333333,0.26449169497655256,1.0
+over_length_turns,Turns longer than 3 sentences (of 6),chatgpt - claude,secondary,lower,20,-0.016666666666666666,0.31731050786291415,1.0
+mean_words_per_reply,Mean words per reply,codellama_agent - chatgpt,primary,n/a,20,4.365,0.030350679270506366,0.9408710573856973
+mean_words_per_reply,Mean words per reply,codellama_agent - claude,primary,n/a,20,-2.6316666666666664,0.20244979858398438,1.0
+mean_words_per_reply,Mean words per reply,codellama_prompt - chatgpt,primary,n/a,20,11.803333333333333,0.10539817810058594,1.0
+mean_words_per_reply,Mean words per reply,codellama_prompt - claude,primary,n/a,20,4.806666666666667,0.9272785186767578,1.0
+mean_words_per_reply,Mean words per reply,codellama_agent - codellama_prompt,secondary,n/a,20,-7.438333333333331,0.5216732025146484,1.0
+mean_words_per_reply,Mean words per reply,chatgpt - claude,secondary,n/a,20,-6.996666666666667,3.814697265625e-06,0.000270843505859375
+has_code_block_turns,Turns containing a code block (of 6),codellama_agent - chatgpt,primary,lower,20,0.0,,
+has_code_block_turns,Turns containing a code block (of 6),codellama_agent - claude,primary,lower,20,0.0,,
+has_code_block_turns,Turns containing a code block (of 6),codellama_prompt - chatgpt,primary,lower,20,0.3,0.06788915486182899,1.0
+has_code_block_turns,Turns containing a code block (of 6),codellama_prompt - claude,primary,lower,20,0.3,0.06788915486182899,1.0
+has_code_block_turns,Turns containing a code block (of 6),codellama_agent - codellama_prompt,secondary,lower,20,-0.3,0.06788915486182899,1.0
+has_code_block_turns,Turns containing a code block (of 6),chatgpt - claude,secondary,lower,20,0.0,,
+agent_new_code_turns,Turns introducing new code (of 6) †,codellama_prompt - chatgpt,primary,lower,20,-0.06666666666666667,0.19364643126922065,1.0
+agent_new_code_turns,Turns introducing new code (of 6) †,codellama_prompt - claude,primary,lower,20,-0.05,0.25683925795785656,1.0
+agent_new_code_turns,Turns introducing new code (of 6) †,chatgpt - claude,secondary,lower,20,0.016666666666666663,0.7477301646241347,1.0
+agent_solution_leak_turns,Turns flagged as leaking the solution (of 6) †,codellama_prompt - chatgpt,primary,lower,20,0.5833333333333333,0.011412036386001651,0.38800923712405616
+agent_solution_leak_turns,Turns flagged as leaking the solution (of 6) †,codellama_prompt - claude,primary,lower,20,0.5666666666666667,0.01151382807684542,0.38800923712405616
+agent_solution_leak_turns,Turns flagged as leaking the solution (of 6) †,chatgpt - claude,secondary,lower,20,-0.016666666666666666,0.31731050786291415,1.0
+possible_fix_giving_turns,"Turns with fix-giving phrases (of 6, loose heuristic)",codellama_agent - chatgpt,primary,lower,20,0.38333333333333336,0.039359508888249725,1.0
+possible_fix_giving_turns,"Turns with fix-giving phrases (of 6, loose heuristic)",codellama_agent - claude,primary,lower,20,0.38333333333333336,0.039359508888249725,1.0
+possible_fix_giving_turns,"Turns with fix-giving phrases (of 6, loose heuristic)",codellama_prompt - chatgpt,primary,lower,20,0.4166666666666667,0.043114446783075355,1.0
+possible_fix_giving_turns,"Turns with fix-giving phrases (of 6, loose heuristic)",codellama_prompt - claude,primary,lower,20,0.4166666666666667,0.043114446783075355,1.0
+possible_fix_giving_turns,"Turns with fix-giving phrases (of 6, loose heuristic)",codellama_agent - codellama_prompt,secondary,lower,20,-0.03333333333333333,0.9324053732493378,1.0
+possible_fix_giving_turns,"Turns with fix-giving phrases (of 6, loose heuristic)",chatgpt - claude,secondary,lower,20,0.0,,
+repeated_prior_question_turns,Turns repeating an earlier question (of 6),codellama_agent - chatgpt,primary,lower,20,0.06666666666666667,0.15729920705028502,1.0
+repeated_prior_question_turns,Turns repeating an earlier question (of 6),codellama_agent - claude,primary,lower,20,0.06666666666666667,0.15729920705028502,1.0
+repeated_prior_question_turns,Turns repeating an earlier question (of 6),codellama_prompt - chatgpt,primary,lower,20,1.8666666666666665,0.0001269363918387154,0.007692115345418525
+repeated_prior_question_turns,Turns repeating an earlier question (of 6),codellama_prompt - claude,primary,lower,20,1.8666666666666665,0.0001269363918387154,0.007692115345418525
+repeated_prior_question_turns,Turns repeating an earlier question (of 6),codellama_agent - codellama_prompt,secondary,lower,20,-1.8,0.0001261002515642381,0.007692115345418525
+repeated_prior_question_turns,Turns repeating an earlier question (of 6),chatgpt - claude,secondary,lower,20,0.0,,
+label_leak_turns,Turns showing Hint:/Question: labels (of 6),codellama_agent - chatgpt,primary,lower,20,0.0,,
+label_leak_turns,Turns showing Hint:/Question: labels (of 6),codellama_agent - claude,primary,lower,20,-0.016666666666666666,0.31731050786291415,1.0
+label_leak_turns,Turns showing Hint:/Question: labels (of 6),codellama_prompt - chatgpt,primary,lower,20,4.2666666666666675,0.00021786591804377235,0.01111116182023239
+label_leak_turns,Turns showing Hint:/Question: labels (of 6),codellama_prompt - claude,primary,lower,20,4.25,0.00019422813499871103,0.010266212121403698
+label_leak_turns,Turns showing Hint:/Question: labels (of 6),codellama_agent - codellama_prompt,secondary,lower,20,-4.2666666666666675,0.00021786591804377235,0.01111116182023239
+label_leak_turns,Turns showing Hint:/Question: labels (of 6),chatgpt - claude,secondary,lower,20,-0.016666666666666666,0.31731050786291415,1.0
+wrong_language_terms_turns,JavaScript turns using Python terms (of 6),codellama_agent - chatgpt,primary,lower,10,0.0,,
+wrong_language_terms_turns,JavaScript turns using Python terms (of 6),codellama_agent - claude,primary,lower,10,0.0,,
+wrong_language_terms_turns,JavaScript turns using Python terms (of 6),codellama_prompt - chatgpt,primary,lower,10,0.0,,
+wrong_language_terms_turns,JavaScript turns using Python terms (of 6),codellama_prompt - claude,primary,lower,10,0.0,,
+wrong_language_terms_turns,JavaScript turns using Python terms (of 6),codellama_agent - codellama_prompt,secondary,lower,10,0.0,,
+wrong_language_terms_turns,JavaScript turns using Python terms (of 6),chatgpt - claude,secondary,lower,10,0.0,,
+mentions_model_identity_turns,Turns naming the model/vendor (of 6),codellama_agent - chatgpt,primary,n/a,20,0.0,,
+mentions_model_identity_turns,Turns naming the model/vendor (of 6),codellama_agent - claude,primary,n/a,20,0.0,,
+mentions_model_identity_turns,Turns naming the model/vendor (of 6),codellama_prompt - chatgpt,primary,n/a,20,0.0,,
+mentions_model_identity_turns,Turns naming the model/vendor (of 6),codellama_prompt - claude,primary,n/a,20,0.0,,
+mentions_model_identity_turns,Turns naming the model/vendor (of 6),codellama_agent - codellama_prompt,secondary,n/a,20,0.0,,
+mentions_model_identity_turns,Turns naming the model/vendor (of 6),chatgpt - claude,secondary,n/a,20,0.0,,

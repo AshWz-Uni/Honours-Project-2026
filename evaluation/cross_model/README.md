@@ -70,3 +70,47 @@ Use the same rubric and blind-rating procedure for every condition. Keep the loc
 The same problem/code, prompt wording, and scripted student turns are used across conditions. The first worksheet message contains the instructions and the problem; subsequent messages are the scripted student turns. Web-app models may have hidden system instructions, changing model versions, safety behaviour, and non-configurable sampling. This is therefore a controlled *task and prompt* comparison, not a fully controlled API-level experiment. Record model/version, date, language, any UI settings, and any deviations.
 
 Do not use dry-run records as evaluation results.
+
+## 5. Exploring the results (analysis scripts)
+
+```bash
+pip install pandas numpy scipy matplotlib
+
+# Step 1: Code Llama tutoring agent on the LeetCode set (all 3 runs = 60 conversations) -> results/analysis/codellama_leetcode/
+python -m evaluation.explore_codellama_leetcode
+
+# Step 2: Code Llama agent + Code Llama (controlled prompt) vs ChatGPT (GPT-5.6 Luna) vs Claude (Sonnet 5.5, medium)
+#         60 conversations each -> results/analysis/cross_model/
+python -m evaluation.cross_model.compare_models
+# optional: record the collection date
+```
+
+### Quality of the Socratic questions
+
+Both steps also score the *questions* themselves with `evaluation/cross_model/socratic_quality.py` (no model is called, so
+every condition is scored identically). Each question on turns 1-5 gets five 0/1 criteria: asks for reasoning (not a
+yes/no), grounded in the student's code or a concrete input, does not lead or give the fix, single focus, not a repeat.
+Quality score = criteria met (0-5); high quality = all five. It also records the cognitive type of each question
+(recall / predict / trace-test / explain / extend-reflect / propose). It is a rule-based proxy for form, not a judgement of
+pedagogical timing: validate it with the blinded rating (`blind_rating.py`, column `meaningful_followups`).
+
+Outputs: `question_quality_*.csv`, `question_types.csv`, `fig6`-`fig8` in `results/analysis/cross_model/`; `fig6_question_quality.png`
+and `tables/question_quality_*.csv` in `results/analysis/codellama_leetcode/`. `question_quality_review.csv` lists every question
+with its score so you can read them.
+
+### Reading the recorded worksheets
+
+`parse_manual_sheet` accepts replies recorded inside a code fence (` ````text ... ```` `), which is how the
+current `manual_pack/` files were saved, and heading variants such as `## Turn 2 reply:`. The fence is a
+recording wrapper and is removed before metrics are computed; any code block *inside* a reply is kept.
+
+Audit the worksheets (nothing is written; exit status 1 if an ERROR is found):
+
+```bash
+python -m evaluation.cross_model.run_cross_model_eval check-manual --condition chatgpt --dir manual_pack/chatgpt
+python -m evaluation.cross_model.run_cross_model_eval check-manual --condition claude  --dir manual_pack/claude
+```
+
+ERRORs (reply identical to the scripted student line, pasted prompt, chat-UI text, duplicate replies) mark a run as
+mis-recorded; `compare_models` keeps such sheets by default (so each model has all 60 conversations) and lists them in the
+report; `--drop-invalid` removes them. WARNs may be genuine model behaviour and are kept.

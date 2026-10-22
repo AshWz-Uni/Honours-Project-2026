@@ -142,3 +142,63 @@ def test_export_creates_three_separate_files_per_problem(tmp_path):
 
 def test_provider_registry_has_no_paid_api_adapters():
     assert set(providers.PROVIDERS) == {"ollama", "mock"}
+
+
+# --------------------------------------------------------------------------- #
+# Tolerant reading of recorded worksheets (fenced replies, audit, exclusion)
+# --------------------------------------------------------------------------- #
+def _filled_sheet(replies, problem=None, condition="chatgpt", repeat=1, fenced=True):
+    """A worksheet whose replies are wrapped in ````text fences, as in the recorded manual_pack."""
+    sheet = runner.render_manual_sheet(problem or PY[0], condition, repeat)
+    head, _ = sheet.split("## RECORD REPLIES")
+    body = ["## RECORD REPLIES", ""]
+    for i, reply in enumerate(replies, start=1):
+        body += [f"### TURN {i} REPLY", "````text" if fenced else "", reply, "````" if fenced else "", ""]
+    return head + "\n".join(body)
+
+
+def test_unwrap_reply_strips_only_the_recording_wrapper():
+    assert runner.unwrap_reply("````text\nWhat happens for [3, 3]?\n````") == "What happens for [3, 3]?"
+    assert runner.unwrap_reply("```text\nHello?\n```") == "Hello?"
+    assert runner.unwrap_reply("<!-- paste the model's reply here -->\nPlain reply?") == "Plain reply?"
+    # a real code block in the reply must survive so the code-block metric can see it
+    assert runner.unwrap_reply("```python\nreturn [i, j]\n```") == "```python\nreturn [i, j]\n```"
+    inner = "Try this:\n```python\nx = 1\n```\nWhy?"
+    assert runner.unwrap_reply(f"````text\n{inner}\n````") == inner
+
+
+def test_fenced_worksheet_parses_to_clean_replies():
+    replies = [f"Question number {i}?" for i in range(1, 6)] + ["Well done; run it on an edge case."]
+    info, parsed = runner.parse_manual_sheet(_filled_sheet(replies))
+    assert parsed[0] == replies
+    assert mx.turn_metrics(parsed[0][0], 1, PY[0], ["x"], [])["has_code_block"] == 0
+
+
+def test_parser_tolerates_heading_variants_but_rejects_duplicates():
+    replies = [f"Reply {i}?" for i in range(1, 7)]
+    sheet = _filled_sheet(replies).replace("### TURN 2 REPLY", "## Turn 2 reply:")
+    assert runner.parse_manual_sheet(sheet)[1][0] == replies
+    with pytest.raises(ValueError, match="more than once"):
+        runner.parse_manual_sheet(_filled_sheet(replies) + "\n### TURN 3 REPLY\nagain\n")
+
+
+def test_audit_flags_student_text_pasted_as_reply():
+    scripted = [t for _, t in scripted_turns(PY[0])]
+    good = [f"Different tutor question {i}, about something else entirely?" for i in range(1, 7)]
+    assert runner.audit_replies(good, scripted) == []
+    bad = list(good)
+    bad[3] = scripted[3]                        # the student's line pasted into the reply box
+    assert ("ERROR", "turn 4: reply is (almost) identical to the scripted STUDENT message - wrong box?") in runner.audit_replies(bad, scripted)
+    assert any(lvl == "ERROR" and "identical replies" in m for lvl, m in runner.audit_replies([good[0]] * 6, scripted))
+
+
+def test_load_manual_records_excludes_recording_errors(tmp_path):
+    scripted = [t for _, t in scripted_turns(PY[0])]
+    ok = [f"Tutor question {i} about the loop bounds on line {i}?" for i in range(1, 7)]
+    (tmp_path / "python_01_two-sum_run1.md").write_text(_filled_sheet(ok, repeat=1), encoding="utf-8")
+    (tmp_path / "python_01_two-sum_run2.md").write_text(_filled_sheet(scripted, repeat=2), encoding="utf-8")
+    recs, failures, audit = runner.load_manual_records(tmp_path, "chatgpt", "m", "t")
+    assert [r["repeat"] for r in recs] == [1]
+    assert any("EXCLUDED" in f for f in failures) and any(a.startswith("ERROR") for a in audit)
+    recs_all, _, _ = runner.load_manual_records(tmp_path, "chatgpt", "m", "t", keep_invalid=True)
+    assert len(recs_all) == 2
