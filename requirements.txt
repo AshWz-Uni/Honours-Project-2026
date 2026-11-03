@@ -1,5 +1,11 @@
 fastapi
 uvicorn
 requests
-pydantic
+pydantic>=2
 python-dotenv
+pytest
+httpx
+pandas
+numpy
+scipy
+matplotlib

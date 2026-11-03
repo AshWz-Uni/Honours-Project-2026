@@ -1,0 +1,301 @@
+run,language,problem_id,problem,turn,stage,quality_score,question_type,question
+1,javascript,1,Two Sum,1,test,2.0,propose,Can you think of a way to modify the code so that it returns the indices of both elements in the pair?
+1,javascript,1,Two Sum,2,test,5.0,explain,"Can you tell me more about why you think returning [i, j] instead of just [i] would solve the problem?"
+1,javascript,1,Two Sum,3,consolidate,4.0,explain,"Can you tell me more about why you think returning [i, j] instead of just [i] would solve the problem?"
+1,javascript,1,Two Sum,4,consolidate,4.0,explain,"Can you tell me more about why you think returning [i, j] instead of just [i] would solve the problem?"
+1,javascript,1,Two Sum,5,consolidate,3.0,extend/reflect,Could your change affect any other part of the algorithm or any input that already worked?
+1,javascript,2,Maximum Subarray,1,propose,3.0,recall,Can you tell me more about what you think is happening in that case?
+1,javascript,2,Maximum Subarray,2,test,4.0,explain,Can you tell me more about why you think that might be the case?
+1,javascript,2,Maximum Subarray,3,consolidate,3.0,explain,Can you tell me more about why you think that might be the case?
+1,javascript,2,Maximum Subarray,4,consolidate,4.0,explain,Can you tell me more about why you think the code might not work correctly when every number in the array is negative?
+1,javascript,2,Maximum Subarray,5,consolidate,3.0,extend/reflect,Could your change affect any other part of the algorithm or any input that already worked?
+1,javascript,3,Fizz Buzz,1,propose,3.0,propose,"To confirm, can you tell me what you would change in the code to make it work as expected?"
+1,javascript,3,Fizz Buzz,2,consolidate,5.0,explain,Can you explain why checking divisibility by 15 first would make the code work as expected?
+1,javascript,3,Fizz Buzz,3,consolidate,4.0,explain,Can you tell me more about why you think that is the case?
+1,javascript,3,Fizz Buzz,4,consolidate,4.0,explain,Can you tell me more about why you think checking for divisibility by 15 first would make the code work as expected?
+1,javascript,3,Fizz Buzz,5,consolidate,3.0,explain,Can you tell me more about why you think that is the case?
+1,javascript,4,Climbing Stairs,1,propose,4.0,propose,Can you confirm that the mismatched result for 3 stairs is due to the update being shifted by one step?
+1,javascript,4,Climbing Stairs,2,test,4.0,trace/test,Can you trace the change you propose on one concrete input and compare the result with what the problem requires?
+1,javascript,4,Climbing Stairs,3,consolidate,4.0,explain,"In your own words, why does your change make the earlier failing case behave correctly?"
+1,javascript,4,Climbing Stairs,4,consolidate,4.0,predict,"Can you predict the result for a few edge cases, such as an empty input or a single element?"
+1,javascript,4,Climbing Stairs,5,consolidate,4.0,explain,Can you explain why your change makes the earlier failing case behave correctly?
+1,javascript,5,Maximum Depth of Binary Tree,1,propose,3.0,recall,Can you confirm that the missing condition is indeed the case where the child is null?
+1,javascript,5,Maximum Depth of Binary Tree,2,test,2.0,recall,Can you confirm that the missing condition is indeed the case where the child is null?
+1,javascript,5,Maximum Depth of Binary Tree,3,consolidate,4.0,explain,"In your own words, why does your change make the earlier failing case behave correctly?"
+1,javascript,5,Maximum Depth of Binary Tree,4,consolidate,4.0,predict,Can you predict what the function will return for an empty tree?
+1,javascript,5,Maximum Depth of Binary Tree,5,consolidate,3.0,recall,Can you confirm that the function will return 0 for an empty tree?
+1,javascript,6,Reverse Linked List,1,propose,4.0,recall,"Can you confirm that by changing the current node's next pointer to point to the previous node, you are losing the next node?"
+1,javascript,6,Reverse Linked List,2,test,4.0,recall,Can you show me an example of how you would implement this in the code?
+1,javascript,6,Reverse Linked List,3,consolidate,4.0,explain,Can you explain why it was not useful?
+1,javascript,6,Reverse Linked List,4,consolidate,4.0,extend/reflect,"Which edge case (empty input, a single element, or an extreme value) would you test next, and what should your code return for it?"
+1,javascript,6,Reverse Linked List,5,consolidate,3.0,extend/reflect,Could your change affect any other part of the algorithm or any input that already worked?
+1,javascript,7,Contains Duplicate,1,propose,4.0,recall,"So, what do you think the issue is with the code?"
+1,javascript,7,Contains Duplicate,2,consolidate,4.0,explain,"In your own words, why does your change make the earlier failing case behave correctly?"
+1,javascript,7,Contains Duplicate,3,consolidate,4.0,recall,What do you think would happen if the input array contained extreme values like Infinity or NaN?
+1,javascript,7,Contains Duplicate,4,consolidate,3.0,recall,What do you think would happen if the input array contained extreme values like Infinity or NaN?
+1,javascript,7,Contains Duplicate,5,consolidate,4.0,extend/reflect,What will you check first the next time you see this kind of bug?
+1,javascript,8,Implement Queue Using Stacks,1,propose,3.0,propose,Can you think of a way to modify the code to make sure the items are added and removed in the correct order?
+1,javascript,8,Implement Queue Using Stacks,2,test,3.0,propose,Can you think of a way to implement this using only stack operations?
+1,javascript,8,Implement Queue Using Stacks,3,consolidate,4.0,explain,Can you explain why your solution works for the FIFO behavior?
+1,javascript,8,Implement Queue Using Stacks,4,consolidate,5.0,extend/reflect,"Which edge case (empty input, a single element, or an extreme value) would you test next, and what should your code return for it?"
+1,javascript,8,Implement Queue Using Stacks,5,consolidate,2.0,propose,"Can you think of a way to modify the code to make sure the items are added and removed in the correct order, while still using only stack operations?"
+1,javascript,9,Fibonacci Number,1,propose,4.0,explain,Can you tell me more about why you think the base case is the issue?
+1,javascript,9,Fibonacci Number,2,propose,3.0,explain,Can you tell me more about why you think that's the issue?
+1,javascript,9,Fibonacci Number,3,propose,3.0,recall,"Can you tell me more about what you've tried so far, and what you're hoping to achieve by fixing this issue?"
+1,javascript,9,Fibonacci Number,4,propose,4.0,trace/test,"Which concrete input could you trace to confirm it, and what would you change if the trace agrees?"
+1,javascript,9,Fibonacci Number,5,propose,4.0,propose,What small change would you make yourself to address it?
+1,javascript,10,Binary Search,1,propose,4.0,explain,"Can you tell me more about why you think the loop stops when left and right become the same index, even though that index could still contain the target?"
+1,javascript,10,Binary Search,2,consolidate,4.0,explain,Can you tell me more about why you think the loop should keep running until the last index is checked?
+1,javascript,10,Binary Search,3,consolidate,3.0,explain,Can you tell me more about why you think the loop should keep running until the last index is checked?
+1,javascript,10,Binary Search,4,consolidate,3.0,extend/reflect,Could your change affect any other part of the algorithm or any input that already worked?
+1,javascript,10,Binary Search,5,consolidate,4.0,extend/reflect,What will you check first the next time you see this kind of bug?
+1,python,1,Two Sum,1,test,4.0,trace/test,Can you trace the execution of your code on a specific input and show me how it fails to meet the requirements of the problem?
+1,python,1,Two Sum,2,test,3.0,propose,Can you show me how you would modify the code to return the indices of both elements in the pair?
+1,python,1,Two Sum,3,consolidate,5.0,explain,"Can you explain, in your own words, why returning [i, j] instead of just [i] would make the code meet the requirements of the problem?"
+1,python,1,Two Sum,4,consolidate,4.0,extend/reflect,"Which edge case (empty input, a single element, or an extreme value) would you test next, and what should your code return for it?"
+1,python,1,Two Sum,5,consolidate,3.0,extend/reflect,Could your change affect any other part of the algorithm or any input that already worked?
+1,python,2,Maximum Subarray,1,propose,3.0,recall,"So, have you tried any specific input that doesn't work?"
+1,python,2,Maximum Subarray,2,test,4.0,recall,"Can you tell me what the expected output is for the input [-2, -1, 0, 1, 2]?"
+1,python,2,Maximum Subarray,3,consolidate,5.0,explain,Can you explain in your own words why starting from nums[0] and letting current restart at the number itself is a good idea?
+1,python,2,Maximum Subarray,4,consolidate,3.0,recall,"Can you tell me what the expected output is for the input [-2, -1, 0, 1, 2]?"
+1,python,2,Maximum Subarray,5,consolidate,3.0,recall,"Can you tell me what the expected output is for the input [-2, -1, 0, 1, 2]?"
+1,python,3,Fizz Buzz,1,propose,3.0,propose,Can you tell me what you would change in the code to make it work as intended?
+1,python,3,Fizz Buzz,2,consolidate,5.0,explain,Can you tell me why you think checking divisibility by 15 first would make a difference?
+1,python,3,Fizz Buzz,3,consolidate,4.0,explain,Can you tell me why you think that is the case?
+1,python,3,Fizz Buzz,4,consolidate,3.0,extend/reflect,Could your change affect any other part of the algorithm or any input that already worked?
+1,python,3,Fizz Buzz,5,consolidate,4.0,extend/reflect,What will you check first the next time you see this kind of bug?
+1,python,4,Climbing Stairs,1,propose,4.0,explain,Can you tell me more about why you think the update is shifted by one step?
+1,python,4,Climbing Stairs,2,test,5.0,explain,Can you tell me more about why you think returning curr instead of prev would fix the issue?
+1,python,4,Climbing Stairs,3,consolidate,4.0,explain,Can you explain to me why you think returning curr instead of prev would fix the issue?
+1,python,4,Climbing Stairs,4,consolidate,4.0,explain,Can you explain to me why you think returning curr instead of prev would fix the issue?
+1,python,4,Climbing Stairs,5,consolidate,3.0,extend/reflect,Could your change affect any other part of the algorithm or any input that already worked?
+1,python,5,Maximum Depth of Binary Tree,1,propose,4.0,trace/test,"Which concrete input could you trace to confirm it, and what would you change if the trace agrees?"
+1,python,5,Maximum Depth of Binary Tree,2,consolidate,5.0,explain,Can you explain why your solution makes the earlier failing case behave correctly?
+1,python,5,Maximum Depth of Binary Tree,3,consolidate,5.0,extend/reflect,Can you explain why your solution works for this edge case?
+1,python,5,Maximum Depth of Binary Tree,4,consolidate,4.0,extend/reflect,Can you explain why your solution works for this edge case?
+1,python,5,Maximum Depth of Binary Tree,5,consolidate,4.0,extend/reflect,Can you explain why your solution works for this edge case?
+1,python,6,Reverse Linked List,1,propose,4.0,recall,"Can you confirm that by changing `current.next = previous`, you are losing the reference to the original next node?"
+1,python,6,Reverse Linked List,2,consolidate,4.0,explain,"In your own words, why does your change make the earlier failing case behave correctly?"
+1,python,6,Reverse Linked List,3,consolidate,5.0,explain,Can you tell me more about why this solution works?
+1,python,6,Reverse Linked List,4,consolidate,4.0,explain,Can you tell me more about why you think saving the current node's next pointer in a temporary variable before changing it and then moving forward using the saved one is a good approach?
+1,python,6,Reverse Linked List,5,consolidate,4.0,extend/reflect,What will you check first the next time you see this kind of bug?
+1,python,7,Contains Duplicate,1,propose,4.0,propose,"So, what do you think we should do to fix this issue?"
+1,python,7,Contains Duplicate,2,consolidate,4.0,explain,"Now that we have a better understanding of the issue, can you explain in your own words why this change makes the earlier failing case behave correctly?"
+1,python,7,Contains Duplicate,3,consolidate,3.0,propose,Can you tell me more about what you think the student should do to fix this issue?
+1,python,7,Contains Duplicate,4,consolidate,2.0,propose,"Now that we have a better understanding of the issue, can you tell me more about what you think the student should do to fix this issue?"
+1,python,7,Contains Duplicate,5,consolidate,4.0,extend/reflect,What will you check first the next time you see this kind of bug?
+1,python,8,Implement Queue Using Stacks,1,propose,4.0,recall,Can you tell me more about how you think the stack is not matching the queue's ordering requirement?
+1,python,8,Implement Queue Using Stacks,2,propose,4.0,trace/test,"Which concrete input could you trace to confirm it, and what would you change if the trace agrees?"
+1,python,8,Implement Queue Using Stacks,3,consolidate,4.0,explain,"Can you explain, in your own words, why you think the stack is not matching the queue's ordering requirement?"
+1,python,8,Implement Queue Using Stacks,4,consolidate,2.0,recall,Can you tell me more about what you think the correct solution would be?
+1,python,8,Implement Queue Using Stacks,5,consolidate,2.0,recall,Can you tell me more about what you think the correct solution would be for the pop() method?
+1,python,9,Fibonacci Number,1,propose,4.0,propose,Can you tell me more about how you would change the code to fix this issue?
+1,python,9,Fibonacci Number,2,consolidate,5.0,explain,Can you explain to me why you think the early return should give n itself for n <= 1?
+1,python,9,Fibonacci Number,3,consolidate,4.0,explain,Can you tell me more about why you think this is the correct solution?
+1,python,9,Fibonacci Number,4,consolidate,3.0,extend/reflect,Can you think of any other cases where the early return in the base case might cause issues?
+1,python,9,Fibonacci Number,5,consolidate,3.0,explain,Can you tell me more about why you think this is the correct solution?
+1,python,10,Binary Search,1,propose,3.0,propose,"Now, can you tell me what you would change to make the loop continue until it finds the target?"
+1,python,10,Binary Search,2,consolidate,4.0,explain,Can you explain why this is the case?
+1,python,10,Binary Search,3,consolidate,4.0,extend/reflect,"Which edge case (empty input, a single element, or an extreme value) would you test next, and what should your code return for it?"
+1,python,10,Binary Search,4,consolidate,4.0,explain,"Now, can you tell me why the loop would continue until the target is found, even if left and right are equal?"
+1,python,10,Binary Search,5,consolidate,3.0,explain,"Can you tell me why the loop would continue until the target is found, even if left and right are equal?"
+2,javascript,1,Two Sum,1,test,2.0,propose,Can you think of a way to modify the code so that it returns the indices of both elements in the pair?
+2,javascript,1,Two Sum,2,test,5.0,explain,"Can you tell me more about why you think returning [i, j] instead of just [i] would solve the problem?"
+2,javascript,1,Two Sum,3,consolidate,4.0,explain,"Can you tell me more about why you think returning [i, j] instead of just [i] would solve the problem?"
+2,javascript,1,Two Sum,4,consolidate,4.0,explain,"Can you tell me more about why you think returning [i, j] instead of just [i] would solve the problem?"
+2,javascript,1,Two Sum,5,consolidate,3.0,extend/reflect,Could your change affect any other part of the algorithm or any input that already worked?
+2,javascript,2,Maximum Subarray,1,propose,3.0,recall,Can you tell me more about what you think is happening in that case?
+2,javascript,2,Maximum Subarray,2,test,4.0,explain,Can you tell me more about why you think that might be the case?
+2,javascript,2,Maximum Subarray,3,consolidate,3.0,explain,Can you tell me more about why you think that might be the case?
+2,javascript,2,Maximum Subarray,4,consolidate,4.0,explain,Can you tell me more about why you think the code might not work correctly when every number in the array is negative?
+2,javascript,2,Maximum Subarray,5,consolidate,3.0,extend/reflect,Could your change affect any other part of the algorithm or any input that already worked?
+2,javascript,3,Fizz Buzz,1,propose,3.0,propose,"To confirm, can you tell me what you would change in the code to make it work as expected?"
+2,javascript,3,Fizz Buzz,2,consolidate,5.0,explain,Can you explain why checking divisibility by 15 first would make the code work as expected?
+2,javascript,3,Fizz Buzz,3,consolidate,4.0,explain,Can you tell me more about why you think that is the case?
+2,javascript,3,Fizz Buzz,4,consolidate,4.0,explain,Can you tell me more about why you think checking for divisibility by 15 first would make the code work as expected?
+2,javascript,3,Fizz Buzz,5,consolidate,3.0,explain,Can you tell me more about why you think that is the case?
+2,javascript,4,Climbing Stairs,1,propose,4.0,propose,Can you confirm that the mismatched result for 3 stairs is due to the update being shifted by one step?
+2,javascript,4,Climbing Stairs,2,test,4.0,trace/test,Can you trace the change you propose on one concrete input and compare the result with what the problem requires?
+2,javascript,4,Climbing Stairs,3,consolidate,4.0,explain,"In your own words, why does your change make the earlier failing case behave correctly?"
+2,javascript,4,Climbing Stairs,4,consolidate,4.0,predict,"Can you predict the result for a few edge cases, such as an empty input or a single element?"
+2,javascript,4,Climbing Stairs,5,consolidate,4.0,explain,Can you explain why your change makes the earlier failing case behave correctly?
+2,javascript,5,Maximum Depth of Binary Tree,1,propose,3.0,recall,Can you confirm that the missing condition is indeed the case where the child is null?
+2,javascript,5,Maximum Depth of Binary Tree,2,test,2.0,recall,Can you confirm that the missing condition is indeed the case where the child is null?
+2,javascript,5,Maximum Depth of Binary Tree,3,consolidate,4.0,explain,"In your own words, why does your change make the earlier failing case behave correctly?"
+2,javascript,5,Maximum Depth of Binary Tree,4,consolidate,4.0,predict,Can you predict what the function will return for an empty tree?
+2,javascript,5,Maximum Depth of Binary Tree,5,consolidate,3.0,recall,Can you confirm that the function will return 0 for an empty tree?
+2,javascript,6,Reverse Linked List,1,propose,4.0,recall,"Can you confirm that by changing the current node's next pointer to point to the previous node, you are losing the next node?"
+2,javascript,6,Reverse Linked List,2,test,4.0,recall,Can you show me an example of how you would implement this in the code?
+2,javascript,6,Reverse Linked List,3,consolidate,4.0,explain,Can you explain why it was not useful?
+2,javascript,6,Reverse Linked List,4,consolidate,4.0,extend/reflect,"Which edge case (empty input, a single element, or an extreme value) would you test next, and what should your code return for it?"
+2,javascript,6,Reverse Linked List,5,consolidate,3.0,extend/reflect,Could your change affect any other part of the algorithm or any input that already worked?
+2,javascript,7,Contains Duplicate,1,propose,4.0,recall,"So, what do you think the issue is with the code?"
+2,javascript,7,Contains Duplicate,2,consolidate,4.0,explain,"In your own words, why does your change make the earlier failing case behave correctly?"
+2,javascript,7,Contains Duplicate,3,consolidate,4.0,recall,What do you think would happen if the input array contained extreme values like Infinity or NaN?
+2,javascript,7,Contains Duplicate,4,consolidate,3.0,recall,What do you think would happen if the input array contained extreme values like Infinity or NaN?
+2,javascript,7,Contains Duplicate,5,consolidate,4.0,extend/reflect,What will you check first the next time you see this kind of bug?
+2,javascript,8,Implement Queue Using Stacks,1,propose,3.0,propose,Can you think of a way to modify the code to make sure the items are added and removed in the correct order?
+2,javascript,8,Implement Queue Using Stacks,2,test,3.0,propose,Can you think of a way to implement this using only stack operations?
+2,javascript,8,Implement Queue Using Stacks,3,consolidate,4.0,explain,Can you explain why your solution works for the FIFO behavior?
+2,javascript,8,Implement Queue Using Stacks,4,consolidate,5.0,extend/reflect,"Which edge case (empty input, a single element, or an extreme value) would you test next, and what should your code return for it?"
+2,javascript,8,Implement Queue Using Stacks,5,consolidate,2.0,propose,"Can you think of a way to modify the code to make sure the items are added and removed in the correct order, while still using only stack operations?"
+2,javascript,9,Fibonacci Number,1,propose,4.0,explain,Can you tell me more about why you think the base case is the issue?
+2,javascript,9,Fibonacci Number,2,propose,3.0,explain,Can you tell me more about why you think that's the issue?
+2,javascript,9,Fibonacci Number,3,propose,3.0,recall,"Can you tell me more about what you've tried so far, and what you're hoping to achieve by fixing this issue?"
+2,javascript,9,Fibonacci Number,4,propose,4.0,trace/test,"Which concrete input could you trace to confirm it, and what would you change if the trace agrees?"
+2,javascript,9,Fibonacci Number,5,propose,4.0,propose,What small change would you make yourself to address it?
+2,javascript,10,Binary Search,1,propose,4.0,explain,"Can you tell me more about why you think the loop stops when left and right become the same index, even though that index could still contain the target?"
+2,javascript,10,Binary Search,2,consolidate,4.0,explain,Can you tell me more about why you think the loop should keep running until the last index is checked?
+2,javascript,10,Binary Search,3,consolidate,3.0,explain,Can you tell me more about why you think the loop should keep running until the last index is checked?
+2,javascript,10,Binary Search,4,consolidate,3.0,extend/reflect,Could your change affect any other part of the algorithm or any input that already worked?
+2,javascript,10,Binary Search,5,consolidate,4.0,extend/reflect,What will you check first the next time you see this kind of bug?
+2,python,1,Two Sum,1,test,4.0,trace/test,Can you trace the execution of your code on a specific input and show me how it fails to meet the requirements of the problem?
+2,python,1,Two Sum,2,test,4.0,propose,Can you show me how you would modify the code to return both indices in the pair?
+2,python,1,Two Sum,3,consolidate,4.0,explain,Can you explain in your own words why returning both indices in the pair makes the code meet the requirements of the problem?
+2,python,1,Two Sum,4,consolidate,4.0,extend/reflect,"Which edge case (empty input, a single element, or an extreme value) would you test next, and what should your code return for it?"
+2,python,1,Two Sum,5,consolidate,3.0,extend/reflect,Could your change affect any other part of the algorithm or any input that already worked?
+2,python,2,Maximum Subarray,1,propose,3.0,recall,"So, have you tried any specific input that doesn't work?"
+2,python,2,Maximum Subarray,2,test,4.0,recall,"Can you tell me what the expected output is for the input [-2, -1, 0, 1, 2]?"
+2,python,2,Maximum Subarray,3,consolidate,5.0,explain,Can you explain in your own words why starting from nums[0] and letting current restart at the number itself is a good idea?
+2,python,2,Maximum Subarray,4,consolidate,3.0,recall,"Can you tell me what the expected output is for the input [-2, -1, 0, 1, 2]?"
+2,python,2,Maximum Subarray,5,consolidate,3.0,recall,"Can you tell me what the expected output is for the input [-2, -1, 0, 1, 2]?"
+2,python,3,Fizz Buzz,1,propose,3.0,propose,Can you tell me what you would change in the code to make it work as intended?
+2,python,3,Fizz Buzz,2,consolidate,5.0,explain,Can you tell me why you think checking divisibility by 15 first would make a difference?
+2,python,3,Fizz Buzz,3,consolidate,4.0,explain,Can you tell me why you think that is the case?
+2,python,3,Fizz Buzz,4,consolidate,3.0,extend/reflect,Could your change affect any other part of the algorithm or any input that already worked?
+2,python,3,Fizz Buzz,5,consolidate,4.0,extend/reflect,What will you check first the next time you see this kind of bug?
+2,python,4,Climbing Stairs,1,propose,3.0,recall,"Can you tell me more about what you mean by ""shifted by one step""?"
+2,python,4,Climbing Stairs,2,test,4.0,explain,Can you tell me more about why you think returning curr instead of prev would be the correct solution?
+2,python,4,Climbing Stairs,3,consolidate,3.0,explain,Can you tell me more about why you think returning curr instead of prev would be the correct solution?
+2,python,4,Climbing Stairs,4,consolidate,3.0,explain,Can you tell me more about why you think returning curr instead of prev would be the correct solution?
+2,python,4,Climbing Stairs,5,consolidate,3.0,explain,Can you tell me more about why you think that is the case?
+2,python,5,Maximum Depth of Binary Tree,1,propose,4.0,trace/test,"Which concrete input could you trace to confirm it, and what would you change if the trace agrees?"
+2,python,5,Maximum Depth of Binary Tree,2,consolidate,5.0,explain,Can you explain why your solution makes the earlier failing case behave correctly?
+2,python,5,Maximum Depth of Binary Tree,3,consolidate,5.0,extend/reflect,Can you explain why your solution works for this edge case?
+2,python,5,Maximum Depth of Binary Tree,4,consolidate,4.0,extend/reflect,Can you explain why your solution works for this edge case?
+2,python,5,Maximum Depth of Binary Tree,5,consolidate,4.0,extend/reflect,Can you explain why your solution works for this edge case?
+2,python,6,Reverse Linked List,1,propose,4.0,recall,"Can you confirm that by changing `current.next = previous`, you are losing the reference to the original next node?"
+2,python,6,Reverse Linked List,2,consolidate,4.0,explain,"In your own words, why does your change make the earlier failing case behave correctly?"
+2,python,6,Reverse Linked List,3,consolidate,5.0,explain,Can you tell me more about why this solution works?
+2,python,6,Reverse Linked List,4,consolidate,4.0,explain,Can you tell me more about why you think saving the current node's next pointer in a temporary variable before changing it and then moving forward using the saved one is a good approach?
+2,python,6,Reverse Linked List,5,consolidate,4.0,extend/reflect,What will you check first the next time you see this kind of bug?
+2,python,7,Contains Duplicate,1,propose,4.0,propose,"So, what do you think we should do to fix this issue?"
+2,python,7,Contains Duplicate,2,consolidate,4.0,explain,Can you explain why this approach is necessary?
+2,python,7,Contains Duplicate,3,consolidate,4.0,explain,Can you tell me more about why you think this approach is necessary to ensure that we keep track of the values we've visited and can check for duplicates?
+2,python,7,Contains Duplicate,4,consolidate,3.0,extend/reflect,Could your change affect any other part of the algorithm or any input that already worked?
+2,python,7,Contains Duplicate,5,consolidate,3.0,explain,Can you explain why this approach is necessary to ensure that we keep track of the values we've visited and can check for duplicates?
+2,python,8,Implement Queue Using Stacks,1,propose,4.0,recall,Can you tell me more about how you think the stack is not matching the queue's ordering requirement?
+2,python,8,Implement Queue Using Stacks,2,propose,4.0,trace/test,"Which concrete input could you trace to confirm it, and what would you change if the trace agrees?"
+2,python,8,Implement Queue Using Stacks,3,consolidate,4.0,explain,Can you tell me more about why you think you need a second stack to make the queue work correctly?
+2,python,8,Implement Queue Using Stacks,4,consolidate,3.0,explain,Can you tell me more about why you think you need a second stack to make the queue work correctly?
+2,python,8,Implement Queue Using Stacks,5,consolidate,4.0,explain,Can you tell me more about why you think that might be an issue?
+2,python,9,Fibonacci Number,1,propose,4.0,propose,"So, how would you modify the code to make it consistent with the Fibonacci sequence?"
+2,python,9,Fibonacci Number,2,consolidate,4.0,explain,"Can you explain, in your own words, why your change makes the earlier failing case behave correctly?"
+2,python,9,Fibonacci Number,3,consolidate,3.0,explain,Can you explain why your change makes the earlier failing case behave correctly?
+2,python,9,Fibonacci Number,4,consolidate,3.0,extend/reflect,Could your change affect any other part of the algorithm or any input that already worked?
+2,python,9,Fibonacci Number,5,consolidate,4.0,extend/reflect,What will you check first the next time you see this kind of bug?
+2,python,10,Binary Search,1,propose,3.0,propose,"Now, can you tell me what you would change to make the loop continue until it finds the target?"
+2,python,10,Binary Search,2,consolidate,4.0,explain,Can you tell me why you think this is the correct solution?
+2,python,10,Binary Search,3,consolidate,4.0,extend/reflect,"Which edge case (empty input, a single element, or an extreme value) would you test next, and what should your code return for it?"
+2,python,10,Binary Search,4,consolidate,3.0,explain,"Now, can you tell me why you think this is the correct solution?"
+2,python,10,Binary Search,5,consolidate,4.0,extend/reflect,What will you check first the next time you see this kind of bug?
+3,javascript,1,Two Sum,1,test,2.0,propose,Can you think of a way to modify the code so that it returns the indices of both elements in the pair?
+3,javascript,1,Two Sum,2,test,5.0,explain,"Can you tell me more about why you think returning [i, j] instead of just [i] would solve the problem?"
+3,javascript,1,Two Sum,3,consolidate,4.0,explain,"Can you tell me more about why you think returning [i, j] instead of just [i] would solve the problem?"
+3,javascript,1,Two Sum,4,consolidate,4.0,explain,"Can you tell me more about why you think returning [i, j] instead of just [i] would solve the problem?"
+3,javascript,1,Two Sum,5,consolidate,3.0,extend/reflect,Could your change affect any other part of the algorithm or any input that already worked?
+3,javascript,2,Maximum Subarray,1,propose,3.0,recall,Can you tell me more about what you think is happening in that case?
+3,javascript,2,Maximum Subarray,2,test,4.0,explain,Can you tell me more about why you think that might be the case?
+3,javascript,2,Maximum Subarray,3,consolidate,3.0,explain,Can you tell me more about why you think that might be the case?
+3,javascript,2,Maximum Subarray,4,consolidate,4.0,explain,Can you tell me more about why you think the code might not work correctly when every number in the array is negative?
+3,javascript,2,Maximum Subarray,5,consolidate,3.0,extend/reflect,Could your change affect any other part of the algorithm or any input that already worked?
+3,javascript,3,Fizz Buzz,1,propose,3.0,propose,"To confirm, can you tell me what you would change in the code to make it work as expected?"
+3,javascript,3,Fizz Buzz,2,consolidate,5.0,explain,Can you explain why checking divisibility by 15 first would make the code work as expected?
+3,javascript,3,Fizz Buzz,3,consolidate,4.0,explain,Can you tell me more about why you think that is the case?
+3,javascript,3,Fizz Buzz,4,consolidate,4.0,explain,Can you tell me more about why you think checking for divisibility by 15 first would make the code work as expected?
+3,javascript,3,Fizz Buzz,5,consolidate,3.0,explain,Can you tell me more about why you think that is the case?
+3,javascript,4,Climbing Stairs,1,propose,4.0,propose,Can you confirm that the mismatched result for 3 stairs is due to the update being shifted by one step?
+3,javascript,4,Climbing Stairs,2,test,4.0,trace/test,Can you trace the change you propose on one concrete input and compare the result with what the problem requires?
+3,javascript,4,Climbing Stairs,3,consolidate,4.0,explain,"In your own words, why does your change make the earlier failing case behave correctly?"
+3,javascript,4,Climbing Stairs,4,consolidate,4.0,predict,"Can you predict the result for a few edge cases, such as an empty input or a single element?"
+3,javascript,4,Climbing Stairs,5,consolidate,4.0,explain,Can you explain why your change makes the earlier failing case behave correctly?
+3,javascript,5,Maximum Depth of Binary Tree,1,propose,3.0,recall,Can you confirm that the missing condition is indeed the case where the child is null?
+3,javascript,5,Maximum Depth of Binary Tree,2,test,2.0,recall,Can you confirm that the missing condition is indeed the case where the child is null?
+3,javascript,5,Maximum Depth of Binary Tree,3,consolidate,4.0,explain,"In your own words, why does your change make the earlier failing case behave correctly?"
+3,javascript,5,Maximum Depth of Binary Tree,4,consolidate,4.0,predict,Can you predict what the function will return for an empty tree?
+3,javascript,5,Maximum Depth of Binary Tree,5,consolidate,3.0,recall,Can you confirm that the function will return 0 for an empty tree?
+3,javascript,6,Reverse Linked List,1,propose,4.0,recall,"Can you confirm that by changing the current node's next pointer to point to the previous node, you are losing the next node?"
+3,javascript,6,Reverse Linked List,2,test,4.0,recall,Can you show me an example of how you would implement this in the code?
+3,javascript,6,Reverse Linked List,3,consolidate,4.0,explain,Can you explain why it was not useful?
+3,javascript,6,Reverse Linked List,4,consolidate,4.0,extend/reflect,"Which edge case (empty input, a single element, or an extreme value) would you test next, and what should your code return for it?"
+3,javascript,6,Reverse Linked List,5,consolidate,3.0,extend/reflect,Could your change affect any other part of the algorithm or any input that already worked?
+3,javascript,7,Contains Duplicate,1,propose,4.0,recall,"So, what do you think the issue is with the code?"
+3,javascript,7,Contains Duplicate,2,consolidate,4.0,explain,"In your own words, why does your change make the earlier failing case behave correctly?"
+3,javascript,7,Contains Duplicate,3,consolidate,4.0,recall,What do you think would happen if the input array contained extreme values like Infinity or NaN?
+3,javascript,7,Contains Duplicate,4,consolidate,3.0,recall,What do you think would happen if the input array contained extreme values like Infinity or NaN?
+3,javascript,7,Contains Duplicate,5,consolidate,4.0,extend/reflect,What will you check first the next time you see this kind of bug?
+3,javascript,8,Implement Queue Using Stacks,1,propose,3.0,propose,Can you think of a way to modify the code to make sure the items are added and removed in the correct order?
+3,javascript,8,Implement Queue Using Stacks,2,test,3.0,propose,Can you think of a way to implement this using only stack operations?
+3,javascript,8,Implement Queue Using Stacks,3,consolidate,4.0,explain,Can you explain why your solution works for the FIFO behavior?
+3,javascript,8,Implement Queue Using Stacks,4,consolidate,5.0,extend/reflect,"Which edge case (empty input, a single element, or an extreme value) would you test next, and what should your code return for it?"
+3,javascript,8,Implement Queue Using Stacks,5,consolidate,2.0,propose,"Can you think of a way to modify the code to make sure the items are added and removed in the correct order, while still using only stack operations?"
+3,javascript,9,Fibonacci Number,1,propose,4.0,explain,Can you tell me more about why you think the base case is the issue?
+3,javascript,9,Fibonacci Number,2,propose,3.0,explain,Can you tell me more about why you think that's the issue?
+3,javascript,9,Fibonacci Number,3,propose,3.0,recall,"Can you tell me more about what you've tried so far, and what you're hoping to achieve by fixing this issue?"
+3,javascript,9,Fibonacci Number,4,propose,4.0,trace/test,"Which concrete input could you trace to confirm it, and what would you change if the trace agrees?"
+3,javascript,9,Fibonacci Number,5,propose,4.0,propose,What small change would you make yourself to address it?
+3,javascript,10,Binary Search,1,propose,4.0,explain,"Can you tell me more about why you think the loop stops when left and right become the same index, even though that index could still contain the target?"
+3,javascript,10,Binary Search,2,consolidate,4.0,explain,Can you tell me more about why you think the loop should keep running until the last index is checked?
+3,javascript,10,Binary Search,3,consolidate,3.0,explain,Can you tell me more about why you think the loop should keep running until the last index is checked?
+3,javascript,10,Binary Search,4,consolidate,3.0,extend/reflect,Could your change affect any other part of the algorithm or any input that already worked?
+3,javascript,10,Binary Search,5,consolidate,4.0,extend/reflect,What will you check first the next time you see this kind of bug?
+3,python,1,Two Sum,1,test,4.0,trace/test,Can you trace the execution of your code on a specific input and show me how it fails to meet the requirements of the problem?
+3,python,1,Two Sum,2,test,4.0,propose,Can you show me how you would modify the code to return both indices in the pair?
+3,python,1,Two Sum,3,consolidate,4.0,explain,Can you explain in your own words why returning both indices in the pair makes the code meet the requirements of the problem?
+3,python,1,Two Sum,4,consolidate,4.0,extend/reflect,"Which edge case (empty input, a single element, or an extreme value) would you test next, and what should your code return for it?"
+3,python,1,Two Sum,5,consolidate,3.0,extend/reflect,Could your change affect any other part of the algorithm or any input that already worked?
+3,python,2,Maximum Subarray,1,propose,3.0,recall,"So, have you tried any specific input that doesn't work?"
+3,python,2,Maximum Subarray,2,test,4.0,recall,"Can you tell me what the expected output is for the input [-2, -1, 0, 1, 2]?"
+3,python,2,Maximum Subarray,3,consolidate,5.0,explain,Can you explain in your own words why starting from nums[0] and letting current restart at the number itself is a good idea?
+3,python,2,Maximum Subarray,4,consolidate,3.0,recall,"Can you tell me what the expected output is for the input [-2, -1, 0, 1, 2]?"
+3,python,2,Maximum Subarray,5,consolidate,3.0,recall,"Can you tell me what the expected output is for the input [-2, -1, 0, 1, 2]?"
+3,python,3,Fizz Buzz,1,propose,3.0,propose,Can you tell me what you would change in the code to make it work as intended?
+3,python,3,Fizz Buzz,2,consolidate,5.0,explain,Can you tell me why you think checking divisibility by 15 first would make a difference?
+3,python,3,Fizz Buzz,3,consolidate,4.0,explain,Can you tell me why you think that is the case?
+3,python,3,Fizz Buzz,4,consolidate,3.0,extend/reflect,Could your change affect any other part of the algorithm or any input that already worked?
+3,python,3,Fizz Buzz,5,consolidate,4.0,extend/reflect,What will you check first the next time you see this kind of bug?
+3,python,4,Climbing Stairs,1,propose,3.0,recall,"Can you tell me more about what you mean by ""shifted by one step""?"
+3,python,4,Climbing Stairs,2,test,4.0,explain,Can you tell me more about why you think returning curr instead of prev would be the correct solution?
+3,python,4,Climbing Stairs,3,consolidate,3.0,explain,Can you tell me more about why you think returning curr instead of prev would be the correct solution?
+3,python,4,Climbing Stairs,4,consolidate,3.0,explain,Can you tell me more about why you think returning curr instead of prev would be the correct solution?
+3,python,4,Climbing Stairs,5,consolidate,3.0,explain,Can you tell me more about why you think that is the case?
+3,python,5,Maximum Depth of Binary Tree,1,propose,4.0,trace/test,"Which concrete input could you trace to confirm it, and what would you change if the trace agrees?"
+3,python,5,Maximum Depth of Binary Tree,2,consolidate,5.0,explain,Can you explain why your solution makes the earlier failing case behave correctly?
+3,python,5,Maximum Depth of Binary Tree,3,consolidate,5.0,extend/reflect,Can you explain why your solution works for this edge case?
+3,python,5,Maximum Depth of Binary Tree,4,consolidate,4.0,extend/reflect,Can you explain why your solution works for this edge case?
+3,python,5,Maximum Depth of Binary Tree,5,consolidate,4.0,extend/reflect,Can you explain why your solution works for this edge case?
+3,python,6,Reverse Linked List,1,propose,4.0,recall,"Can you confirm that by changing `current.next = previous`, you are losing the reference to the original next node?"
+3,python,6,Reverse Linked List,2,consolidate,4.0,explain,"In your own words, why does your change make the earlier failing case behave correctly?"
+3,python,6,Reverse Linked List,3,consolidate,5.0,explain,Can you tell me more about why this solution works?
+3,python,6,Reverse Linked List,4,consolidate,4.0,explain,Can you tell me more about why you think saving the current node's next pointer in a temporary variable before changing it and then moving forward using the saved one is a good approach?
+3,python,6,Reverse Linked List,5,consolidate,4.0,extend/reflect,What will you check first the next time you see this kind of bug?
+3,python,7,Contains Duplicate,1,propose,4.0,propose,"So, what do you think we should do to fix this issue?"
+3,python,7,Contains Duplicate,2,consolidate,4.0,explain,Can you explain why this approach is necessary?
+3,python,7,Contains Duplicate,3,consolidate,4.0,explain,Can you tell me more about why you think this approach is necessary to ensure that we keep track of the values we've visited and can check for duplicates?
+3,python,7,Contains Duplicate,4,consolidate,3.0,extend/reflect,Could your change affect any other part of the algorithm or any input that already worked?
+3,python,7,Contains Duplicate,5,consolidate,3.0,explain,Can you explain why this approach is necessary to ensure that we keep track of the values we've visited and can check for duplicates?
+3,python,8,Implement Queue Using Stacks,1,propose,4.0,recall,Can you tell me more about how you think the stack is not matching the queue's ordering requirement?
+3,python,8,Implement Queue Using Stacks,2,propose,4.0,trace/test,"Which concrete input could you trace to confirm it, and what would you change if the trace agrees?"
+3,python,8,Implement Queue Using Stacks,3,consolidate,4.0,explain,Can you tell me more about why you think you need a second stack to make the queue work correctly?
+3,python,8,Implement Queue Using Stacks,4,consolidate,3.0,explain,Can you tell me more about why you think you need a second stack to make the queue work correctly?
+3,python,8,Implement Queue Using Stacks,5,consolidate,4.0,explain,Can you tell me more about why you think that might be an issue?
+3,python,9,Fibonacci Number,1,propose,4.0,propose,"So, how would you modify the code to make it consistent with the Fibonacci sequence?"
+3,python,9,Fibonacci Number,2,consolidate,4.0,explain,"Can you explain, in your own words, why your change makes the earlier failing case behave correctly?"
+3,python,9,Fibonacci Number,3,consolidate,3.0,explain,Can you explain why your change makes the earlier failing case behave correctly?
+3,python,9,Fibonacci Number,4,consolidate,3.0,extend/reflect,Could your change affect any other part of the algorithm or any input that already worked?
+3,python,9,Fibonacci Number,5,consolidate,4.0,extend/reflect,What will you check first the next time you see this kind of bug?
+3,python,10,Binary Search,1,propose,3.0,propose,"Now, can you tell me what you would change to make the loop continue until it finds the target?"
+3,python,10,Binary Search,2,consolidate,4.0,explain,Can you tell me why you think this is the correct solution?
+3,python,10,Binary Search,3,consolidate,4.0,extend/reflect,"Which edge case (empty input, a single element, or an extreme value) would you test next, and what should your code return for it?"
+3,python,10,Binary Search,4,consolidate,3.0,explain,"Now, can you tell me why you think this is the correct solution?"
+3,python,10,Binary Search,5,consolidate,4.0,extend/reflect,What will you check first the next time you see this kind of bug?

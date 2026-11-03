@@ -1,0 +1,7 @@
+question_type,count,share
+recall,52,0.17333333333333334
+predict,6,0.02
+trace/test,15,0.05
+explain,127,0.42333333333333334
+extend/reflect,62,0.20666666666666667
+propose,38,0.12666666666666668

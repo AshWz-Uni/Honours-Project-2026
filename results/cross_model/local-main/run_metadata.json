@@ -1,0 +1,77 @@
+{
+  "run_id": "local-main",
+  "created_utc": "2026-10-09T02:32:57+00:00",
+  "dry_run": false,
+  "prompt_version": "controlled_prompt",
+  "prompt_sha256": {
+    "python": "0525c85655fa00620e446d347f51c41d5886e47d44622b42eb6d884f97f6cce4",
+    "javascript": "896574f45d14049d15ef3f3981f7acfa7771bb972e6f015c90f3ffb69121e1c2"
+  },
+  "prompt_delivery": "system_role",
+  "sampling": {
+    "temperature": 0.2,
+    "max_tokens": 300,
+    "seed": 42
+  },
+  "repeats": 3,
+  "languages": [
+    "javascript",
+    "python"
+  ],
+  "problem_ids": {
+    "python": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "javascript": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ]
+  },
+  "problem_set_sha256": {
+    "python": "1210f2a67d1adad280e7ca85879b9997e43bdcc86372080fee56f97d5231addc",
+    "javascript": "bf25a4694072754b28b74665f6004cbfdb27a8417abfe10f70562a0b7b1ddcde"
+  },
+  "conditions": {
+    "codellama_agent": {
+      "kind": "agent",
+      "label": "Code Llama + the existing tutoring agent (state machine, guards, fallbacks). Reference condition, not part of the like-for-like comparison.",
+      "model": "codellama:7b"
+    },
+    "codellama_prompt": {
+      "provider": "ollama",
+      "num_ctx": 8192,
+      "label": "Code Llama with the controlled prompt only (model/base_url/timeout come from config/llm_config.json). num_ctx is set explicitly because the ~2k-token prompt overflows Ollama's default window, which would silently cut off the system prompt.",
+      "model": "codellama:7b",
+      "base_url": "http://localhost:11434",
+      "timeout": 120
+    }
+  },
+  "git_commit": "86986eece9d3a06d24354b8bbf978f7f7510b8bb",
+  "python": "3.14.4",
+  "argv": [
+    "run",
+    "--language",
+    "both",
+    "--repeats",
+    "3",
+    "--run-id",
+    "local-main"
+  ]
+}

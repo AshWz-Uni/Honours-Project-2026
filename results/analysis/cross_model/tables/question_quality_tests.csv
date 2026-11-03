@@ -1,0 +1,19 @@
+metric,description,comparison,family,n_items,mean_diff,p_wilcoxon,p_holm
+mean_quality_score,Mean question quality score (0-5),codellama_agent - chatgpt,primary,20,-1.1247222222222224,8.832385863081277e-05,0.0014011990518103098
+mean_quality_score,Mean question quality score (0-5),codellama_agent - claude,primary,20,-0.9338888888888889,1.33514404296875e-05,0.0002269744873046875
+mean_quality_score,Mean question quality score (0-5),codellama_prompt - chatgpt,primary,20,-1.5030555555555556,8.844915021211901e-05,0.0014011990518103098
+mean_quality_score,Mean question quality score (0-5),codellama_prompt - claude,primary,20,-1.3122222222222222,3.814697265625e-06,6.866455078125e-05
+mean_quality_score,Mean question quality score (0-5),codellama_agent - codellama_prompt,secondary,20,0.37833333333333324,0.008372580676107563,0.03349032270443025
+mean_quality_score,Mean question quality score (0-5),chatgpt - claude,secondary,20,0.19083333333333338,0.00480836708449214,0.0240418354224607
+high_quality_share,Share of high-quality questions,codellama_agent - chatgpt,primary,20,-0.7147222222222223,8.807368035275503e-05,0.0014011990518103098
+high_quality_share,Share of high-quality questions,codellama_agent - claude,primary,20,-0.5844444444444445,0.0001399457931085244,0.0014011990518103098
+high_quality_share,Share of high-quality questions,codellama_prompt - chatgpt,primary,20,-0.7297222222222223,8.782404130245517e-05,0.0014011990518103098
+high_quality_share,Share of high-quality questions,codellama_prompt - claude,primary,20,-0.5994444444444444,0.00010291581390073258,0.0014011990518103098
+high_quality_share,Share of high-quality questions,codellama_agent - codellama_prompt,secondary,20,0.01500000000000001,0.5688114004133373,0.5688114004133373
+high_quality_share,Share of high-quality questions,chatgpt - claude,secondary,20,0.13027777777777774,0.009420379211526308,0.03349032270443025
+type_variety,Variety of question types (distinct types / questions),codellama_agent - chatgpt,primary,20,-0.12833333333333333,0.0003238158011629079,0.0022667106081403553
+type_variety,Variety of question types (distinct types / questions),codellama_agent - claude,primary,20,-0.21444444444444438,0.0001813591537103979,0.0014508732296831832
+type_variety,Variety of question types (distinct types / questions),codellama_prompt - chatgpt,primary,20,-0.3291666666666667,8.757494073814436e-05,0.0014011990518103098
+type_variety,Variety of question types (distinct types / questions),codellama_prompt - claude,primary,20,-0.41527777777777786,8.832385863081277e-05,0.0014011990518103098
+type_variety,Variety of question types (distinct types / questions),codellama_agent - codellama_prompt,secondary,20,0.20083333333333336,0.0005040196407334534,0.00302411784440072
+type_variety,Variety of question types (distinct types / questions),chatgpt - claude,secondary,20,-0.0861111111111111,0.01055999157166745,0.03349032270443025
