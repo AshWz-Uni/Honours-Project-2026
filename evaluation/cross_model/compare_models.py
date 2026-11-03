@@ -1,9 +1,7 @@
 """Cross-model evaluation - Code Llama agent and Code Llama (controlled prompt) vs ChatGPT and Claude.
 
 Run from the project root (no import-manual step needed; the ChatGPT / Claude worksheets in manual_pack/
-are read directly by the same tolerant parser that `import-manual` uses):
-
-    python -m evaluation.cross_model.compare_models
+are read directly by the same tolerant parser that `import-manual` uses)
 
 Inputs
     results/cross_model/local-main/transcripts.jsonl   codellama_agent + codellama_prompt (30 per language each)

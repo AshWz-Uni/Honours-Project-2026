@@ -9,6 +9,8 @@ Providers:
 - chatgpt: OpenAI Responses API (the API-backed ChatGPT comparison).
 - claude: Anthropic Messages API.
 
+However, this module is no longer effective due to cost limitations regarding the 
+ChatGPT and Claude APIs. Instead, their web application versions will be substituted.
 """
 
 from __future__ import annotations

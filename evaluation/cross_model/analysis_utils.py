@@ -17,7 +17,7 @@ PALETTE = {
     "chatgpt": "#009E73",
     "claude": "#D55E00",
 }
-# Model names exactly as they should read in the thesis / on the graphs.
+# Model names
 MODEL_NAMES = {
     "codellama_agent": "Code Llama 7B + tutoring agent",
     "codellama_prompt": "Code Llama 7B (controlled prompt)",
@@ -37,9 +37,9 @@ FOOTER_STEP1 = "Model: Code Llama 7B (codellama:7b) + tutoring agent  |  LeetCod
 
 
 # --------------------------------------------------------------------------- #
-# Text proxy (heuristic: it flags replies for a human to read, it does not judge them)
+# Text proxy
 # --------------------------------------------------------------------------- #
-# Phrases where the tutor tells the student what to change (a possible breach of "never give the fix") that the agent's own leak detectors do not look for. Review the flagged replies by hand.
+# Phrases where the tutor tells the student what to change (a possible breach of "never give the fix") that the agent's own leak detectors do not look for.
 _TELLS_FIX = re.compile(
     r"\byou\s+(?:can|could|should|need\s+to|have\s+to|must|will\s+need\s+to)\s+"
     r"(?:modify|change|add|use|return|replace|update|swap|move|initiali[sz]e|set|store|keep|create|"

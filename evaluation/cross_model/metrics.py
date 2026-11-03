@@ -11,12 +11,7 @@ Two families, deliberately kept apart:
                   ``backend/agent/tutor_agent.py`` (solution-leak regexes etc.).
                   CAUTION: the agent's replies are *filtered by these same
                   detectors* before they are shown, so ``codellama_agent`` will
-                  score ~0 on them by construction. Report them as a
-                  descriptive extra for the other conditions, never as evidence
-                  that the agent beats another model.
-
-Automatic metrics are proxies. The manual blind rating (``blind_rating.py``) is
-the evidence for pedagogical quality; these only catch format and rule breaks.
+                  score ~0 on them by construction.
 """
 
 from __future__ import annotations

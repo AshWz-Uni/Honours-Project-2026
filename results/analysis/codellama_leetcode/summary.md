@@ -1,4 +1,4 @@
-# Code Llama tutoring agent on the LeetCode set - exploration
+# Code Llama tutoring agent on the LeetCode set
 
 ## 1. Data
 
@@ -64,7 +64,7 @@ Fallback replies are fixed strings in `tutor_agent.py` that replace a model repl
 | python | 5 | 27.87 | 1.00 | 0.07 | 0.13 | 0.00 | 30 |
 | python | 6 | 89.63 | 0.00 | 0.77 | 0.03 | 0.00 | 30 |
 
-`possible_fix_giving` is a loose regex for phrases such as "you can modify the code to...". It exists because the agent's own leak detectors do not look for these. Check `tables/review_possible_fix_giving.csv` by hand.
+`possible_fix_giving` is a loose regex for phrases such as "you can modify the code to...". It exists because the agent's own leak detectors do not look for these.
 
 ## 5. Stage path (replies per stage, by turn)
 
@@ -113,7 +113,7 @@ With 10 pairs and many tied values these tests have very little power; read the 
 | consolidate | 30 | 48.95 | 46.97 |
 | conclude | 10 | 56.73 | 54.32 |
 
-Hardware is not recorded in the results; state it in the thesis. These times are not comparable with web-app latency.
+These times are not comparable with web-app latency.
 
 ## 8. Quality of the Socratic questions
 

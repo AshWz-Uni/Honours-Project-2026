@@ -308,6 +308,5 @@ Latest student message:
 Private diagnostic state:
 {diagnostic}
 
-Return only the concise concluding tutor message. It must contain ZERO
-question marks and no internal Hint/Question labels.
+Return only the concise concluding tutor message. It must contain ZERO question marks and no internal Hint/Question labels.
 """.strip()

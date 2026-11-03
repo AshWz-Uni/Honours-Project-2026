@@ -6,8 +6,7 @@
 - `results/cross_model/local-main/transcripts.jsonl`: 60 conversations for `codellama_prompt` (Code Llama 7B (controlled prompt)).
 - `manual_pack/chatgpt`: 60 conversations loaded as `chatgpt` (ChatGPT (GPT-5.6 Luna)).
 - `manual_pack/claude`: 60 conversations loaded as `claude` (Claude (Sonnet 5.5, medium)).
-  - WARN javascript_03_fizz-buzz_run1.md: turn 6: has a Hint:/Question: label (real model behaviour or a paste slip - check)
-- Coverage check passed: 60 conversations for each of 4 models (10 problems x 2 languages x 3 repeats). Nothing is sampled.
+- Coverage check passed: 60 conversations for each of 4 models (10 problems x 2 languages x 3 repeats).
 
 | model | conversations | tutor turns |
 |---|---|---|
@@ -16,7 +15,7 @@
 | ChatGPT (GPT-5.6 Luna) | 60 | 360 |
 | Claude (Sonnet 5.5, medium) | 60 | 360 |
 
-All 60 conversations per model are used; nothing is sampled. No bootstrap or confidence intervals are used. Every measure has a single definition (no strict/lenient variants): a reply asks a question if and only if it contains a `?`.
+All 60 conversations per model are used.
 
 ## 2. Headline measures (mean over all 60 conversations per model)
 
@@ -209,7 +208,7 @@ Paired comparisons (20 items per model, 3 repeats averaged; Wilcoxon, Holm over 
 | Variety of question types (distinct types / questions) | codellama_agent - codellama_prompt | +0.20 | <0.001 | 0.003 |
 | Variety of question types (distinct types / questions) | chatgpt - claude | -0.09 | 0.011 | 0.033 |
 
-Limits: the score checks form, not pedagogical wisdom. A question can pass all five criteria and still be asked at the wrong moment, and a good question can fail one (for example a conceptual question with no code reference). Validate it with the blinded manual rating (`blind_rating.py`, column `meaningful_followups`).
+Limits: the score checks form, not pedagogical wisdom. A question can pass all five criteria and still be asked at the wrong moment, and a good question can fail one (for example a conceptual question with no code reference). 
 
 ## 5. By language (30 conversations per model per language)
 

@@ -12,11 +12,6 @@ See evaluation/cross_model/README.md for the experimental design. Quick referenc
     # resume an interrupted run (settings must match the original)
     python -m evaluation.cross_model.run_cross_model_eval run --repeats 3 --run-id main --resume
 
-    # no API access? drive the ChatGPT / Claude web apps by hand instead
-    python -m evaluation.cross_model.run_cross_model_eval export-manual --condition chatgpt
-    python -m evaluation.cross_model.run_cross_model_eval import-manual --condition chatgpt \\
-        --dir manual_pack/chatgpt --model "ChatGPT web, <model shown in UI>, <date>" --run-id manual
-
     # recompute metrics/summaries for an existing run
     python -m evaluation.cross_model.run_cross_model_eval analyse --run-dir results/cross_model/main
 

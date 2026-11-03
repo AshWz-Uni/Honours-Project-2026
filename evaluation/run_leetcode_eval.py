@@ -1,31 +1,15 @@
-"""Run the 10-problem LeetCode test set through the Socratic tutor.
+"""Runs the 10-problem LeetCode test set through the Socratic tutor.
 
 The same 10 problems (same bugs, same scripted student) exist in Python and
 JavaScript, so the two languages can be compared directly.
 
-Usage (from the project root, with Ollama running and `ollama pull codellama:7b`):
-
-    python -m evaluation.run_leetcode_eval                       # Python + JavaScript, 3 runs, real Code Llama
-    python -m evaluation.run_leetcode_eval --runs 1              # a single pass instead of the default 3
-    python -m evaluation.run_leetcode_eval --language javascript # one language only
-    python -m evaluation.run_leetcode_eval --only 1,5,9          # a subset
-    python -m evaluation.run_leetcode_eval --dry-run             # stub LLM: checks the plumbing only
-
 A scripted student replies in a fixed order: diagnosis -> own fix -> validation
 -> three reflection answers. The run stops when the tutor concludes.
-
-Automatic columns are PROXIES computed by the same detectors the agent uses
-(so they cannot catch what those detectors miss). The columns marked MANUAL are
-left blank on purpose: judge them by reading transcripts.md.
 
 The whole test set is repeated RUNS times (default 3) so consistency can be assessed. Each run
 is a fresh pass: every problem starts a new conversation.
 
-Outputs (default results/leetcode_eval/run<N>/<language>/): leetcode_results.csv, transcripts.md
-When both languages are run, results/leetcode_eval/run<N>/combined_results.csv stacks them
-(one row per problem per language, with a ``language`` column) for side-by-side analysis.
-results/leetcode_eval/all_runs_combined.csv stacks every run and language (``run`` and
-``language`` columns) for consistency analysis across the repeats.
+Outputs: leetcode_results.csv, transcripts.md, combined_results.csv
 """
 
 import argparse

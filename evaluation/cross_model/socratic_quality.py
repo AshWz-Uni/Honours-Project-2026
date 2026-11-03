@@ -3,8 +3,7 @@
 This is an automatic proxy built from the project's own rubric (`blind_rating.py`: "meaningful_followups",
 "code_grounded", "solution_leak") and from common Socratic-tutoring criteria. It reads the text of each reply
 and does not call any model, so every condition (and every step of the study) is scored identically.
-It cannot judge whether a question was pedagogically *wise* at that moment; use the blinded manual rating
-(`blind_rating.py`) to validate it.
+It cannot judge whether a question was pedagogically *wise* at that moment..
 
 Scope: tutor replies on turns 1-5 that contain a "?" (the turns where a question is expected). Replies with
 no "?" have no question to assess; they are counted and reported, not scored.
