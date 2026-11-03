@@ -162,10 +162,10 @@ _ASSIGNMENT = re.compile(r"^[A-Za-z_$][\w$.\[\]]*\s*[-+*/%]?=(?!=)\s*(.+)$")
 
 
 def _introduces_new_code(text: str, code: str, language: str | None = None) -> bool:
-    """True if the reply puts a *new* code statement in backticks.
+    """True if the reply puts a new code statement in backticks.
 
-    Quoting the student's own code or a test input (``n = 15``) is allowed;
-    inventing statements or assignments (``current = current.next``) is not.
+    Quoting the student's own code or a test input (``n = 15``) is allowed.
+    Inventing statements or assignments (``current = current.next``) is not.
     """
     lang = normalise_language(language) or PYTHON
     keywords = _NEW_CODE_KEYWORDS[lang]

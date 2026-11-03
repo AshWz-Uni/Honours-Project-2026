@@ -1,0 +1,17 @@
+metric,description,codellama_agent_mean,codellama_agent_n_conversations,codellama_prompt_mean,codellama_prompt_n_conversations,chatgpt_mean,chatgpt_n_conversations,claude_mean,claude_n_conversations
+structure,"Right turn structure (exactly 1 question on turns 1-5, none on turn 6)",1.0,60,0.6583333333333333,60,0.8944444444444444,60,0.8944444444444445,60
+rule_compliance,"Structure AND every model-neutral format rule (<=3 sentences, no code/labels/repeats)",0.7722222222222223,60,0.06944444444444443,60,0.8944444444444444,60,0.888888888888889,60
+on_time_conclusion,Concluded exactly on turn 6,1.0,60,0.0,60,0.48333333333333334,60,0.4166666666666667,60
+premature_conclusion,Concluded before turn 6,0.0,60,0.08333333333333333,60,0.36666666666666664,60,0.4166666666666667,60
+never_concluded,Never concluded (a question on turn 6 and no earlier conclusion),0.0,60,0.9166666666666666,60,0.15,60,0.16666666666666666,60
+multi_question_turns,Turns with 2+ questions (of 6),0.0,60,1.1,60,0.0,60,0.016666666666666666,60
+over_length_turns,Turns longer than 3 sentences (of 6),1.3,60,1.9333333333333333,60,0.016666666666666666,60,0.03333333333333333,60
+mean_words_per_reply,Mean words per reply,41.42333333333333,60,48.861666666666665,60,37.05833333333333,60,44.055000000000014,60
+has_code_block_turns,Turns containing a code block (of 6),0.0,60,0.3,60,0.0,60,0.0,60
+agent_new_code_turns,Turns introducing new code (of 6) †,0.0,60,0.016666666666666666,60,0.08333333333333333,60,0.06666666666666667,60
+agent_solution_leak_turns,Turns flagged as leaking the solution (of 6) †,0.0,60,0.5833333333333334,60,0.0,60,0.016666666666666666,60
+possible_fix_giving_turns,"Turns with fix-giving phrases (of 6, loose heuristic)",0.38333333333333336,60,0.4166666666666667,60,0.0,60,0.0,60
+repeated_prior_question_turns,Turns repeating an earlier question (of 6),0.06666666666666667,60,1.8666666666666667,60,0.0,60,0.0,60
+label_leak_turns,Turns showing Hint:/Question: labels (of 6),0.0,60,4.266666666666667,60,0.0,60,0.016666666666666666,60
+wrong_language_terms_turns,JavaScript turns using Python terms (of 6),0.0,30,0.0,30,0.0,30,0.0,30
+mentions_model_identity_turns,Turns naming the model/vendor (of 6),0.0,60,0.0,60,0.0,60,0.0,60

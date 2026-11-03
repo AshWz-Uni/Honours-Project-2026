@@ -1,0 +1,301 @@
+run,language,problem_id,problem,stage,has_question,question_type,yes_no_start,reasoning_prompt,code_grounded,non_leading,single_focus,not_repeated,responsive_to_student,canned,turn,quality_score,high_quality
+1,javascript,1,Two Sum,test,1,propose,1.0,0.0,0.0,0.0,1.0,1.0,1.0,0.0,1,2.0,0.0
+1,javascript,1,Two Sum,test,1,explain,0.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,2,5.0,1.0
+1,javascript,1,Two Sum,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,3,4.0,0.0
+1,javascript,1,Two Sum,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,4,4.0,0.0
+1,javascript,1,Two Sum,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,5,3.0,0.0
+1,javascript,2,Maximum Subarray,propose,1,recall,1.0,0.0,0.0,1.0,1.0,1.0,1.0,0.0,1,3.0,0.0
+1,javascript,2,Maximum Subarray,test,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,2,4.0,0.0
+1,javascript,2,Maximum Subarray,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0,3,3.0,0.0
+1,javascript,2,Maximum Subarray,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,4,4.0,0.0
+1,javascript,2,Maximum Subarray,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,5,3.0,0.0
+1,javascript,3,Fizz Buzz,propose,1,propose,0.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,1,3.0,0.0
+1,javascript,3,Fizz Buzz,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,2,5.0,1.0
+1,javascript,3,Fizz Buzz,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,3,4.0,0.0
+1,javascript,3,Fizz Buzz,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,0.0,1.0,0.0,4,4.0,0.0
+1,javascript,3,Fizz Buzz,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0,5,3.0,0.0
+1,javascript,4,Climbing Stairs,propose,1,propose,1.0,0.0,1.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+1,javascript,4,Climbing Stairs,test,1,trace/test,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,2,4.0,0.0
+1,javascript,4,Climbing Stairs,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,3,4.0,0.0
+1,javascript,4,Climbing Stairs,consolidate,1,predict,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,4,4.0,0.0
+1,javascript,4,Climbing Stairs,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,5,4.0,0.0
+1,javascript,5,Maximum Depth of Binary Tree,propose,1,recall,1.0,0.0,0.0,1.0,1.0,1.0,1.0,0.0,1,3.0,0.0
+1,javascript,5,Maximum Depth of Binary Tree,test,1,recall,1.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0,2,2.0,0.0
+1,javascript,5,Maximum Depth of Binary Tree,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,3,4.0,0.0
+1,javascript,5,Maximum Depth of Binary Tree,consolidate,1,predict,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,4,4.0,0.0
+1,javascript,5,Maximum Depth of Binary Tree,consolidate,1,recall,1.0,0.0,1.0,1.0,1.0,0.0,1.0,0.0,5,3.0,0.0
+1,javascript,6,Reverse Linked List,propose,1,recall,1.0,0.0,1.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+1,javascript,6,Reverse Linked List,test,1,recall,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,2,4.0,0.0
+1,javascript,6,Reverse Linked List,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,3,4.0,0.0
+1,javascript,6,Reverse Linked List,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,4,4.0,0.0
+1,javascript,6,Reverse Linked List,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,5,3.0,0.0
+1,javascript,7,Contains Duplicate,propose,1,recall,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,1,4.0,0.0
+1,javascript,7,Contains Duplicate,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,2,4.0,0.0
+1,javascript,7,Contains Duplicate,consolidate,1,recall,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,3,4.0,0.0
+1,javascript,7,Contains Duplicate,consolidate,1,recall,0.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0,4,3.0,0.0
+1,javascript,7,Contains Duplicate,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,5,4.0,0.0
+1,javascript,8,Implement Queue Using Stacks,propose,1,propose,1.0,0.0,0.0,1.0,1.0,1.0,1.0,0.0,1,3.0,0.0
+1,javascript,8,Implement Queue Using Stacks,test,1,propose,1.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,2,3.0,0.0
+1,javascript,8,Implement Queue Using Stacks,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,3,4.0,0.0
+1,javascript,8,Implement Queue Using Stacks,consolidate,1,extend/reflect,0.0,1.0,1.0,1.0,1.0,1.0,0.0,1.0,4,5.0,1.0
+1,javascript,8,Implement Queue Using Stacks,consolidate,1,propose,1.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0,5,2.0,0.0
+1,javascript,9,Fibonacci Number,propose,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+1,javascript,9,Fibonacci Number,propose,1,explain,0.0,1.0,0.0,1.0,1.0,0.0,1.0,0.0,2,3.0,0.0
+1,javascript,9,Fibonacci Number,propose,1,recall,1.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,3,3.0,0.0
+1,javascript,9,Fibonacci Number,propose,1,trace/test,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,4,4.0,0.0
+1,javascript,9,Fibonacci Number,propose,1,propose,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,5,4.0,0.0
+1,javascript,10,Binary Search,propose,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+1,javascript,10,Binary Search,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,2,4.0,0.0
+1,javascript,10,Binary Search,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,0.0,1.0,0.0,3,3.0,0.0
+1,javascript,10,Binary Search,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,4,3.0,0.0
+1,javascript,10,Binary Search,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,5,4.0,0.0
+1,python,1,Two Sum,test,1,trace/test,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,1,4.0,0.0
+1,python,1,Two Sum,test,1,propose,0.0,1.0,0.0,0.0,1.0,1.0,1.0,0.0,2,3.0,0.0
+1,python,1,Two Sum,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,3,5.0,1.0
+1,python,1,Two Sum,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,4,4.0,0.0
+1,python,1,Two Sum,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,5,3.0,0.0
+1,python,2,Maximum Subarray,propose,1,recall,0.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,1,3.0,0.0
+1,python,2,Maximum Subarray,test,1,recall,1.0,0.0,1.0,1.0,1.0,1.0,0.0,0.0,2,4.0,0.0
+1,python,2,Maximum Subarray,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,3,5.0,1.0
+1,python,2,Maximum Subarray,consolidate,1,recall,1.0,0.0,1.0,1.0,1.0,0.0,0.0,0.0,4,3.0,0.0
+1,python,2,Maximum Subarray,consolidate,1,recall,1.0,0.0,1.0,1.0,1.0,0.0,0.0,0.0,5,3.0,0.0
+1,python,3,Fizz Buzz,propose,1,propose,1.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,1,3.0,0.0
+1,python,3,Fizz Buzz,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,2,5.0,1.0
+1,python,3,Fizz Buzz,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,3,4.0,0.0
+1,python,3,Fizz Buzz,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,4,3.0,0.0
+1,python,3,Fizz Buzz,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,5,4.0,0.0
+1,python,4,Climbing Stairs,propose,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+1,python,4,Climbing Stairs,test,1,explain,0.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,2,5.0,1.0
+1,python,4,Climbing Stairs,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,0.0,1.0,0.0,3,4.0,0.0
+1,python,4,Climbing Stairs,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,0.0,1.0,0.0,4,4.0,0.0
+1,python,4,Climbing Stairs,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,5,3.0,0.0
+1,python,5,Maximum Depth of Binary Tree,propose,1,trace/test,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,1,4.0,0.0
+1,python,5,Maximum Depth of Binary Tree,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,2,5.0,1.0
+1,python,5,Maximum Depth of Binary Tree,consolidate,1,extend/reflect,0.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,3,5.0,1.0
+1,python,5,Maximum Depth of Binary Tree,consolidate,1,extend/reflect,0.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,4,4.0,0.0
+1,python,5,Maximum Depth of Binary Tree,consolidate,1,extend/reflect,0.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,5,4.0,0.0
+1,python,6,Reverse Linked List,propose,1,recall,1.0,0.0,1.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+1,python,6,Reverse Linked List,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,2,4.0,0.0
+1,python,6,Reverse Linked List,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,3,5.0,1.0
+1,python,6,Reverse Linked List,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,4,4.0,0.0
+1,python,6,Reverse Linked List,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,5,4.0,0.0
+1,python,7,Contains Duplicate,propose,1,propose,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+1,python,7,Contains Duplicate,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,2,4.0,0.0
+1,python,7,Contains Duplicate,consolidate,1,propose,1.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,3,3.0,0.0
+1,python,7,Contains Duplicate,consolidate,1,propose,0.0,0.0,0.0,1.0,1.0,0.0,1.0,0.0,4,2.0,0.0
+1,python,7,Contains Duplicate,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,5,4.0,0.0
+1,python,8,Implement Queue Using Stacks,propose,1,recall,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+1,python,8,Implement Queue Using Stacks,propose,1,trace/test,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,2,4.0,0.0
+1,python,8,Implement Queue Using Stacks,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,3,4.0,0.0
+1,python,8,Implement Queue Using Stacks,consolidate,1,recall,1.0,0.0,0.0,0.0,1.0,1.0,1.0,0.0,4,2.0,0.0
+1,python,8,Implement Queue Using Stacks,consolidate,1,recall,1.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0,5,2.0,0.0
+1,python,9,Fibonacci Number,propose,1,propose,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+1,python,9,Fibonacci Number,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,2,5.0,1.0
+1,python,9,Fibonacci Number,consolidate,1,explain,0.0,1.0,1.0,0.0,1.0,1.0,0.0,0.0,3,4.0,0.0
+1,python,9,Fibonacci Number,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,1.0,0.0,4,3.0,0.0
+1,python,9,Fibonacci Number,consolidate,1,explain,0.0,1.0,1.0,0.0,1.0,0.0,0.0,0.0,5,3.0,0.0
+1,python,10,Binary Search,propose,1,propose,0.0,0.0,0.0,1.0,1.0,1.0,1.0,0.0,1,3.0,0.0
+1,python,10,Binary Search,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,2,4.0,0.0
+1,python,10,Binary Search,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,3,4.0,0.0
+1,python,10,Binary Search,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,4,4.0,0.0
+1,python,10,Binary Search,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,0.0,1.0,0.0,5,3.0,0.0
+2,javascript,1,Two Sum,test,1,propose,1.0,0.0,0.0,0.0,1.0,1.0,1.0,0.0,1,2.0,0.0
+2,javascript,1,Two Sum,test,1,explain,0.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,2,5.0,1.0
+2,javascript,1,Two Sum,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,3,4.0,0.0
+2,javascript,1,Two Sum,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,4,4.0,0.0
+2,javascript,1,Two Sum,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,5,3.0,0.0
+2,javascript,2,Maximum Subarray,propose,1,recall,1.0,0.0,0.0,1.0,1.0,1.0,1.0,0.0,1,3.0,0.0
+2,javascript,2,Maximum Subarray,test,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,2,4.0,0.0
+2,javascript,2,Maximum Subarray,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0,3,3.0,0.0
+2,javascript,2,Maximum Subarray,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,4,4.0,0.0
+2,javascript,2,Maximum Subarray,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,5,3.0,0.0
+2,javascript,3,Fizz Buzz,propose,1,propose,0.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,1,3.0,0.0
+2,javascript,3,Fizz Buzz,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,2,5.0,1.0
+2,javascript,3,Fizz Buzz,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,3,4.0,0.0
+2,javascript,3,Fizz Buzz,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,0.0,1.0,0.0,4,4.0,0.0
+2,javascript,3,Fizz Buzz,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0,5,3.0,0.0
+2,javascript,4,Climbing Stairs,propose,1,propose,1.0,0.0,1.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+2,javascript,4,Climbing Stairs,test,1,trace/test,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,2,4.0,0.0
+2,javascript,4,Climbing Stairs,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,3,4.0,0.0
+2,javascript,4,Climbing Stairs,consolidate,1,predict,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,4,4.0,0.0
+2,javascript,4,Climbing Stairs,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,5,4.0,0.0
+2,javascript,5,Maximum Depth of Binary Tree,propose,1,recall,1.0,0.0,0.0,1.0,1.0,1.0,1.0,0.0,1,3.0,0.0
+2,javascript,5,Maximum Depth of Binary Tree,test,1,recall,1.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0,2,2.0,0.0
+2,javascript,5,Maximum Depth of Binary Tree,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,3,4.0,0.0
+2,javascript,5,Maximum Depth of Binary Tree,consolidate,1,predict,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,4,4.0,0.0
+2,javascript,5,Maximum Depth of Binary Tree,consolidate,1,recall,1.0,0.0,1.0,1.0,1.0,0.0,1.0,0.0,5,3.0,0.0
+2,javascript,6,Reverse Linked List,propose,1,recall,1.0,0.0,1.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+2,javascript,6,Reverse Linked List,test,1,recall,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,2,4.0,0.0
+2,javascript,6,Reverse Linked List,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,3,4.0,0.0
+2,javascript,6,Reverse Linked List,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,4,4.0,0.0
+2,javascript,6,Reverse Linked List,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,5,3.0,0.0
+2,javascript,7,Contains Duplicate,propose,1,recall,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,1,4.0,0.0
+2,javascript,7,Contains Duplicate,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,2,4.0,0.0
+2,javascript,7,Contains Duplicate,consolidate,1,recall,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,3,4.0,0.0
+2,javascript,7,Contains Duplicate,consolidate,1,recall,0.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0,4,3.0,0.0
+2,javascript,7,Contains Duplicate,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,5,4.0,0.0
+2,javascript,8,Implement Queue Using Stacks,propose,1,propose,1.0,0.0,0.0,1.0,1.0,1.0,1.0,0.0,1,3.0,0.0
+2,javascript,8,Implement Queue Using Stacks,test,1,propose,1.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,2,3.0,0.0
+2,javascript,8,Implement Queue Using Stacks,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,3,4.0,0.0
+2,javascript,8,Implement Queue Using Stacks,consolidate,1,extend/reflect,0.0,1.0,1.0,1.0,1.0,1.0,0.0,1.0,4,5.0,1.0
+2,javascript,8,Implement Queue Using Stacks,consolidate,1,propose,1.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0,5,2.0,0.0
+2,javascript,9,Fibonacci Number,propose,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+2,javascript,9,Fibonacci Number,propose,1,explain,0.0,1.0,0.0,1.0,1.0,0.0,1.0,0.0,2,3.0,0.0
+2,javascript,9,Fibonacci Number,propose,1,recall,1.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,3,3.0,0.0
+2,javascript,9,Fibonacci Number,propose,1,trace/test,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,4,4.0,0.0
+2,javascript,9,Fibonacci Number,propose,1,propose,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,5,4.0,0.0
+2,javascript,10,Binary Search,propose,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+2,javascript,10,Binary Search,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,2,4.0,0.0
+2,javascript,10,Binary Search,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,0.0,1.0,0.0,3,3.0,0.0
+2,javascript,10,Binary Search,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,4,3.0,0.0
+2,javascript,10,Binary Search,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,5,4.0,0.0
+2,python,1,Two Sum,test,1,trace/test,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,1,4.0,0.0
+2,python,1,Two Sum,test,1,propose,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,2,4.0,0.0
+2,python,1,Two Sum,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,3,4.0,0.0
+2,python,1,Two Sum,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,4,4.0,0.0
+2,python,1,Two Sum,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,5,3.0,0.0
+2,python,2,Maximum Subarray,propose,1,recall,0.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,1,3.0,0.0
+2,python,2,Maximum Subarray,test,1,recall,1.0,0.0,1.0,1.0,1.0,1.0,0.0,0.0,2,4.0,0.0
+2,python,2,Maximum Subarray,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,3,5.0,1.0
+2,python,2,Maximum Subarray,consolidate,1,recall,1.0,0.0,1.0,1.0,1.0,0.0,0.0,0.0,4,3.0,0.0
+2,python,2,Maximum Subarray,consolidate,1,recall,1.0,0.0,1.0,1.0,1.0,0.0,0.0,0.0,5,3.0,0.0
+2,python,3,Fizz Buzz,propose,1,propose,1.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,1,3.0,0.0
+2,python,3,Fizz Buzz,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,2,5.0,1.0
+2,python,3,Fizz Buzz,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,3,4.0,0.0
+2,python,3,Fizz Buzz,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,4,3.0,0.0
+2,python,3,Fizz Buzz,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,5,4.0,0.0
+2,python,4,Climbing Stairs,propose,1,recall,1.0,0.0,0.0,1.0,1.0,1.0,1.0,0.0,1,3.0,0.0
+2,python,4,Climbing Stairs,test,1,explain,0.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0,2,4.0,0.0
+2,python,4,Climbing Stairs,consolidate,1,explain,0.0,1.0,1.0,0.0,1.0,0.0,1.0,0.0,3,3.0,0.0
+2,python,4,Climbing Stairs,consolidate,1,explain,0.0,1.0,1.0,0.0,1.0,0.0,1.0,0.0,4,3.0,0.0
+2,python,4,Climbing Stairs,consolidate,1,explain,0.0,1.0,0.0,0.0,1.0,1.0,0.0,0.0,5,3.0,0.0
+2,python,5,Maximum Depth of Binary Tree,propose,1,trace/test,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,1,4.0,0.0
+2,python,5,Maximum Depth of Binary Tree,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,2,5.0,1.0
+2,python,5,Maximum Depth of Binary Tree,consolidate,1,extend/reflect,0.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,3,5.0,1.0
+2,python,5,Maximum Depth of Binary Tree,consolidate,1,extend/reflect,0.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,4,4.0,0.0
+2,python,5,Maximum Depth of Binary Tree,consolidate,1,extend/reflect,0.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,5,4.0,0.0
+2,python,6,Reverse Linked List,propose,1,recall,1.0,0.0,1.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+2,python,6,Reverse Linked List,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,2,4.0,0.0
+2,python,6,Reverse Linked List,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,3,5.0,1.0
+2,python,6,Reverse Linked List,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,4,4.0,0.0
+2,python,6,Reverse Linked List,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,5,4.0,0.0
+2,python,7,Contains Duplicate,propose,1,propose,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+2,python,7,Contains Duplicate,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,2,4.0,0.0
+2,python,7,Contains Duplicate,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,3,4.0,0.0
+2,python,7,Contains Duplicate,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,4,3.0,0.0
+2,python,7,Contains Duplicate,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0,5,3.0,0.0
+2,python,8,Implement Queue Using Stacks,propose,1,recall,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+2,python,8,Implement Queue Using Stacks,propose,1,trace/test,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,2,4.0,0.0
+2,python,8,Implement Queue Using Stacks,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,3,4.0,0.0
+2,python,8,Implement Queue Using Stacks,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0,4,3.0,0.0
+2,python,8,Implement Queue Using Stacks,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,5,4.0,0.0
+2,python,9,Fibonacci Number,propose,1,propose,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+2,python,9,Fibonacci Number,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,2,4.0,0.0
+2,python,9,Fibonacci Number,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0,3,3.0,0.0
+2,python,9,Fibonacci Number,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,4,3.0,0.0
+2,python,9,Fibonacci Number,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,5,4.0,0.0
+2,python,10,Binary Search,propose,1,propose,0.0,0.0,0.0,1.0,1.0,1.0,1.0,0.0,1,3.0,0.0
+2,python,10,Binary Search,consolidate,1,explain,0.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0,2,4.0,0.0
+2,python,10,Binary Search,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,3,4.0,0.0
+2,python,10,Binary Search,consolidate,1,explain,0.0,1.0,1.0,0.0,1.0,0.0,0.0,0.0,4,3.0,0.0
+2,python,10,Binary Search,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,5,4.0,0.0
+3,javascript,1,Two Sum,test,1,propose,1.0,0.0,0.0,0.0,1.0,1.0,1.0,0.0,1,2.0,0.0
+3,javascript,1,Two Sum,test,1,explain,0.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,2,5.0,1.0
+3,javascript,1,Two Sum,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,3,4.0,0.0
+3,javascript,1,Two Sum,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,4,4.0,0.0
+3,javascript,1,Two Sum,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,5,3.0,0.0
+3,javascript,2,Maximum Subarray,propose,1,recall,1.0,0.0,0.0,1.0,1.0,1.0,1.0,0.0,1,3.0,0.0
+3,javascript,2,Maximum Subarray,test,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,2,4.0,0.0
+3,javascript,2,Maximum Subarray,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0,3,3.0,0.0
+3,javascript,2,Maximum Subarray,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,4,4.0,0.0
+3,javascript,2,Maximum Subarray,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,5,3.0,0.0
+3,javascript,3,Fizz Buzz,propose,1,propose,0.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,1,3.0,0.0
+3,javascript,3,Fizz Buzz,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,2,5.0,1.0
+3,javascript,3,Fizz Buzz,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,3,4.0,0.0
+3,javascript,3,Fizz Buzz,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,0.0,1.0,0.0,4,4.0,0.0
+3,javascript,3,Fizz Buzz,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0,5,3.0,0.0
+3,javascript,4,Climbing Stairs,propose,1,propose,1.0,0.0,1.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+3,javascript,4,Climbing Stairs,test,1,trace/test,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,2,4.0,0.0
+3,javascript,4,Climbing Stairs,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,3,4.0,0.0
+3,javascript,4,Climbing Stairs,consolidate,1,predict,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,4,4.0,0.0
+3,javascript,4,Climbing Stairs,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,5,4.0,0.0
+3,javascript,5,Maximum Depth of Binary Tree,propose,1,recall,1.0,0.0,0.0,1.0,1.0,1.0,1.0,0.0,1,3.0,0.0
+3,javascript,5,Maximum Depth of Binary Tree,test,1,recall,1.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0,2,2.0,0.0
+3,javascript,5,Maximum Depth of Binary Tree,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,3,4.0,0.0
+3,javascript,5,Maximum Depth of Binary Tree,consolidate,1,predict,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,4,4.0,0.0
+3,javascript,5,Maximum Depth of Binary Tree,consolidate,1,recall,1.0,0.0,1.0,1.0,1.0,0.0,1.0,0.0,5,3.0,0.0
+3,javascript,6,Reverse Linked List,propose,1,recall,1.0,0.0,1.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+3,javascript,6,Reverse Linked List,test,1,recall,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,2,4.0,0.0
+3,javascript,6,Reverse Linked List,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,3,4.0,0.0
+3,javascript,6,Reverse Linked List,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,4,4.0,0.0
+3,javascript,6,Reverse Linked List,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,5,3.0,0.0
+3,javascript,7,Contains Duplicate,propose,1,recall,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,1,4.0,0.0
+3,javascript,7,Contains Duplicate,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,2,4.0,0.0
+3,javascript,7,Contains Duplicate,consolidate,1,recall,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,3,4.0,0.0
+3,javascript,7,Contains Duplicate,consolidate,1,recall,0.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0,4,3.0,0.0
+3,javascript,7,Contains Duplicate,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,5,4.0,0.0
+3,javascript,8,Implement Queue Using Stacks,propose,1,propose,1.0,0.0,0.0,1.0,1.0,1.0,1.0,0.0,1,3.0,0.0
+3,javascript,8,Implement Queue Using Stacks,test,1,propose,1.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,2,3.0,0.0
+3,javascript,8,Implement Queue Using Stacks,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,3,4.0,0.0
+3,javascript,8,Implement Queue Using Stacks,consolidate,1,extend/reflect,0.0,1.0,1.0,1.0,1.0,1.0,0.0,1.0,4,5.0,1.0
+3,javascript,8,Implement Queue Using Stacks,consolidate,1,propose,1.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0,5,2.0,0.0
+3,javascript,9,Fibonacci Number,propose,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+3,javascript,9,Fibonacci Number,propose,1,explain,0.0,1.0,0.0,1.0,1.0,0.0,1.0,0.0,2,3.0,0.0
+3,javascript,9,Fibonacci Number,propose,1,recall,1.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,3,3.0,0.0
+3,javascript,9,Fibonacci Number,propose,1,trace/test,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,4,4.0,0.0
+3,javascript,9,Fibonacci Number,propose,1,propose,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,5,4.0,0.0
+3,javascript,10,Binary Search,propose,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+3,javascript,10,Binary Search,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,2,4.0,0.0
+3,javascript,10,Binary Search,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,0.0,1.0,0.0,3,3.0,0.0
+3,javascript,10,Binary Search,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,4,3.0,0.0
+3,javascript,10,Binary Search,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,5,4.0,0.0
+3,python,1,Two Sum,test,1,trace/test,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,1,4.0,0.0
+3,python,1,Two Sum,test,1,propose,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,2,4.0,0.0
+3,python,1,Two Sum,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,3,4.0,0.0
+3,python,1,Two Sum,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,4,4.0,0.0
+3,python,1,Two Sum,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,5,3.0,0.0
+3,python,2,Maximum Subarray,propose,1,recall,0.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,1,3.0,0.0
+3,python,2,Maximum Subarray,test,1,recall,1.0,0.0,1.0,1.0,1.0,1.0,0.0,0.0,2,4.0,0.0
+3,python,2,Maximum Subarray,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,3,5.0,1.0
+3,python,2,Maximum Subarray,consolidate,1,recall,1.0,0.0,1.0,1.0,1.0,0.0,0.0,0.0,4,3.0,0.0
+3,python,2,Maximum Subarray,consolidate,1,recall,1.0,0.0,1.0,1.0,1.0,0.0,0.0,0.0,5,3.0,0.0
+3,python,3,Fizz Buzz,propose,1,propose,1.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,1,3.0,0.0
+3,python,3,Fizz Buzz,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,2,5.0,1.0
+3,python,3,Fizz Buzz,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,3,4.0,0.0
+3,python,3,Fizz Buzz,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,4,3.0,0.0
+3,python,3,Fizz Buzz,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,5,4.0,0.0
+3,python,4,Climbing Stairs,propose,1,recall,1.0,0.0,0.0,1.0,1.0,1.0,1.0,0.0,1,3.0,0.0
+3,python,4,Climbing Stairs,test,1,explain,0.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0,2,4.0,0.0
+3,python,4,Climbing Stairs,consolidate,1,explain,0.0,1.0,1.0,0.0,1.0,0.0,1.0,0.0,3,3.0,0.0
+3,python,4,Climbing Stairs,consolidate,1,explain,0.0,1.0,1.0,0.0,1.0,0.0,1.0,0.0,4,3.0,0.0
+3,python,4,Climbing Stairs,consolidate,1,explain,0.0,1.0,0.0,0.0,1.0,1.0,0.0,0.0,5,3.0,0.0
+3,python,5,Maximum Depth of Binary Tree,propose,1,trace/test,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,1,4.0,0.0
+3,python,5,Maximum Depth of Binary Tree,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,2,5.0,1.0
+3,python,5,Maximum Depth of Binary Tree,consolidate,1,extend/reflect,0.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0,3,5.0,1.0
+3,python,5,Maximum Depth of Binary Tree,consolidate,1,extend/reflect,0.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,4,4.0,0.0
+3,python,5,Maximum Depth of Binary Tree,consolidate,1,extend/reflect,0.0,1.0,1.0,1.0,1.0,0.0,0.0,0.0,5,4.0,0.0
+3,python,6,Reverse Linked List,propose,1,recall,1.0,0.0,1.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+3,python,6,Reverse Linked List,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,2,4.0,0.0
+3,python,6,Reverse Linked List,consolidate,1,explain,0.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0,3,5.0,1.0
+3,python,6,Reverse Linked List,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,4,4.0,0.0
+3,python,6,Reverse Linked List,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,5,4.0,0.0
+3,python,7,Contains Duplicate,propose,1,propose,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+3,python,7,Contains Duplicate,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,2,4.0,0.0
+3,python,7,Contains Duplicate,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,0.0,0.0,3,4.0,0.0
+3,python,7,Contains Duplicate,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,4,3.0,0.0
+3,python,7,Contains Duplicate,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0,5,3.0,0.0
+3,python,8,Implement Queue Using Stacks,propose,1,recall,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+3,python,8,Implement Queue Using Stacks,propose,1,trace/test,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,2,4.0,0.0
+3,python,8,Implement Queue Using Stacks,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,3,4.0,0.0
+3,python,8,Implement Queue Using Stacks,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0,4,3.0,0.0
+3,python,8,Implement Queue Using Stacks,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,5,4.0,0.0
+3,python,9,Fibonacci Number,propose,1,propose,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,1,4.0,0.0
+3,python,9,Fibonacci Number,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,1.0,1.0,0.0,2,4.0,0.0
+3,python,9,Fibonacci Number,consolidate,1,explain,0.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0,3,3.0,0.0
+3,python,9,Fibonacci Number,consolidate,1,extend/reflect,1.0,0.0,0.0,1.0,1.0,1.0,0.0,1.0,4,3.0,0.0
+3,python,9,Fibonacci Number,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,5,4.0,0.0
+3,python,10,Binary Search,propose,1,propose,0.0,0.0,0.0,1.0,1.0,1.0,1.0,0.0,1,3.0,0.0
+3,python,10,Binary Search,consolidate,1,explain,0.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0,2,4.0,0.0
+3,python,10,Binary Search,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,3,4.0,0.0
+3,python,10,Binary Search,consolidate,1,explain,0.0,1.0,1.0,0.0,1.0,0.0,0.0,0.0,4,3.0,0.0
+3,python,10,Binary Search,consolidate,1,extend/reflect,0.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,5,4.0,0.0

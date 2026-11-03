@@ -1,25 +1,15 @@
-"""Run the 10-problem LeetCode test set through the Socratic tutor.
+"""Runs the 10-problem LeetCode test set through the Socratic tutor.
 
 The same 10 problems (same bugs, same scripted student) exist in Python and
 JavaScript, so the two languages can be compared directly.
 
-Usage (from the project root, with Ollama running and `ollama pull codellama:7b`):
-
-    python -m evaluation.run_leetcode_eval                       # Python + JavaScript, real Code Llama
-    python -m evaluation.run_leetcode_eval --language javascript # one language only
-    python -m evaluation.run_leetcode_eval --only 1,5,9          # a subset
-    python -m evaluation.run_leetcode_eval --dry-run             # stub LLM: checks the plumbing only
-
 A scripted student replies in a fixed order: diagnosis -> own fix -> validation
 -> three reflection answers. The run stops when the tutor concludes.
 
-Automatic columns are PROXIES computed by the same detectors the agent uses
-(so they cannot catch what those detectors miss). The columns marked MANUAL are
-left blank on purpose: judge them by reading transcripts.md.
+The whole test set is repeated RUNS times (default 3) so consistency can be assessed. Each run
+is a fresh pass: every problem starts a new conversation.
 
-Outputs (default results/leetcode_eval/<language>/): leetcode_results.csv, transcripts.md
-When both languages are run, results/leetcode_eval/combined_results.csv stacks them
-(one row per problem per language, with a ``language`` column) for side-by-side analysis.
+Outputs: leetcode_results.csv, transcripts.md, combined_results.csv
 """
 
 import argparse
@@ -37,6 +27,7 @@ from backend.agent.language import SUPPORTED_LANGUAGES, detect_language  # noqa:
 from dataset.leetcode_eval import get_problems  # noqa: E402
 
 REPEAT_THRESHOLD = 0.65
+DEFAULT_RUNS = 3
 POST_DIAGNOSIS_STAGES = {"propose", "test", "validate", "consolidate"}
 
 
@@ -172,9 +163,15 @@ def run_problem(problem: dict, stub_state=None) -> dict:
     }
 
 
+def _csv_fields(rows: list[dict]) -> list[str]:
+    """Public columns only, with ``run`` (if present) first."""
+    fields = [k for k in rows[0] if not k.startswith("_") and k != "run"]
+    return (["run"] if "run" in rows[0] else []) + fields
+
+
 def write_outputs(rows: list[dict], out_dir: Path, dry_run: bool) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
-    fields = [k for k in rows[0] if not k.startswith("_")]
+    fields = _csv_fields(rows)
 
     with (out_dir / "leetcode_results.csv").open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
@@ -192,7 +189,7 @@ def write_outputs(rows: list[dict], out_dir: Path, dry_run: bool) -> None:
 def write_combined_csv(rows: list[dict], path: Path) -> None:
     """One CSV with both languages stacked, for side-by-side comparison."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    fields = [k for k in rows[0] if not k.startswith("_")]
+    fields = _csv_fields(rows)
     with path.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
         writer.writeheader()
@@ -207,38 +204,57 @@ def main() -> None:
         default="both",
         help="which version of the problem set to run (default: both)",
     )
+    parser.add_argument(
+        "--runs",
+        type=int,
+        default=DEFAULT_RUNS,
+        help=f"how many times to repeat the whole test set, for consistency (default: {DEFAULT_RUNS})",
+    )
     parser.add_argument("--only", help="comma-separated problem ids, e.g. 1,5,9")
     parser.add_argument("--out", default=str(ROOT / "results" / "leetcode_eval"))
     parser.add_argument("--dry-run", action="store_true", help="use a stub LLM (plumbing check only)")
     args = parser.parse_args()
+    if args.runs < 1:
+        parser.error("--runs must be at least 1")
 
     selected = {int(x) for x in args.only.split(",")} if args.only else None
     languages = SUPPORTED_LANGUAGES if args.language == "both" else (args.language,)
 
     stub_state = install_stub_llm() if args.dry_run else None
     out_root = Path(args.out)
-    all_rows: list[dict] = []
-    for language in languages:
-        problems = [p for p in get_problems(language) if selected is None or p["id"] in selected]
-        rows = []
-        print(f"\n=== {language} ({len(problems)} problems) ===", flush=True)
-        for problem in problems:
-            print(f"Running {problem['id']:>2}. {problem['name']} ...", flush=True)
-            try:
-                rows.append(run_problem(problem, stub_state))
-            except Exception as exc:  # e.g. Ollama not running
-                sys.exit(f"\nFailed on {language} problem {problem['id']}: {exc}\nIs Ollama running with the model in config/llm_config.json?")
+    every_row: list[dict] = []  # all runs, all languages
+    for run in range(1, args.runs + 1):
+        run_dir = out_root / f"run{run}"
+        run_rows: list[dict] = []
+        print(f"\n########## RUN {run} of {args.runs} ##########", flush=True)
+        for language in languages:
+            problems = [p for p in get_problems(language) if selected is None or p["id"] in selected]
+            rows = []
+            print(f"\n=== run {run} | {language} ({len(problems)} problems) ===", flush=True)
+            for problem in problems:
+                print(f"Running {problem['id']:>2}. {problem['name']} ...", flush=True)
+                try:
+                    row = run_problem(problem, stub_state)
+                except Exception as exc:  # e.g. Ollama not running
+                    sys.exit(f"\nFailed on run {run}, {language} problem {problem['id']}: {exc}\nIs Ollama running with the model in config/llm_config.json?")
+                row["run"] = run
+                rows.append(row)
 
-        write_outputs(rows, out_root / language, args.dry_run)
-        print(f"\nWrote {len(rows)} rows to {out_root / language}")
-        for r in rows:
-            print(f"  {r['id']:>2} {r['problem']:<30} Qs={r['tutor_questions']} concluded={r['concluded']} "
-                  f"leak_flags={r['auto_solution_leak_flags']} fallbacks={r['auto_fallback_replies_used']}")
-        all_rows += rows
+            write_outputs(rows, run_dir / language, args.dry_run)
+            print(f"\nWrote {len(rows)} rows to {run_dir / language}")
+            for r in rows:
+                print(f"  {r['id']:>2} {r['problem']:<30} Qs={r['tutor_questions']} concluded={r['concluded']} "
+                      f"leak_flags={r['auto_solution_leak_flags']} fallbacks={r['auto_fallback_replies_used']}")
+            run_rows += rows
 
-    if len(languages) > 1 and all_rows:
-        write_combined_csv(all_rows, out_root / "combined_results.csv")
-        print(f"\nWrote combined results to {out_root / 'combined_results.csv'}")
+        if len(languages) > 1 and run_rows:
+            write_combined_csv(run_rows, run_dir / "combined_results.csv")
+            print(f"\nWrote combined results to {run_dir / 'combined_results.csv'}")
+        every_row += run_rows
+
+    if args.runs > 1 and every_row:
+        write_combined_csv(every_row, out_root / "all_runs_combined.csv")
+        print(f"\nWrote all {args.runs} runs to {out_root / 'all_runs_combined.csv'}")
 
 
 if __name__ == "__main__":

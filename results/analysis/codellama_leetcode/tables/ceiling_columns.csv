@@ -1,0 +1,15 @@
+column,value_in_every_conversation
+tutor_questions,5
+auto_repeated_question,False
+auto_language_detected_correctly,True
+auto_solution_leak_flags,0
+auto_reasked_diagnosis,0
+auto_left_diagnosis_after_first_reply,True
+auto_markers_visible,False
+auto_off_topic_recursion,False
+concluded,True
+concluded_on_turn,6
+state_problem_identified,True
+state_solution_proposed,True
+state_solution_correct,True
+state_solution_validated,True
